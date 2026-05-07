@@ -1,0 +1,272 @@
+{
+  "trace_schema_version": "1",
+  "episode": "ep03",
+  "title": "Reranking \u2014 when 'close' isn't 'right'",
+  "query": "What is the cancellation policy for SKU-1042?",
+  "expected_sources": [
+    "product_catalog.md",
+    "faq.md"
+  ],
+  "provider": {
+    "provider": "gemini",
+    "chat_model": "gemini-2.5-flash",
+    "embedding_model": "gemini-embedding-001",
+    "embedding_dim": 768
+  },
+  "corpus": {
+    "total_chunks": 111
+  },
+  "states": {
+    "before_top_k": [
+      {
+        "rank": 1,
+        "text": "---\n\n## Project & task management\n\n### SKU-1042 \u00b7 Lumenflow Standard\n\nA team collaboration platform for managing projects, tasks, and deadlines across distributed teams. Includes Kanban, List, Calendar, and Gantt views with real-time multi-user editing and offline support on mobi",
+        "source": "product_catalog.md",
+        "score": 0.8081
+      },
+      {
+        "rank": 2,
+        "text": "# Lumenflow B2B software catalog\n\nThis document is the product catalog for Lumenflow's enterprise marketplace. It lists 30 fictional B2B SaaS products with stable SKU codes (`SKU-NNNN`), pricing per seat, descriptions, and technical specs in markdown tables.\n\nThe catalog is engin",
+        "source": "product_catalog.md",
+        "score": 0.7774
+      },
+      {
+        "rank": 3,
+        "text": "Sasha asked about the data-tier migration deferral (D4.2). Marcus: still on plan for Q1 start. The 3 escalated customers from D6.2 are being handled with bridging concessions Tom\u00e1s is running; one signed a 6-month extension at standard rates.\n\nHana asked about the late-Q1 picture",
+        "source": "meeting_notes.md",
+        "score": 0.7764
+      },
+      {
+        "rank": 4,
+        "text": "### Q: Can I get a refund? `[similar-pair-3a]`\n\nRefunds are issued for: (1) accidental annual upgrades within 14 days, (2) duplicate charges on the same date, and (3) service outages exceeding the SLA on enterprise plans. Refunds are NOT issued for unused time on cancelled subscr",
+        "source": "faq.md",
+        "score": 0.7694
+      },
+      {
+        "rank": 5,
+        "text": "| Attribute | Value |\n|---|---|\n| Category | Project management |\n| Price per seat (monthly) | $8 |\n| Storage per workspace | 50 GB |\n| Members per workspace | Unlimited |\n| Audit log retention | 30 days |\n| SSO support | No |\n| Cancellation notice | None \u2014 cancel any time |\n| Re",
+        "source": "product_catalog.md",
+        "score": 0.7693
+      }
+    ],
+    "after_top_k": [
+      {
+        "rank": 1,
+        "text": "---\n\n## Project & task management\n\n### SKU-1042 \u00b7 Lumenflow Standard\n\nA team collaboration platform for managing projects, tasks, and deadlines across distributed teams. Includes Kanban, List, Calendar, and Gantt views with real-time multi-user editing and offline support on mobi",
+        "source": "product_catalog.md",
+        "score": 0.8081,
+        "rerank_score": 5.2472
+      },
+      {
+        "rank": 2,
+        "text": "| Attribute | Value |\n|---|---|\n| Category | Project management |\n| Price per seat (monthly) | $8 |\n| Storage per workspace | 50 GB |\n| Members per workspace | Unlimited |\n| Audit log retention | 30 days |\n| SSO support | No |\n| Cancellation notice | None \u2014 cancel any time |\n| Re",
+        "source": "product_catalog.md",
+        "score": 0.7693,
+        "rerank_score": 2.0925
+      },
+      {
+        "rank": 3,
+        "text": "### SKU-7202 \u00b7 KeyVault Privileged\n\nPrivileged access management. Just-in-time elevation, session recording, vaulted secrets with rotation, and policy-driven approval workflows for production access.\n\n| Attribute | Value |\n|---|---|\n| Category | Identity & access |\n| Price per pr",
+        "source": "product_catalog.md",
+        "score": 0.7583,
+        "rerank_score": -2.3549
+      },
+      {
+        "rank": 4,
+        "text": "# Lumenflow B2B software catalog\n\nThis document is the product catalog for Lumenflow's enterprise marketplace. It lists 30 fictional B2B SaaS products with stable SKU codes (`SKU-NNNN`), pricing per seat, descriptions, and technical specs in markdown tables.\n\nThe catalog is engin",
+        "source": "product_catalog.md",
+        "score": 0.7774,
+        "rerank_score": -3.0564
+      },
+      {
+        "rank": 5,
+        "text": "| Attribute | Value |\n|---|---|\n| Category | Project management |\n| Price per seat (monthly) | $0 (under 500 seats) |\n| Storage per workspace | 100 GB |\n| Roster sync | Canvas, Moodle, Blackboard |\n| Audit log retention | 90 days |\n| SSO support | SAML 2.0 |\n\n### SKU-1046 \u00b7 Lumen",
+        "source": "product_catalog.md",
+        "score": 0.7581,
+        "rerank_score": -3.1115
+      }
+    ],
+    "scatter": [
+      {
+        "cosine": 0.8081,
+        "relevance": 5.2472,
+        "source": "product_catalog.md",
+        "orig_rank": 1,
+        "new_rank": 1,
+        "text_preview": "---\n\n## Project & task management\n\n### SKU-1042 \u00b7 Lumenflow Standard\n\nA team col"
+      },
+      {
+        "cosine": 0.7693,
+        "relevance": 2.0925,
+        "source": "product_catalog.md",
+        "orig_rank": 5,
+        "new_rank": 2,
+        "text_preview": "| Attribute | Value |\n|---|---|\n| Category | Project management |\n| Price per se"
+      },
+      {
+        "cosine": 0.7583,
+        "relevance": -2.3549,
+        "source": "product_catalog.md",
+        "orig_rank": 11,
+        "new_rank": 3,
+        "text_preview": "### SKU-7202 \u00b7 KeyVault Privileged\n\nPrivileged access management. Just-in-time e"
+      },
+      {
+        "cosine": 0.7774,
+        "relevance": -3.0564,
+        "source": "product_catalog.md",
+        "orig_rank": 2,
+        "new_rank": 4,
+        "text_preview": "# Lumenflow B2B software catalog\n\nThis document is the product catalog for Lumen"
+      },
+      {
+        "cosine": 0.7581,
+        "relevance": -3.1115,
+        "source": "product_catalog.md",
+        "orig_rank": 12,
+        "new_rank": 5,
+        "text_preview": "| Attribute | Value |\n|---|---|\n| Category | Project management |\n| Price per se"
+      },
+      {
+        "cosine": 0.7671,
+        "relevance": -4.8829,
+        "source": "product_catalog.md",
+        "orig_rank": 6,
+        "new_rank": 6,
+        "text_preview": "| Attribute | Value |\n|---|---|\n| Category | DevOps & monitoring |\n| Price | $0."
+      },
+      {
+        "cosine": 0.7553,
+        "relevance": -5.0128,
+        "source": "meeting_notes.md",
+        "orig_rank": 19,
+        "new_rank": 7,
+        "text_preview": "Attendees: Sasha, Marcus, Pri, Tom\u00e1s, Hana, plus **Devika Anand** (Security).\n\nD"
+      },
+      {
+        "cosine": 0.7669,
+        "relevance": -5.1794,
+        "source": "product_catalog.md",
+        "orig_rank": 7,
+        "new_rank": 8,
+        "text_preview": "---\n\n## Customer support\n\n### SKU-4001 \u00b7 HelpForge Inbox\n\nMulti-channel support "
+      },
+      {
+        "cosine": 0.7557,
+        "relevance": -6.2932,
+        "source": "product_catalog.md",
+        "orig_rank": 18,
+        "new_rank": 9,
+        "text_preview": "### SKU-8052 \u00b7 DataPrism Reverse-ETL\n\nSync warehouse data back into operational "
+      },
+      {
+        "cosine": 0.7641,
+        "relevance": -7.3166,
+        "source": "product_catalog.md",
+        "orig_rank": 8,
+        "new_rank": 10,
+        "text_preview": "| Attribute | Value |\n|---|---|\n| Category | DevOps & monitoring |\n| Price | $0."
+      },
+      {
+        "cosine": 0.7624,
+        "relevance": -9.019,
+        "source": "faq.md",
+        "orig_rank": 9,
+        "new_rank": 11,
+        "text_preview": "### Q: How do I cancel a scheduled task? `[similar-pair-2b]`\n\nOpen the task, cli"
+      },
+      {
+        "cosine": 0.7694,
+        "relevance": -9.3027,
+        "source": "faq.md",
+        "orig_rank": 4,
+        "new_rank": 12,
+        "text_preview": "### Q: Can I get a refund? `[similar-pair-3a]`\n\nRefunds are issued for: (1) acci"
+      },
+      {
+        "cosine": 0.7551,
+        "relevance": -10.2782,
+        "source": "meeting_notes.md",
+        "orig_rank": 20,
+        "new_rank": 13,
+        "text_preview": "Decisions:\n\n- **D2.1** Audit-log retention rebuild target completion: 2025-10-13"
+      },
+      {
+        "cosine": 0.7764,
+        "relevance": -10.49,
+        "source": "meeting_notes.md",
+        "orig_rank": 3,
+        "new_rank": 14,
+        "text_preview": "Sasha asked about the data-tier migration deferral (D4.2). Marcus: still on plan"
+      },
+      {
+        "cosine": 0.758,
+        "relevance": -10.7411,
+        "source": "meeting_notes.md",
+        "orig_rank": 13,
+        "new_rank": 15,
+        "text_preview": "Hana said the audit-log retention rebuild is **at risk**. Cross-region replicati"
+      },
+      {
+        "cosine": 0.7574,
+        "relevance": -10.9948,
+        "source": "meeting_notes.md",
+        "orig_rank": 14,
+        "new_rank": 16,
+        "text_preview": "Tom\u00e1s was out sick. Sasha covered for him on the customer-comms point.\n\nMarcus r"
+      },
+      {
+        "cosine": 0.7566,
+        "relevance": -11.009,
+        "source": "meeting_notes.md",
+        "orig_rank": 16,
+        "new_rank": 17,
+        "text_preview": "Tom\u00e1s raised a concern: dropping the data-tier migration means the slow-query pr"
+      },
+      {
+        "cosine": 0.7573,
+        "relevance": -11.1898,
+        "source": "meeting_notes.md",
+        "orig_rank": 15,
+        "new_rank": 18,
+        "text_preview": "Tom\u00e1s flagged that the churn driver in the 50-200 segment is **not** missing fea"
+      },
+      {
+        "cosine": 0.7594,
+        "relevance": -11.2336,
+        "source": "meeting_notes.md",
+        "orig_rank": 10,
+        "new_rank": 19,
+        "text_preview": "Decisions:\n\n- **D5.1** Pri may explore per-industry seed content design in Q4; s"
+      },
+      {
+        "cosine": 0.756,
+        "relevance": -11.3447,
+        "source": "policy_manual.md",
+        "orig_rank": 17,
+        "new_rank": 20,
+        "text_preview": "### 4.3 Handling requirements\n\nEach level has specific handling requirements:"
+      }
+    ],
+    "llm_answer": "Monthly plans can be cancelled at any time from Settings \u2192 Billing \u2192 Cancel; access continues to the end of the current billing period and no refund is issued for unused days. Annual plans can be cancelled within the first 14 days for a full refund; after that, access continues to the end of the paid year and the remainder is non-refundable. There is no restocking fee. Workspaces enter a 30-day grace period after cancellation, during which all data is recoverable; after 30 days, data is purged and cannot be restored. (Source: product_catalog.md)",
+    "code_files": [
+      {
+        "name": "pipeline.py",
+        "text": "\"\"\"EP03 \u2014 Reranking. About 80 lines. Same pipeline as EP02, plus a reranker.\n\n    python pipeline.py \"What is the cancellation policy for SKU-1042?\"\n\"\"\"\nfrom __future__ import annotations\n\nimport sys\nfrom pathlib import Path\n\nimport chromadb\nfrom sentence_transformers import CrossEncoder\n\n# Reuse EP02's chunk loader + provider (no copy-paste, just import).\nEP02 = Path(__file__).resolve().parent.parent.parent / \"ep02-build-the-pipeline\" / \"impl\"\nsys.path.insert(0, str(EP02))\nfrom corpus_loader import load_and_chunk  # noqa: E402\nfrom provider import embed, chat  # noqa: E402\n\nPROMPT_TEMPLATE = \"\"\"\\\nYou are a precise assistant. Use ONLY the context to answer.\n\nContext:\n{context}\n\nQuestion: {question}\n\nAnswer concisely. Cite the source filename. If the context does not\ncontain the answer, say so.\n\"\"\"\n\n# EP03 reuses EP02's already-embedded chunks \u2014 same corpus, same model,\n# same chunking. No reason to re-embed (and the free Gemini tier won't let\n# us anyway). Vector search is identical to EP02; the only new code is the\n# rerank step downstream.\nPERSIST_DIR = str(Path(__file__).resolve().parent.parent.parent / \"ep02-build-the-pipeline\" / \"impl\" / \"chroma_db\")\nCOLLECTION = \"ep02-baseline\"\n\n# 90 MB cross-encoder, MIT-licensed, runs on CPU. Loaded once at import.\nRERANKER_MODEL = \"cross-encoder/ms-marco-MiniLM-L-6-v2\"\n_RERANKER: CrossEncoder | None = None\n\n\ndef _reranker() -> CrossEncoder:\n    global _RERANKER\n    if _RERANKER is None:\n        _RERANKER = CrossEncoder(RERANKER_MODEL)\n    return _RERANKER\n\n\ndef ingest() -> int:\n    \"\"\"Same ingest as EP02 \u2014 embed every chunk, store in Chroma. Idempotent.\"\"\"\n    client = chromadb.PersistentClient(path=PERSIST_DIR)\n    coll = client.get_or_create_collection(name=COLLECTION)\n    if coll.count():\n        return coll.count()\n    chunks = load_and_chunk(chunk_size=900, chunk_overlap=100)\n    vecs = embed([c[\"text\"] for c in chunks])\n    coll.add(\n        ids=[str(c[\"chunk_id\"]) for c in chunks],\n        documents=[c[\"text\"] for c in chunks],\n        embeddings=vecs,\n        metadatas=[{\"source\": c[\"source\"]} for c in chunks],\n    )\n    return coll.count()\n\n\ndef vector_search(query: str, k: int = 20) -> list[dict]:\n    \"\"\"Bi-encoder retrieval \u2014 fast, broad recall. Same code as EP02.search().\"\"\"\n    client = chromadb.PersistentClient(path=PERSIST_DIR)\n    coll = client.get_collection(name=COLLECTION)\n    q_vec = embed([query])[0]\n    res = coll.query(query_embeddings=[q_vec], n_results=k)\n    out = []\n    for text, meta, dist in zip(res[\"documents\"][0], res[\"metadatas\"][0], res[\"distances\"][0]):\n        out.append({\n            \"text\": text,\n            \"source\": meta[\"source\"],\n            \"score\": 1.0 / (1.0 + float(dist)),  # cosine-like similarity\n        })\n    return out\n\n\ndef rerank(query: str, candidates: list[dict], top_n: int = 3) -> list[dict]:\n    \"\"\"Cross-encoder rerank \u2014 slower, precise. Returns top_n by relevance.\"\"\"\n    pairs = [(query, c[\"text\"]) for c in candidates]\n    relevance_scores = _reranker().predict(pairs).tolist()\n    for c, r in zip(candidates, relevance_scores):\n        c[\"rerank_score\"] = float(r)\n    candidates.sort(key=lambda c: c[\"rerank_score\"], reverse=True)\n    return candidates[:top_n]\n\n\ndef answer(query: str, top_k_retrieve: int = 20, top_n_rerank: int = 3) -> str:\n    \"\"\"Retrieve broadly, rerank precisely, answer from the top-N.\"\"\"\n    retrieved = vector_search(query, k=top_k_retrieve)\n    top = rerank(query, retrieved, top_n=top_n_rerank)\n    context = \"\\n\\n\".join(f\"[{c['source']}] {c['text']}\" for c in top)\n    prompt = PROMPT_TEMPLATE.format(context=context, question=query)\n    return chat(prompt)\n\n\nif __name__ == \"__main__\":\n    q = \" \".join(sys.argv[1:]) or \"What is the cancellation policy for SKU-1042?\"\n    n = ingest()\n    print(f\"indexed {n} chunks\")\n    print(f\"\\nQ: {q}\\n\\nA: {answer(q)}\")\n",
+        "line_count": 107
+      }
+    ],
+    "reranker_model": "cross-encoder/ms-marco-MiniLM-L-6-v2"
+  },
+  "metrics": {
+    "ingest_ms": 84.6,
+    "search_ms": 474.1,
+    "rerank_ms": 1080.0,
+    "llm_ms": 1991.3,
+    "p_at_3_before": 0.667,
+    "p_at_3_after": 1.0,
+    "rerank_ms_cold": 18774.3,
+    "rerank_ms_warm": 1080.0
+  },
+  "generated_at": "2026-05-07T15:53:23.737418+00:00"
+}
