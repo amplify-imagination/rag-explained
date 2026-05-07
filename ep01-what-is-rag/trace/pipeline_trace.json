@@ -1,0 +1,207 @@
+{
+  "trace_schema_version": "1",
+  "episode": "ep01",
+  "title": "What is RAG?",
+  "query": "What is the cancellation policy for SKU-1042?",
+  "expected_sources": [
+    "product_catalog.md",
+    "faq.md"
+  ],
+  "provider": {
+    "provider": "gemini",
+    "chat_model": "gemini-2.5-flash",
+    "embedding_model": "gemini-embedding-001",
+    "embedding_dim": 768
+  },
+  "corpus": {
+    "total_chunks": 150,
+    "source": "shared/corpus/corpus.json"
+  },
+  "states": {
+    "chunks": [
+      {
+        "chunk_id": 34,
+        "text": "[Lumenflow B2B software catalog > Project & task management > SKU-1042 · Lumenflow Standard]\nA team collaboration platform for managing projects, tasks, and deadlines across distributed teams. Includes Kanban, List, Calendar, and Gantt views with real-time multi-user editing and ",
+        "source": "product_catalog.md",
+        "heading_path": [
+          "Lumenflow B2B software catalog",
+          "Project & task management",
+          "SKU-1042 · Lumenflow Standard"
+        ]
+      },
+      {
+        "chunk_id": 33,
+        "text": "[Lumenflow B2B software catalog]\nThis document is the product catalog for Lumenflow's enterprise marketplace. It lists 30 fictional B2B SaaS products with stable SKU codes (\n```\nSKU-NNNN\n```\n), pricing per seat, descriptions, and technical specs in markdown tables.\nThe catalog is",
+        "source": "product_catalog.md",
+        "heading_path": [
+          "Lumenflow B2B software catalog"
+        ]
+      },
+      {
+        "chunk_id": 35,
+        "text": "[Lumenflow B2B software catalog > Project & task management > SKU-1043 · Lumenflow Pro]\nA team collaboration platform for managing projects, tasks, and deadlines across distributed teams. Adds custom fields, advanced automation, time tracking, and private projects on top of the S",
+        "source": "product_catalog.md",
+        "heading_path": [
+          "Lumenflow B2B software catalog",
+          "Project & task management",
+          "SKU-1043 · Lumenflow Pro"
+        ]
+      },
+      {
+        "chunk_id": 36,
+        "text": "[Lumenflow B2B software catalog > Project & task management > SKU-1044 · Lumenflow Enterprise]\nA team collaboration platform for managing projects, tasks, and deadlines across distributed teams. Adds SCIM, customer-managed encryption keys, audit log retention up to 7 years, and a",
+        "source": "product_catalog.md",
+        "heading_path": [
+          "Lumenflow B2B software catalog",
+          "Project & task management",
+          "SKU-1044 · Lumenflow Enterprise"
+        ]
+      },
+      {
+        "chunk_id": 0,
+        "text": "[Lumenflow IT security & access policy]\nThis document is the IT security and acceptable-use policy for Lumenflow employees and contractors. It covers account management, device security, data classification, network access, incident response, and vendor risk. The policy is engine",
+        "source": "policy_manual.md",
+        "heading_path": [
+          "Lumenflow IT security & access policy"
+        ]
+      },
+      {
+        "chunk_id": 1,
+        "text": "[Lumenflow IT security & access policy > 1. Scope and applicability > 1.1 Who this policy covers]\nThis policy applies to every employee, contractor, intern, and third-party vendor with logical or physical access to Lumenflow systems or data. It applies regardless of employment lo",
+        "source": "policy_manual.md",
+        "heading_path": [
+          "Lumenflow IT security & access policy",
+          "1. Scope and applicability",
+          "1.1 Who this policy covers"
+        ]
+      },
+      {
+        "chunk_id": 2,
+        "text": "[Lumenflow IT security & access policy > 1. Scope and applicability > 1.2 What this policy covers]\nThe policy covers (a) the logical security controls used to protect Lumenflow data and systems, (b) the acceptable-use rules for Lumenflow-issued and personally-owned devices access",
+        "source": "policy_manual.md",
+        "heading_path": [
+          "Lumenflow IT security & access policy",
+          "1. Scope and applicability",
+          "1.2 What this policy covers"
+        ]
+      },
+      {
+        "chunk_id": 3,
+        "text": "[Lumenflow IT security & access policy > 1. Scope and applicability > 1.3 Authority and exceptions]\nThis policy is owned by the Chief Information Security Officer. The CISO may grant time-bound exceptions in writing when business need exceeds the protection the policy provides; e",
+        "source": "policy_manual.md",
+        "heading_path": [
+          "Lumenflow IT security & access policy",
+          "1. Scope and applicability",
+          "1.3 Authority and exceptions"
+        ]
+      },
+      {
+        "chunk_id": 4,
+        "text": "[Lumenflow IT security & access policy > 2. Identity and access > 2.1 Account lifecycle]\nAccount provisioning, modification, and deprovisioning is managed centrally through the IdP (KeyVault Identity, SKU-7201) and SCIM-synchronised to downstream systems. Manual account creation ",
+        "source": "policy_manual.md",
+        "heading_path": [
+          "Lumenflow IT security & access policy",
+          "2. Identity and access",
+          "2.1 Account lifecycle"
+        ]
+      },
+      {
+        "chunk_id": 5,
+        "text": "[Lumenflow IT security & access policy > 2. Identity and access > 2.2 Joiner procedure]\nWhen an employee joins the company, the following must happen in order:\n1. The hiring manager submits a joiner ticket in the HR system with the start date, role, manager, and proposed access g",
+        "source": "policy_manual.md",
+        "heading_path": [
+          "Lumenflow IT security & access policy",
+          "2. Identity and access",
+          "2.2 Joiner procedure"
+        ]
+      }
+    ],
+    "embeddings_preview": [
+      [
+        -0.007,
+        0.0405,
+        0.0008,
+        -0.0409,
+        0.0042
+      ],
+      [
+        -0.0352,
+        0.038,
+        0.0086,
+        -0.045,
+        0.0051
+      ],
+      [
+        -0.0092,
+        0.039,
+        -0.0012,
+        -0.0326,
+        0.0197
+      ],
+      [
+        -0.0026,
+        0.0366,
+        0.0004,
+        -0.0441,
+        0.0083
+      ],
+      [
+        0.0225,
+        0.031,
+        0.0051,
+        -0.0389,
+        -0.0152
+      ]
+    ],
+    "stored_count": 150,
+    "query_vector": [
+      -0.0034,
+      0.0154,
+      -0.0073,
+      -0.0441,
+      -0.0172
+    ],
+    "similarity_scores": [
+      0.7997,
+      0.7764,
+      0.7717,
+      0.7683,
+      0.7677,
+      0.766,
+      0.7654,
+      0.7653,
+      0.7635,
+      0.758
+    ],
+    "top_k_final": [
+      {
+        "chunk_id": 34,
+        "text": "[Lumenflow B2B software catalog > Project & task management > SKU-1042 · Lumenflow Standard]\nA team collaboration platform for managing projects, tasks, and deadlines across distributed teams. Includes Kanban, List, Calendar, and Gantt views with real-time multi-user editing and ",
+        "score": 0.7997,
+        "source": "product_catalog.md"
+      },
+      {
+        "chunk_id": 100,
+        "text": "[Lumenflow FAQ > Subscriptions & Billing > ]\nQ: How do I cancel my subscription?\n```\n[similar-pair-2a]\n```\nSettings → Billing → Cancel subscription. You retain access until the end of the current billing period — for monthly plans that's the next renewal date, for annual plans it",
+        "score": 0.7764,
+        "source": "faq.md"
+      },
+      {
+        "chunk_id": 68,
+        "text": "[Lumenflow weekly product meeting — notes > Meeting 6 — 2025-10-13]\nAttendees: Sasha, Marcus, Pri, Tomás, Hana, Devika.\nTomás reported that the customer-comms email about D4.2 went out yesterday. 14 enterprise customers were affected; 11 acknowledged, 3 escalated. The 3 escalatio",
+        "score": 0.7717,
+        "source": "meeting_notes.md"
+      }
+    ],
+    "llm_answer": "For monthly plans, cancellation is possible at any time from Settings → Billing →"
+  },
+  "metrics": {
+    "precision_at_3": 0.667,
+    "ingest_ms": 13.3,
+    "embed_query_ms": 392.4,
+    "search_ms": 274.7,
+    "llm_ms": 2919.5,
+    "e2e_ms": 3586.6
+  },
+  "generated_at": "2026-05-06T13:26:56.401505+00:00"
+}

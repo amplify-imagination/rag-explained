@@ -1,0 +1,76 @@
+{
+  "version": "1",
+  "description": "Canonical query set used to benchmark every RAG strategy across the playlist. Same questions × same corpus × different strategies = the experimental control of the series.",
+  "queries": [
+    {
+      "id": "q01",
+      "text": "What is the cancellation policy for SKU-1042?",
+      "expected_sources": ["product_catalog.md", "faq.md"],
+      "designed_to_break": "vector-only (misses SKU exact match)",
+      "used_in_episodes": ["ep01", "ep02", "ep06"]
+    },
+    {
+      "id": "q02",
+      "text": "How do I cancel a scheduled task?",
+      "expected_sources": ["faq.md"],
+      "designed_to_break": "bi-encoder (surface-similar to 'cancel my subscription')",
+      "used_in_episodes": ["ep03", "ep08"]
+    },
+    {
+      "id": "q03",
+      "text": "How do I cancel my subscription?",
+      "expected_sources": ["faq.md"],
+      "designed_to_break": "bi-encoder (surface-similar to 'cancel a scheduled task')",
+      "used_in_episodes": ["ep03", "ep08"]
+    },
+    {
+      "id": "q04",
+      "text": "What is the leaver procedure for an employee with privileged access?",
+      "expected_sources": ["policy_manual.md"],
+      "designed_to_break": "fixed-size chunking (procedure split mid-step, loses heading)",
+      "used_in_episodes": ["ep04", "ep05"]
+    },
+    {
+      "id": "q05",
+      "text": "Did the audit-log retention rebuild slip past its original target?",
+      "expected_sources": ["meeting_notes.md"],
+      "designed_to_break": "naive chunking (cross-meeting decision references)",
+      "used_in_episodes": ["ep05"]
+    },
+    {
+      "id": "q06",
+      "text": "Which databases does a customer-facing webhook delivery touch?",
+      "expected_sources": ["tech_spec.md"],
+      "designed_to_break": "vector search (multi-hop traversal needed)",
+      "used_in_episodes": ["ep07"]
+    },
+    {
+      "id": "q07",
+      "text": "What's the difference between Pro and Enterprise?",
+      "expected_sources": ["faq.md"],
+      "designed_to_break": "bi-encoder (surface-similar to Standard vs Pro)",
+      "used_in_episodes": ["ep03", "ep08"]
+    },
+    {
+      "id": "q08",
+      "text": "Does Lumenflow support SAML SSO?",
+      "expected_sources": ["faq.md", "policy_manual.md"],
+      "designed_to_break": "bi-encoder (surface-similar to SCIM provisioning)",
+      "used_in_episodes": ["ep03"]
+    },
+    {
+      "id": "q09",
+      "text": "What was the reason for deferring the data-tier migration?",
+      "expected_sources": ["meeting_notes.md"],
+      "designed_to_break": "naive chunking (decision spans multiple meetings)",
+      "used_in_episodes": ["ep05"]
+    },
+    {
+      "id": "q10",
+      "text": "What integrations does the GitHub connector support?",
+      "expected_sources": ["faq.md"],
+      "designed_to_break": "bi-encoder (surface-similar to GitLab integration)",
+      "used_in_episodes": ["ep03", "ep08"]
+    }
+  ]
+}

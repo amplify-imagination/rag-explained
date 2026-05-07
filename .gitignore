@@ -1,0 +1,78 @@
+# ── Python ──────────────────────────────────────────────────────────
+__pycache__/
+*.pyc
+.venv/
+venv/
+_venvs/
+.env
+.env.local
+
+# ── ChromaDB (regenerable from generate_trace.py) ───────────────────
+**/chroma_db/
+
+# ── Node / Remotion ─────────────────────────────────────────────────
+**/node_modules/
+**/out/
+**/.cache/
+
+# ── Generated audio + alignment (large; voice-identifying; regenerable) ─
+**/remotion/public/audio/*.mp3
+**/remotion/public/audio/alignment/*.json
+
+# ── Voice cloning references (privacy) ──────────────────────────────
+_voice_refs/
+
+# ── Production tooling — Stig's local-only ship + render ─────────────
+_launch/
+_align_*.sh
+_align_*.py
+_dump_*.py
+_render_*.sh
+_run_*.sh
+_resynth_*.sh
+_loudnorm_*.sh
+_extract_*.py
+_inspect_*.py
+_install_*.sh
+_f5_synth*.sh
+_f5_test*.sh
+_f5_lib_smoke.py
+_test_chunks.py
+**/_run_trace.sh
+**/_wait_then_render.sh
+**/_derive_durations_and_render.sh
+**/_render_bg.sh
+
+# ── Working notes / status reports ──────────────────────────────────
+MORNING_STATUS.md
+NOTES.local.md
+*.local.md
+
+# ── QA output ───────────────────────────────────────────────────────
+qa/
+*.log
+
+# ── OS / IDE ────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# ── Stale scaffold (deleted — ignore so it can't come back accidentally) ─
+ep02-build-basic-rag/
+
+# ── Bread-and-butter — production content, NEVER commit ─────────────
+# (Remotion scenes, motion design system, voiceover synth, anchor
+# automation, episode briefs, narration scripts and series roadmap are
+# how the videos get made. The PUBLIC repo is the learning material —
+# code + corpus + traces — not the production rig.)
+**/remotion/
+**/script.md
+_docs/
+_skills/
+_f5_mps_patch/
+shared/generate_voiceover.py
+shared/generate_voiceover_f5.py
+shared/remotion_components/
+scripts/auto_reanchor.py
+scripts/qa_episode.py

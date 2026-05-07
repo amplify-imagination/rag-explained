@@ -1,0 +1,1780 @@
+{
+  "version": "1",
+  "chunks": [
+    {
+      "chunk_id": 0,
+      "text": "[Lumenflow IT security & access policy]\nThis document is the IT security and acceptable-use policy for Lumenflow employees and contractors. It covers account management, device security, data classification, network access, incident response, and vendor risk. The policy is engineered for the chunking-benchmarks demo: it has deeply nested headings, long numbered procedures that span chunk boundaries when split at fixed sizes, and tables of role/system mappings that lose their meaning when separated from their parent section.",
+      "source_file": "policy_manual.md",
+      "heading_path": [
+        "Lumenflow IT security & access policy"
+      ],
+      "char_count": 529,
+      "token_count": 75
+    },
+    {
+      "chunk_id": 1,
+      "text": "[Lumenflow IT security & access policy > 1. Scope and applicability > 1.1 Who this policy covers]\nThis policy applies to every employee, contractor, intern, and third-party vendor with logical or physical access to Lumenflow systems or data. It applies regardless of employment location, contract type, or device ownership. Parts of the policy that are mandatory for full-time employees may be advisory for short-term contractors; where this distinction matters, it is called out explicitly in the relevant section.",
+      "source_file": "policy_manual.md",
+      "heading_path": [
+        "Lumenflow IT security & access policy",
+        "1. Scope and applicability",
+        "1.1 Who this policy covers"
+      ],
+      "char_count": 515,
+      "token_count": 78
+    },
+    {
+      "chunk_id": 2,
+      "text": "[Lumenflow IT security & access policy > 1. Scope and applicability > 1.2 What this policy covers]\nThe policy covers (a) the logical security controls used to protect Lumenflow data and systems, (b) the acceptable-use rules for Lumenflow-issued and personally-owned devices accessing those systems, (c) the procedures for granting, reviewing, and revoking access, (d) the incident response and breach notification process, and (e) the vendor risk management process used when introducing third-party services into the Lumenflow operating environment.",
+      "source_file": "policy_manual.md",
+      "heading_path": [
+        "Lumenflow IT security & access policy",
+        "1. Scope and applicability",
+        "1.2 What this policy covers"
+      ],
+      "char_count": 550,
+      "token_count": 78
+    },
+    {
+      "chunk_id": 3,
+      "text": "[Lumenflow IT security & access policy > 1. Scope and applicability > 1.3 Authority and exceptions]\nThis policy is owned by the Chief Information Security Officer. The CISO may grant time-bound exceptions in writing when business need exceeds the protection the policy provides; exceptions older than 90 days must be re-approved or remediated. All exceptions are logged in the GRC system and reviewed at the quarterly security council.",
+      "source_file": "policy_manual.md",
+      "heading_path": [
+        "Lumenflow IT security & access policy",
+        "1. Scope and applicability",
+        "1.3 Authority and exceptions"
+      ],
+      "char_count": 435,
+      "token_count": 68
+    },
+    {
+      "chunk_id": 4,
+      "text": "[Lumenflow IT security & access policy > 2. Identity and access > 2.1 Account lifecycle]\nAccount provisioning, modification, and deprovisioning is managed centrally through the IdP (KeyVault Identity, SKU-7201) and SCIM-synchronised to downstream systems. Manual account creation outside the IdP is prohibited except where the system in question does not support SAML or SCIM, in which case the local account must be documented in the application registry and reviewed quarterly.",
+      "source_file": "policy_manual.md",
+      "heading_path": [
+        "Lumenflow IT security & access policy",
+        "2. Identity and access",
+        "2.1 Account lifecycle"
+      ],
+      "char_count": 479,
+      "token_count": 70
+    },
+    {
+      "chunk_id": 5,
+      "text": "[Lumenflow IT security & access policy > 2. Identity and access > 2.2 Joiner procedure]\nWhen an employee joins the company, the following must happen in order:\n1. The hiring manager submits a joiner ticket in the HR system with the start date, role, manager, and proposed access groups.\n2. The IT helpdesk validates the ticket and provisions a primary account in the IdP, scoped to the role-based access groups requested.\n3. The new joiner receives a temporary password by encrypted message; the password must be changed at first sign-in.\n4. The joiner enrolls a primary MFA factor (WebAuthn preferred, TOTP acceptable) and at least one backup factor.\n5. The joiner accepts the acceptable-use policy electronically; this acceptance is logged in the GRC system.\n6. The joiner is enrolled in role-appropriate security awareness training, which must be completed within 30 days.\n7. The joiner is issued company hardware (laptop, phone if required) which is provisioned with the device management agent before delivery.\n8. Access to systems beyond the role-based defaults requires a separate access request, even during onboarding.",
+      "source_file": "policy_manual.md",
+      "heading_path": [
+        "Lumenflow IT security & access policy",
+        "2. Identity and access",
+        "2.2 Joiner procedure"
+      ],
+      "char_count": 1127,
+      "token_count": 178
+    },
+    {
+      "chunk_id": 6,
+      "text": "[Lumenflow IT security & access policy > 2. Identity and access > 2.3 Mover procedure]\nWhen an employee changes role or team, their access is reviewed in full. The departing manager submits a closure of role-based access, the new manager submits the new role-based access, and the helpdesk reconciles. Access is not stacked: the assumption is that role-based access for the prior role is removed unless explicitly retained with a documented justification. Project-specific access (not role-based) follows the same review.",
+      "source_file": "policy_manual.md",
+      "heading_path": [
+        "Lumenflow IT security & access policy",
+        "2. Identity and access",
+        "2.3 Mover procedure"
+      ],
+      "char_count": 521,
+      "token_count": 80
+    },
+    {
+      "chunk_id": 7,
+      "text": "[Lumenflow IT security & access policy > 2. Identity and access > 2.4 Leaver procedure]\nWhen an employee or contractor leaves, the following steps must complete on the last working day or earlier if the departure is involuntary:\n1. The HR system raises a leaver ticket no later than 24 hours before the planned end date; for involuntary terminations the ticket is raised at the moment of the decision.\n2. The IT helpdesk schedules the leaver's IdP account for disablement at the end-of-day on the leaving date; for involuntary departures the disablement happens immediately on the HR signal.\n3. SCIM propagation deprovisions downstream applications. Applications that do not support SCIM are flagged for manual revocation in the application registry; manual revocation must be confirmed within 4 hours.\n4. Personal data on company hardware is preserved per the data preservation policy; the hardware is collected, wiped, and re-imaged.\n5. The leaver's email address is converted to a no-reply forwarder for 90 days, then disabled. Mail received during the forwarding period is delivered to the leaver's manager unless redirected.\n6. Audit log searches are performed for activity in the 30 days before the departure if there is reason to believe the leaver may have exfiltrated data.",
+      "source_file": "policy_manual.md",
+      "heading_path": [
+        "Lumenflow IT security & access policy",
+        "2. Identity and access",
+        "2.4 Leaver procedure"
+      ],
+      "char_count": 1282,
+      "token_count": 204
+    },
+    {
+      "chunk_id": 8,
+      "text": "[Lumenflow IT security & access policy > 2. Identity and access > 2.5 Access review]\nRole-based access groups are reviewed quarterly by the group owner. Project-specific access is reviewed by the project sponsor at project close or, for ongoing projects, every six months. Privileged access (production, finance systems, customer data) is reviewed monthly. The access review process produces evidence that is retained for the audit cycle (currently 12 months for SOC 2, 7 years for any data subject to financial controls).",
+      "source_file": "policy_manual.md",
+      "heading_path": [
+        "Lumenflow IT security & access policy",
+        "2. Identity and access",
+        "2.5 Access review"
+      ],
+      "char_count": 522,
+      "token_count": 81
+    },
+    {
+      "chunk_id": 9,
+      "text": "[Lumenflow IT security & access policy > 2. Identity and access > 2.6 Role to system mapping]\nThe default role-based access groups are described below. This is the baseline only; individual access requests on top of role defaults are managed as documented in section 2.7.\nEngineer (backend), Default access = Code repository, CI/CD, staging, dev VPN, on-call paging. Engineer (frontend), Default access = Code repository, CI/CD, staging, design system, on-call paging. Site Reliability Engineer, Default access = All engineer access plus production read, monitoring, incident management. Product Manager, Default access = Code repository (read), staging, analytics, customer support inbox (read). Designer, Default access = Code repository (read), design system, prototyping tools. Customer Support, Default access = Customer support inbox, knowledge base, training environment. Sales, Default access = CRM, contract management, prospect data. Finance, Default access = Accounting system, payroll, contract management\nProduction write access, customer data access beyond the support inbox, and any access to financial systems beyond Finance role defaults requires explicit named approval through the privileged access workflow.",
+      "source_file": "policy_manual.md",
+      "heading_path": [
+        "Lumenflow IT security & access policy",
+        "2. Identity and access",
+        "2.6 Role to system mapping"
+      ],
+      "char_count": 1227,
+      "token_count": 170
+    },
+    {
+      "chunk_id": 10,
+      "text": "[Lumenflow IT security & access policy > 2. Identity and access > 2.7 Privileged access]\nPrivileged access is gated through KeyVault Privileged (SKU-7202) using just-in-time elevation. To obtain elevated access, the requester opens a session in KeyVault Privileged, selects the resource, provides a justification (linked ticket required), and waits for approval. Approval is automatic for the requester's pre-approved scope during business hours; out-of-hours and out-of-scope requests require manual approval from a duty approver.\nSessions to production are recorded in full. Recordings are retained for 12 months and are reviewed (a) on incident, (b) on a 5% random audit each month, and (c) for any session that exceeded the maximum session length. The maximum session length is 4 hours; sessions longer than this require explicit re-approval at the 4-hour mark.",
+      "source_file": "policy_manual.md",
+      "heading_path": [
+        "Lumenflow IT security & access policy",
+        "2. Identity and access",
+        "2.7 Privileged access"
+      ],
+      "char_count": 865,
+      "token_count": 129
+    },
+    {
+      "chunk_id": 11,
+      "text": "[Lumenflow IT security & access policy > 3. Device security > 3.1 Company-issued devices]\nEvery employee receives a company-issued laptop running macOS or Linux. Windows is supported on request for specific roles. All company-issued devices are enrolled in the device management agent (DMA) before delivery; an unmanaged company-issued device is not permitted on the network.\nThe DMA enforces the following baseline:\n1. Full-disk encryption is on and the encryption key is escrowed.\n2. Screen lock activates after 5 minutes of inactivity and requires password or biometric to unlock.\n3. The OS is current within the last two minor versions; security patches are forced within 7 days of vendor release.\n4. The endpoint detection and response (EDR) agent is running and reporting healthily.\n5. The local firewall is enabled with inbound deny by default.\n6. The boot media is not modifiable without an admin password; unsigned boot loaders are blocked.\n7. USB mass-storage is disabled by default; exceptions require ticket and are time-bound.\n8. The device sends an inventory beacon every 24 hours; missing beacons for 14 days raise an inventory alert.",
+      "source_file": "policy_manual.md",
+      "heading_path": [
+        "Lumenflow IT security & access policy",
+        "3. Device security",
+        "3.1 Company-issued devices"
+      ],
+      "char_count": 1149,
+      "token_count": 181
+    },
+    {
+      "chunk_id": 12,
+      "text": "[Lumenflow IT security & access policy > 3. Device security > 3.2 Personal devices]\nPersonal devices are permitted to access Lumenflow services only via the browser and only after enrolling the device with a lightweight device-trust agent that attests to (a) screen lock enabled, (b) disk encryption enabled, (c) recent OS, and (d) absence of jailbreak/root. Personal devices may not have full client-side software (mail client, code editor with repository checkout, support inbox client) installed; access is browser-only.",
+      "source_file": "policy_manual.md",
+      "heading_path": [
+        "Lumenflow IT security & access policy",
+        "3. Device security",
+        "3.2 Personal devices"
+      ],
+      "char_count": 523,
+      "token_count": 78
+    },
+    {
+      "chunk_id": 13,
+      "text": "[Lumenflow IT security & access policy > 3. Device security > 3.3 Mobile devices]\nMobile devices used for company purposes are enrolled in the mobile device management agent (MDM). The MDM enforces a separate work profile on Android and a managed app configuration on iOS. Personal apps and data are out of scope of company management; work apps are in a managed container. On separation, only the managed container is wiped.",
+      "source_file": "policy_manual.md",
+      "heading_path": [
+        "Lumenflow IT security & access policy",
+        "3. Device security",
+        "3.3 Mobile devices"
+      ],
+      "char_count": 425,
+      "token_count": 71
+    },
+    {
+      "chunk_id": 14,
+      "text": "[Lumenflow IT security & access policy > 3. Device security > 3.4 Lost or stolen devices]\nLoss or theft must be reported to the IT helpdesk within 4 hours of discovery. The helpdesk:\n1. Marks the device as lost in the DMA, which triggers remote lock and, after 24 hours, a remote wipe.\n2. Reviews the audit log for activity from the device since the last known good time; flags anomalies for the security team.\n3. Issues a replacement device on the standard provisioning timeline.\n4. Tracks the lost device in the inventory system; if recovered, the device is returned for forensic review before re-issue.",
+      "source_file": "policy_manual.md",
+      "heading_path": [
+        "Lumenflow IT security & access policy",
+        "3. Device security",
+        "3.4 Lost or stolen devices"
+      ],
+      "char_count": 605,
+      "token_count": 105
+    },
+    {
+      "chunk_id": 15,
+      "text": "[Lumenflow IT security & access policy > 4. Data classification and handling > 4.1 Classification levels]\nLumenflow data is classified at one of four levels:\nPublic, Definition = Approved for unrestricted external sharing. Public, Examples = Marketing pages, the FAQ document, published docs. Internal, Definition = Default for unclassified work product. Internal, Examples = Internal wikis, draft docs, project plans. Confidential, Definition = Damaging if disclosed externally. Confidential, Examples = Salary data, product roadmaps, customer lists. Restricted, Definition = Strictly controlled, regulatory exposure. Restricted, Examples = Customer-stored content, payment data, security secrets",
+      "source_file": "policy_manual.md",
+      "heading_path": [
+        "Lumenflow IT security & access policy",
+        "4. Data classification and handling",
+        "4.1 Classification levels"
+      ],
+      "char_count": 697,
+      "token_count": 92
+    },
+    {
+      "chunk_id": 16,
+      "text": "[Lumenflow IT security & access policy > 4. Data classification and handling > 4.2 Default classification]\nWhen in doubt, content is Internal. Confidential or Restricted classification must be set explicitly. Documents created in ScribeFlow Editor (SKU-3010) inherit the parent project's classification; tasks in Lumenflow projects inherit the project classification.",
+      "source_file": "policy_manual.md",
+      "heading_path": [
+        "Lumenflow IT security & access policy",
+        "4. Data classification and handling",
+        "4.2 Default classification"
+      ],
+      "char_count": 367,
+      "token_count": 49
+    },
+    {
+      "chunk_id": 17,
+      "text": "[Lumenflow IT security & access policy > 4. Data classification and handling > 4.3 Handling requirements]\nEach level has specific handling requirements:\n1. Public data may be transmitted by any means, stored on any sanctioned system, and shared externally without further approval.\n2. Internal data may be transmitted on company-managed channels (corporate email, ScribeFlow, Lumenflow itself) and shared externally only with explicit authorisation. Internal data may not be stored on personal devices or personal cloud accounts.\n3. Confidential data must be stored only in approved systems, transmitted only via TLS-encrypted channels, and may be shared externally only under an executed NDA. Access to Confidential data is logged.\n4. Restricted data must be stored only in approved systems with field- or column-level encryption where supported. Transmission outside the production environment requires explicit security team approval. Access to Restricted data is logged and reviewed weekly.",
+      "source_file": "policy_manual.md",
+      "heading_path": [
+        "Lumenflow IT security & access policy",
+        "4. Data classification and handling",
+        "4.3 Handling requirements"
+      ],
+      "char_count": 994,
+      "token_count": 143
+    },
+    {
+      "chunk_id": 18,
+      "text": "[Lumenflow IT security & access policy > 4. Data classification and handling > 4.4 Customer-stored content]\nCustomer content stored in Lumenflow on behalf of customers is Restricted by default. Engineers may not access customer content for development or testing purposes; the staging environment uses synthetic data generated from a separate fixture. Production access to customer content is gated through KeyVault Privileged and recorded.",
+      "source_file": "policy_manual.md",
+      "heading_path": [
+        "Lumenflow IT security & access policy",
+        "4. Data classification and handling",
+        "4.4 Customer-stored content"
+      ],
+      "char_count": 440,
+      "token_count": 63
+    },
+    {
+      "chunk_id": 19,
+      "text": "[Lumenflow IT security & access policy > 4. Data classification and handling > 4.5 Backups and retention]\nProduction backups are encrypted at rest, replicated cross-region within the same legal jurisdiction, and retained per the data retention schedule:\n1. Operational backups (24 hours) are kept for 30 days.\n2. Weekly snapshots are kept for 90 days.\n3. Monthly snapshots are kept for 12 months.\n4. Annual snapshots are kept for 7 years where required for financial controls; otherwise destroyed at 12 months.\nBackup restoration is tested quarterly. Restoration tests are documented and the documentation is presented at the security council.",
+      "source_file": "policy_manual.md",
+      "heading_path": [
+        "Lumenflow IT security & access policy",
+        "4. Data classification and handling",
+        "4.5 Backups and retention"
+      ],
+      "char_count": 643,
+      "token_count": 99
+    },
+    {
+      "chunk_id": 20,
+      "text": "[Lumenflow IT security & access policy > 5. Network and remote access > 5.1 Office networks]\nOffice networks are segmented into three zones: corporate (employee laptops, printers), guest (visitors, untrusted personal devices), and secure (engineering build infrastructure, finance terminals). Inter-zone traffic is denied by default; necessary flows are documented in the network allow-list.",
+      "source_file": "policy_manual.md",
+      "heading_path": [
+        "Lumenflow IT security & access policy",
+        "5. Network and remote access",
+        "5.1 Office networks"
+      ],
+      "char_count": 391,
+      "token_count": 53
+    },
+    {
+      "chunk_id": 21,
+      "text": "[Lumenflow IT security & access policy > 5. Network and remote access > 5.2 Remote access]\nThere is no full-tunnel VPN. Access to corporate services is via the IdP (KeyVault Identity, SKU-7201) for SaaS, and via short-lived bastions or service-specific tunnels for self-hosted infrastructure. The bastions enforce MFA and session recording for production, and a 4-hour session cap.",
+      "source_file": "policy_manual.md",
+      "heading_path": [
+        "Lumenflow IT security & access policy",
+        "5. Network and remote access",
+        "5.2 Remote access"
+      ],
+      "char_count": 381,
+      "token_count": 58
+    },
+    {
+      "chunk_id": 22,
+      "text": "[Lumenflow IT security & access policy > 5. Network and remote access > 5.3 Wi-Fi]\nOffice Wi-Fi has two SSIDs: a corporate SSID (WPA2-Enterprise, certificate-based) and a guest SSID (captive portal, time-limited code). Personal devices use the guest SSID even when used for work, because the corporate SSID is reserved for managed company devices.",
+      "source_file": "policy_manual.md",
+      "heading_path": [
+        "Lumenflow IT security & access policy",
+        "5. Network and remote access",
+        "5.3 Wi-Fi"
+      ],
+      "char_count": 347,
+      "token_count": 54
+    },
+    {
+      "chunk_id": 23,
+      "text": "[Lumenflow IT security & access policy > 5. Network and remote access > 5.4 Public Wi-Fi]\nUse of public Wi-Fi from a company device is permitted but requires (a) the device firewall be on, (b) the EDR be running, and (c) authentication to corporate services be performed only through the managed browser session. Tethering to a personal mobile hotspot is preferred where the network is untrusted.",
+      "source_file": "policy_manual.md",
+      "heading_path": [
+        "Lumenflow IT security & access policy",
+        "5. Network and remote access",
+        "5.4 Public Wi-Fi"
+      ],
+      "char_count": 396,
+      "token_count": 66
+    },
+    {
+      "chunk_id": 24,
+      "text": "[Lumenflow IT security & access policy > 6. Incident response > 6.1 What counts as an incident]\nA security incident is any event that compromises the confidentiality, integrity, or availability of Lumenflow systems or data. This includes:\n1. Suspected or confirmed unauthorised access to a Lumenflow system.\n2. Loss or theft of a Lumenflow device or credential.\n3. Unauthorised disclosure of Confidential or Restricted data.\n4. A control failure that exposes data even if no exploitation has been observed.\n5. A vendor incident affecting a system that holds Lumenflow data.",
+      "source_file": "policy_manual.md",
+      "heading_path": [
+        "Lumenflow IT security & access policy",
+        "6. Incident response",
+        "6.1 What counts as an incident"
+      ],
+      "char_count": 573,
+      "token_count": 90
+    },
+    {
+      "chunk_id": 25,
+      "text": "[Lumenflow IT security & access policy > 6. Incident response > 6.2 How to report]\nAny employee who notices something they believe may be an incident reports it to security@lumenflow.example (24x7, paging) or via the in-product \"Report a security concern\" link, which feeds the same queue. There is no penalty for reporting in good faith, even if the report turns out to be a false alarm.",
+      "source_file": "policy_manual.md",
+      "heading_path": [
+        "Lumenflow IT security & access policy",
+        "6. Incident response",
+        "6.2 How to report"
+      ],
+      "char_count": 388,
+      "token_count": 66
+    },
+    {
+      "chunk_id": 26,
+      "text": "[Lumenflow IT security & access policy > 6. Incident response > 6.3 Triage and severity]\nInbound reports are triaged within 30 minutes during business hours and within 60 minutes outside. The triage assigns a severity:\n1. SEV-1: customer data confidentiality breach, production outage, or a vulnerability under active exploit. Pages on-call security and on-call engineering immediately.\n2. SEV-2: serious vulnerability without active exploit, partial outage, or compromise of internal systems with no customer data exposure. Pages on-call security; engineering pulled in within 4 hours.\n3. SEV-3: lower-impact vulnerabilities, policy violations without compromise. Handled in business hours.\n4. SEV-4: informational, near-miss, hygiene issue. Handled in normal weekly cadence.",
+      "source_file": "policy_manual.md",
+      "heading_path": [
+        "Lumenflow IT security & access policy",
+        "6. Incident response",
+        "6.3 Triage and severity"
+      ],
+      "char_count": 776,
+      "token_count": 107
+    },
+    {
+      "chunk_id": 27,
+      "text": "[Lumenflow IT security & access policy > 6. Incident response > 6.4 Communication]\nFor SEV-1 and SEV-2 incidents, communication is coordinated through the incident channel. External communication (customers, regulators, press) is handled by the legal and communications teams in coordination with the CISO. Engineers and analysts must not communicate externally about an active incident unless explicitly delegated.",
+      "source_file": "policy_manual.md",
+      "heading_path": [
+        "Lumenflow IT security & access policy",
+        "6. Incident response",
+        "6.4 Communication"
+      ],
+      "char_count": 415,
+      "token_count": 57
+    },
+    {
+      "chunk_id": 28,
+      "text": "[Lumenflow IT security & access policy > 6. Incident response > 6.5 Post-mortem]\nEvery SEV-1 and SEV-2 incident receives a written post-mortem within 5 business days of resolution. The post-mortem covers timeline, root cause, customer impact, remediation, and follow-up actions with owners and dates. Post-mortems are blameless: the goal is system improvement, not individual accountability.",
+      "source_file": "policy_manual.md",
+      "heading_path": [
+        "Lumenflow IT security & access policy",
+        "6. Incident response",
+        "6.5 Post-mortem"
+      ],
+      "char_count": 391,
+      "token_count": 55
+    },
+    {
+      "chunk_id": 29,
+      "text": "[Lumenflow IT security & access policy > 7. Vendor risk management > 7.1 New vendors]\nAny new vendor that will hold Lumenflow data, integrate with our production systems, or handle authentication on our behalf must complete a vendor risk assessment before signature. The assessment covers SOC 2 status, GDPR/DPA requirements, data residency, breach history, and the security of the integration as designed.",
+      "source_file": "policy_manual.md",
+      "heading_path": [
+        "Lumenflow IT security & access policy",
+        "7. Vendor risk management",
+        "7.1 New vendors"
+      ],
+      "char_count": 406,
+      "token_count": 62
+    },
+    {
+      "chunk_id": 30,
+      "text": "[Lumenflow IT security & access policy > 7. Vendor risk management > 7.2 Existing vendors]\nExisting vendors are reviewed annually. The review re-validates SOC 2 status, requests an updated penetration test summary, and re-confirms the data flow against current usage. Vendors that have lost certifications or had public breaches are flagged for accelerated review.",
+      "source_file": "policy_manual.md",
+      "heading_path": [
+        "Lumenflow IT security & access policy",
+        "7. Vendor risk management",
+        "7.2 Existing vendors"
+      ],
+      "char_count": 364,
+      "token_count": 54
+    },
+    {
+      "chunk_id": 31,
+      "text": "[Lumenflow IT security & access policy > 7. Vendor risk management > 7.3 Vendor incidents]\nWhen a vendor reports an incident affecting Lumenflow, the incident response process from section 6 applies as if it were a Lumenflow incident, with the vendor as the primary investigator. Lumenflow's role is to assess customer impact, contain blast radius (rotate credentials, restrict integrations), and communicate to customers if their data is affected.",
+      "source_file": "policy_manual.md",
+      "heading_path": [
+        "Lumenflow IT security & access policy",
+        "7. Vendor risk management",
+        "7.3 Vendor incidents"
+      ],
+      "char_count": 448,
+      "token_count": 68
+    },
+    {
+      "chunk_id": 32,
+      "text": "[Lumenflow IT security & access policy > 8. Policy maintenance]\nThis policy is reviewed annually by the security council. Material changes are communicated to all employees via email and in-product banner. Minor changes (clarifications, formatting, contact updates) are made silently with an updated revision date in the policy footer. Last full review: see footer.",
+      "source_file": "policy_manual.md",
+      "heading_path": [
+        "Lumenflow IT security & access policy",
+        "8. Policy maintenance"
+      ],
+      "char_count": 365,
+      "token_count": 54
+    },
+    {
+      "chunk_id": 33,
+      "text": "[Lumenflow B2B software catalog]\nThis document is the product catalog for Lumenflow's enterprise marketplace. It lists 30 fictional B2B SaaS products with stable SKU codes (\n```\nSKU-NNNN\n```\n), pricing per seat, descriptions, and technical specs in markdown tables.\nThe catalog is engineered to demonstrate the limits of pure-vector search. Five products in the same category have nearly identical descriptions but different SKUs — vector search returns the most semantically similar entry, but if the query specifies a SKU, it ignores that constraint. Hybrid search (BM25 + dense) recovers the correct match.",
+      "source_file": "product_catalog.md",
+      "heading_path": [
+        "Lumenflow B2B software catalog"
+      ],
+      "char_count": 609,
+      "token_count": 93
+    },
+    {
+      "chunk_id": 34,
+      "text": "[Lumenflow B2B software catalog > Project & task management > SKU-1042 · Lumenflow Standard]\nA team collaboration platform for managing projects, tasks, and deadlines across distributed teams. Includes Kanban, List, Calendar, and Gantt views with real-time multi-user editing and offline support on mobile. Suited for teams between 10 and 200 people.\n**Cancellation terms.**\nMonthly plans can be cancelled at any time from Settings → Billing → Cancel; access continues to the end of the current billing period and no refund is issued for unused days. Annual plans can be cancelled within the first 14 days for a full refund; after that, access continues to the end of the paid year and the remainder is non-refundable. There is no restocking fee. Workspaces enter a 30-day grace period after cancellation, during which all data is recoverable; after 30 days, data is purged and cannot be restored.\nCategory, Value = Project management. Price per seat (monthly), Value = $8. Storage per workspace, Value = 50 GB. Members per workspace, Value = Unlimited. Audit log retention, Value = 30 days. SSO support, Value = No. Cancellation notice, Value = None — cancel any time. Refund window (annual), Value = 14 days. Restocking fee, Value = None. Data grace period, Value = 30 days",
+      "source_file": "product_catalog.md",
+      "heading_path": [
+        "Lumenflow B2B software catalog",
+        "Project & task management",
+        "SKU-1042 · Lumenflow Standard"
+      ],
+      "char_count": 1275,
+      "token_count": 209
+    },
+    {
+      "chunk_id": 35,
+      "text": "[Lumenflow B2B software catalog > Project & task management > SKU-1043 · Lumenflow Pro]\nA team collaboration platform for managing projects, tasks, and deadlines across distributed teams. Adds custom fields, advanced automation, time tracking, and private projects on top of the Standard tier. Suited for organisations between 50 and 2000 people.\nCategory, Value = Project management. Price per seat (monthly), Value = $16. Storage per workspace, Value = 250 GB. Members per workspace, Value = Unlimited. Audit log retention, Value = 90 days. SSO support, Value = SAML 2.0",
+      "source_file": "product_catalog.md",
+      "heading_path": [
+        "Lumenflow B2B software catalog",
+        "Project & task management",
+        "SKU-1043 · Lumenflow Pro"
+      ],
+      "char_count": 572,
+      "token_count": 89
+    },
+    {
+      "chunk_id": 36,
+      "text": "[Lumenflow B2B software catalog > Project & task management > SKU-1044 · Lumenflow Enterprise]\nA team collaboration platform for managing projects, tasks, and deadlines across distributed teams. Adds SCIM, customer-managed encryption keys, audit log retention up to 7 years, and a named technical account manager. Suited for organisations of 1000+ people.\nCategory, Value = Project management. Price per seat (monthly), Value = $36 (typical). Storage per workspace, Value = 1 TB. Members per workspace, Value = Unlimited. Audit log retention, Value = Up to 7 years. SSO support, Value = SAML 2.0 + SCIM",
+      "source_file": "product_catalog.md",
+      "heading_path": [
+        "Lumenflow B2B software catalog",
+        "Project & task management",
+        "SKU-1044 · Lumenflow Enterprise"
+      ],
+      "char_count": 602,
+      "token_count": 94
+    },
+    {
+      "chunk_id": 37,
+      "text": "[Lumenflow B2B software catalog > Project & task management > SKU-1045 · Lumenflow for Education]\nA team collaboration platform for managing projects, tasks, and deadlines across distributed teams, configured for academic institutions. Includes class roster sync from common LMS systems and per-semester archiving. Free for verified\n```\n.edu\n```\ndomains up to 500 seats.\nCategory, Value = Project management. Price per seat (monthly), Value = $0 (under 500 seats). Storage per workspace, Value = 100 GB. Roster sync, Value = Canvas, Moodle, Blackboard. Audit log retention, Value = 90 days. SSO support, Value = SAML 2.0",
+      "source_file": "product_catalog.md",
+      "heading_path": [
+        "Lumenflow B2B software catalog",
+        "Project & task management",
+        "SKU-1045 · Lumenflow for Education"
+      ],
+      "char_count": 620,
+      "token_count": 96
+    },
+    {
+      "chunk_id": 38,
+      "text": "[Lumenflow B2B software catalog > Project & task management > SKU-1046 · Lumenflow for Non-profit]\nA team collaboration platform for managing projects, tasks, and deadlines across distributed teams, priced for registered non-profits. Identical features to Pro at half the per-seat cost. Requires 501(c)(3) verification.\nCategory, Value = Project management. Price per seat (monthly), Value = $8. Storage per workspace, Value = 250 GB. Members per workspace, Value = Unlimited. Audit log retention, Value = 90 days. SSO support, Value = SAML 2.0",
+      "source_file": "product_catalog.md",
+      "heading_path": [
+        "Lumenflow B2B software catalog",
+        "Project & task management",
+        "SKU-1046 · Lumenflow for Non-profit"
+      ],
+      "char_count": 544,
+      "token_count": 82
+    },
+    {
+      "chunk_id": 39,
+      "text": "[Lumenflow B2B software catalog > Video conferencing > SKU-2001 · MeetCadence Core]\nBrowser-based video conferencing for distributed teams. Supports up to 25 participants per meeting, end-to-end encryption optional, recording to local file or cloud. Integrates with Lumenflow tasks for in-meeting note capture.\nCategory, Value = Video conferencing. Price per seat (monthly), Value = $6. Max participants, Value = 25. Recording storage, Value = 5 GB per user. E2E encryption, Value = Optional. Live transcription, Value = English only",
+      "source_file": "product_catalog.md",
+      "heading_path": [
+        "Lumenflow B2B software catalog",
+        "Video conferencing",
+        "SKU-2001 · MeetCadence Core"
+      ],
+      "char_count": 533,
+      "token_count": 78
+    },
+    {
+      "chunk_id": 40,
+      "text": "[Lumenflow B2B software catalog > Video conferencing > SKU-2002 · MeetCadence Pro]\nBrowser-based video conferencing for distributed teams. Increases participant cap to 100, adds breakout rooms, polls, and live captions in 12 languages. Suited for cross-functional standups and small webinars.\nCategory, Value = Video conferencing. Price per seat (monthly), Value = $12. Max participants, Value = 100. Recording storage, Value = 25 GB per user. E2E encryption, Value = Optional. Live transcription, Value = 12 languages",
+      "source_file": "product_catalog.md",
+      "heading_path": [
+        "Lumenflow B2B software catalog",
+        "Video conferencing",
+        "SKU-2002 · MeetCadence Pro"
+      ],
+      "char_count": 518,
+      "token_count": 76
+    },
+    {
+      "chunk_id": 41,
+      "text": "[Lumenflow B2B software catalog > Video conferencing > SKU-2003 · MeetCadence Webinar]\nBrowser-based video conferencing for distributed teams configured for one-to-many broadcasts. Supports up to 5000 attendees in view-only mode with separate panellist audio/video. Includes registration pages, post-event analytics, and YouTube/RTMP simulcast.\nCategory, Value = Video conferencing. Price per seat (monthly), Value = $80. Max participants, Value = 5000 view-only. Recording storage, Value = Unlimited. Registration pages, Value = Included. RTMP simulcast, Value = YouTube, Facebook, custom",
+      "source_file": "product_catalog.md",
+      "heading_path": [
+        "Lumenflow B2B software catalog",
+        "Video conferencing",
+        "SKU-2003 · MeetCadence Webinar"
+      ],
+      "char_count": 589,
+      "token_count": 77
+    },
+    {
+      "chunk_id": 42,
+      "text": "[Lumenflow B2B software catalog > Document collaboration > SKU-3010 · ScribeFlow Editor]\nReal-time collaborative document editor with version history, inline comments, and granular block-level permissions. Markdown, rich-text, and structured content blocks (tables, code, embeds). Strong focus on engineering and product documentation.\nCategory, Value = Document collaboration. Price per seat (monthly), Value = $7. Document size limit, Value = 50 MB. Real-time collaborators, Value = Up to 50 simultaneous. Version history, Value = 90 days. Block-level permissions, Value = Yes",
+      "source_file": "product_catalog.md",
+      "heading_path": [
+        "Lumenflow B2B software catalog",
+        "Document collaboration",
+        "SKU-3010 · ScribeFlow Editor"
+      ],
+      "char_count": 578,
+      "token_count": 79
+    },
+    {
+      "chunk_id": 43,
+      "text": "[Lumenflow B2B software catalog > Document collaboration > SKU-3011 · ScribeFlow Wiki]\nReal-time collaborative document editor with version history, inline comments, and granular block-level permissions, configured as an internal company wiki. Adds page hierarchy enforcement, mandatory reviewer flows, and read receipts.\nCategory, Value = Document collaboration. Price per seat (monthly), Value = $9. Document size limit, Value = 50 MB. Real-time collaborators, Value = Up to 50 simultaneous. Version history, Value = Indefinite. Read receipts, Value = Yes",
+      "source_file": "product_catalog.md",
+      "heading_path": [
+        "Lumenflow B2B software catalog",
+        "Document collaboration",
+        "SKU-3011 · ScribeFlow Wiki"
+      ],
+      "char_count": 557,
+      "token_count": 78
+    },
+    {
+      "chunk_id": 44,
+      "text": "[Lumenflow B2B software catalog > Document collaboration > SKU-3012 · ScribeFlow Drafts]\nReal-time collaborative document editor with version history, inline comments, and granular block-level permissions, focused on individual writers and small editorial teams. Strips workspace and admin features in favour of distraction-free composition.\nCategory, Value = Document collaboration. Price per seat (monthly), Value = $4. Document size limit, Value = 25 MB. Real-time collaborators, Value = Up to 5 simultaneous. Version history, Value = 30 days. Workspace admin, Value = No",
+      "source_file": "product_catalog.md",
+      "heading_path": [
+        "Lumenflow B2B software catalog",
+        "Document collaboration",
+        "SKU-3012 · ScribeFlow Drafts"
+      ],
+      "char_count": 574,
+      "token_count": 81
+    },
+    {
+      "chunk_id": 45,
+      "text": "[Lumenflow B2B software catalog > Customer support > SKU-4001 · HelpForge Inbox]\nMulti-channel support inbox aggregating email, chat widget, social DMs, and webform submissions into one shared queue. Round-robin or load-balanced ticket assignment, canned replies, SLA timers per priority.\nCategory, Value = Customer support. Price per seat (monthly), Value = $19. Channels, Value = Email, Chat, Twitter, Instagram, Webform. SLA timers, Value = Yes. Canned replies, Value = Unlimited. Reporting, Value = Standard dashboards",
+      "source_file": "product_catalog.md",
+      "heading_path": [
+        "Lumenflow B2B software catalog",
+        "Customer support",
+        "SKU-4001 · HelpForge Inbox"
+      ],
+      "char_count": 522,
+      "token_count": 74
+    },
+    {
+      "chunk_id": 46,
+      "text": "[Lumenflow B2B software catalog > Customer support > SKU-4002 · HelpForge Knowledge]\nPublic-facing knowledge base with article authoring, multi-language support, version history, and feedback widgets. Designed to deflect inbound tickets via search before they reach the inbox.\nCategory, Value = Customer support. Price per seat (monthly), Value = $14. Languages, Value = 35. Article version history, Value = Indefinite. Search, Value = Built-in (typo-tolerant). Custom domain, Value = Included",
+      "source_file": "product_catalog.md",
+      "heading_path": [
+        "Lumenflow B2B software catalog",
+        "Customer support",
+        "SKU-4002 · HelpForge Knowledge"
+      ],
+      "char_count": 493,
+      "token_count": 69
+    },
+    {
+      "chunk_id": 47,
+      "text": "[Lumenflow B2B software catalog > Customer support > SKU-4003 · HelpForge AI Assist]\nAI-augmented response drafting on top of HelpForge Inbox. Uses your knowledge base and ticket history to draft replies; agents review and send. Includes hallucination guards (citations required) and feedback loop for continuous improvement.\nCategory, Value = Customer support. Price per seat (monthly), Value = $39 (add-on). Required base, Value = SKU-4001. Citation enforcement, Value = Yes. Languages, Value = 12. Feedback loop, Value = Built-in",
+      "source_file": "product_catalog.md",
+      "heading_path": [
+        "Lumenflow B2B software catalog",
+        "Customer support",
+        "SKU-4003 · HelpForge AI Assist"
+      ],
+      "char_count": 532,
+      "token_count": 78
+    },
+    {
+      "chunk_id": 48,
+      "text": "[Lumenflow B2B software catalog > Sales & CRM > SKU-5001 · PipelineSpark CRM]\nSales CRM with contact and account management, deal pipeline visualisation, email tracking, and meeting scheduling. Designed for sales teams from 5 to 100 reps.\nCategory, Value = Sales & CRM. Price per seat (monthly), Value = $25. Contacts, Value = Unlimited. Pipelines, Value = Up to 5. Email tracking, Value = Yes. Meeting scheduling, Value = Built-in",
+      "source_file": "product_catalog.md",
+      "heading_path": [
+        "Lumenflow B2B software catalog",
+        "Sales & CRM",
+        "SKU-5001 · PipelineSpark CRM"
+      ],
+      "char_count": 431,
+      "token_count": 70
+    },
+    {
+      "chunk_id": 49,
+      "text": "[Lumenflow B2B software catalog > Sales & CRM > SKU-5002 · PipelineSpark Outreach]\nSales engagement platform layered on top of CRM. Multi-step email sequences, call dialler, sequence pause/resume, A/B testing of step content. Designed for SDR teams of 5+.\nCategory, Value = Sales & CRM. Price per seat (monthly), Value = $59. Sequence steps, Value = Unlimited. Call dialler, Value = Browser-based. A/B testing, Value = Per-step. Required base, Value = SKU-5001",
+      "source_file": "product_catalog.md",
+      "heading_path": [
+        "Lumenflow B2B software catalog",
+        "Sales & CRM",
+        "SKU-5002 · PipelineSpark Outreach"
+      ],
+      "char_count": 460,
+      "token_count": 72
+    },
+    {
+      "chunk_id": 50,
+      "text": "[Lumenflow B2B software catalog > Sales & CRM > SKU-5003 · PipelineSpark Forecast]\nSales forecasting and pipeline analytics. Roll-up to manager and exec views, weighted forecasts by stage, deal-level commentary, win/loss reason capture. Designed for sales leadership.\nCategory, Value = Sales & CRM. Price per seat (monthly), Value = $89. Pipeline rollups, Value = Manager and exec. Forecast methods, Value = Weighted, best/likely/commit. Win/loss reasons, Value = Customisable. Required base, Value = SKU-5001",
+      "source_file": "product_catalog.md",
+      "heading_path": [
+        "Lumenflow B2B software catalog",
+        "Sales & CRM",
+        "SKU-5003 · PipelineSpark Forecast"
+      ],
+      "char_count": 509,
+      "token_count": 73
+    },
+    {
+      "chunk_id": 51,
+      "text": "[Lumenflow B2B software catalog > DevOps & monitoring > SKU-6101 · NorthStar Metrics]\nTime-series metrics collection and dashboards. Open-metrics compatible scrape, native Prometheus remote-write, sub-second query latency on hot data. Long-term storage tiered to object storage.\nCategory, Value = DevOps & monitoring. Price, Value = $0.30 per million samples. Retention (hot), Value = 14 days. Retention (cold), Value = 13 months in object storage. Query language, Value = PromQL compatible. Alerting, Value = Yes",
+      "source_file": "product_catalog.md",
+      "heading_path": [
+        "Lumenflow B2B software catalog",
+        "DevOps & monitoring",
+        "SKU-6101 · NorthStar Metrics"
+      ],
+      "char_count": 513,
+      "token_count": 74
+    },
+    {
+      "chunk_id": 52,
+      "text": "[Lumenflow B2B software catalog > DevOps & monitoring > SKU-6102 · NorthStar Logs]\nLog aggregation and search at scale. Native ingest for syslog, journald, JSON, and OpenTelemetry. Indexed search with regex, structured field filters, and saved queries.\nCategory, Value = DevOps & monitoring. Price, Value = $0.50 per GB ingested. Retention (default), Value = 30 days. Search, Value = Indexed, regex, structured. Saved queries, Value = Unlimited. Alerting, Value = Threshold + anomaly",
+      "source_file": "product_catalog.md",
+      "heading_path": [
+        "Lumenflow B2B software catalog",
+        "DevOps & monitoring",
+        "SKU-6102 · NorthStar Logs"
+      ],
+      "char_count": 483,
+      "token_count": 73
+    },
+    {
+      "chunk_id": 53,
+      "text": "[Lumenflow B2B software catalog > DevOps & monitoring > SKU-6103 · NorthStar Traces]\nDistributed tracing with OpenTelemetry-native ingest. Span search, service maps, latency-aware tail sampling, and trace-to-log correlation when paired with NorthStar Logs.\nCategory, Value = DevOps & monitoring. Price, Value = $0.10 per million spans. Sampling, Value = Head + tail (latency-aware). Service maps, Value = Built-in. Retention, Value = 7 days. Trace ↔ logs correlation, Value = Requires SKU-6102",
+      "source_file": "product_catalog.md",
+      "heading_path": [
+        "Lumenflow B2B software catalog",
+        "DevOps & monitoring",
+        "SKU-6103 · NorthStar Traces"
+      ],
+      "char_count": 493,
+      "token_count": 71
+    },
+    {
+      "chunk_id": 54,
+      "text": "[Lumenflow B2B software catalog > DevOps & monitoring > SKU-6104 · NorthStar Synthetics]\nSynthetic monitoring with browser-based and HTTP checks from 30+ global locations. Step-by-step browser scripts, video recording on failure, public status pages.\nCategory, Value = DevOps & monitoring. Price per check (monthly), Value = $5. Locations, Value = 30+. Browser scripting, Value = Playwright-compatible. Status pages, Value = Public + private. Failure video, Value = Yes",
+      "source_file": "product_catalog.md",
+      "heading_path": [
+        "Lumenflow B2B software catalog",
+        "DevOps & monitoring",
+        "SKU-6104 · NorthStar Synthetics"
+      ],
+      "char_count": 469,
+      "token_count": 68
+    },
+    {
+      "chunk_id": 55,
+      "text": "[Lumenflow B2B software catalog > DevOps & monitoring > SKU-6105 · NorthStar Incident]\nOn-call scheduling, paging, escalation policies, and post-mortem templates. Pages via voice, SMS, push, and email. Integrates with the metrics, logs, and traces products.\nCategory, Value = DevOps & monitoring. Price per seat (monthly), Value = $12. Channels, Value = Voice, SMS, push, email. Escalation depth, Value = Unlimited. Post-mortem templates, Value = Built-in. Required base, Value = None",
+      "source_file": "product_catalog.md",
+      "heading_path": [
+        "Lumenflow B2B software catalog",
+        "DevOps & monitoring",
+        "SKU-6105 · NorthStar Incident"
+      ],
+      "char_count": 484,
+      "token_count": 71
+    },
+    {
+      "chunk_id": 56,
+      "text": "[Lumenflow B2B software catalog > Identity & access > SKU-7201 · KeyVault Identity]\nWorkforce identity provider supporting SAML 2.0, OIDC, and SCIM 2.0. User, group, and role management with policy-driven access. MFA enrolment with TOTP, WebAuthn, and push.\nCategory, Value = Identity & access. Price per user (monthly), Value = $4. Protocols, Value = SAML 2.0, OIDC, SCIM 2.0. MFA factors, Value = TOTP, WebAuthn, push. User directory, Value = Built-in or AD/LDAP sync. Audit log retention, Value = 12 months",
+      "source_file": "product_catalog.md",
+      "heading_path": [
+        "Lumenflow B2B software catalog",
+        "Identity & access",
+        "SKU-7201 · KeyVault Identity"
+      ],
+      "char_count": 509,
+      "token_count": 81
+    },
+    {
+      "chunk_id": 57,
+      "text": "[Lumenflow B2B software catalog > Identity & access > SKU-7202 · KeyVault Privileged]\nPrivileged access management. Just-in-time elevation, session recording, vaulted secrets with rotation, and policy-driven approval workflows for production access.\nCategory, Value = Identity & access. Price per protected resource (monthly), Value = $30. Just-in-time elevation, Value = Yes. Session recording, Value = Required for production. Secret rotation, Value = Yes. Required base, Value = SKU-7201",
+      "source_file": "product_catalog.md",
+      "heading_path": [
+        "Lumenflow B2B software catalog",
+        "Identity & access",
+        "SKU-7202 · KeyVault Privileged"
+      ],
+      "char_count": 490,
+      "token_count": 67
+    },
+    {
+      "chunk_id": 58,
+      "text": "[Lumenflow B2B software catalog > Data & analytics > SKU-8050 · DataPrism Warehouse]\nCloud data warehouse with separation of compute and storage, sub-second metadata queries, and federated query across S3, GCS, and Azure Blob. Columnar storage with automatic partitioning and clustering.\nCategory, Value = Data & analytics. Price, Value = $1.20 per credit. Storage, Value = $23 per TB-month. Compute scaling, Value = Per-warehouse, on demand. Federated query, Value = S3, GCS, Azure Blob. Time travel, Value = 90 days",
+      "source_file": "product_catalog.md",
+      "heading_path": [
+        "Lumenflow B2B software catalog",
+        "Data & analytics",
+        "SKU-8050 · DataPrism Warehouse"
+      ],
+      "char_count": 517,
+      "token_count": 80
+    },
+    {
+      "chunk_id": 59,
+      "text": "[Lumenflow B2B software catalog > Data & analytics > SKU-8051 · DataPrism Catalog]\nUnified data catalog and lineage. Automated metadata harvesting from warehouses, databases, and BI tools. Column-level lineage, glossary management, data quality scoring.\nCategory, Value = Data & analytics. Price per managed asset (monthly), Value = $0.05. Lineage granularity, Value = Column-level. Glossary, Value = Yes. Sources, Value = 80+ connectors. Quality scoring, Value = Built-in",
+      "source_file": "product_catalog.md",
+      "heading_path": [
+        "Lumenflow B2B software catalog",
+        "Data & analytics",
+        "SKU-8051 · DataPrism Catalog"
+      ],
+      "char_count": 472,
+      "token_count": 67
+    },
+    {
+      "chunk_id": 60,
+      "text": "[Lumenflow B2B software catalog > Data & analytics > SKU-8052 · DataPrism Reverse-ETL]\nSync warehouse data back into operational tools. Scheduled or event-driven syncs, deep-merge upserts, and field-level mapping. Connectors for CRM, marketing automation, and customer support.\nCategory, Value = Data & analytics. Price per record synced (monthly), Value = $0.0001. Connectors, Value = 60+. Trigger types, Value = Schedule, webhook, change-data. Mapping, Value = Field-level with transforms. Backfill, Value = Supported",
+      "source_file": "product_catalog.md",
+      "heading_path": [
+        "Lumenflow B2B software catalog",
+        "Data & analytics",
+        "SKU-8052 · DataPrism Reverse-ETL"
+      ],
+      "char_count": 519,
+      "token_count": 72
+    },
+    {
+      "chunk_id": 61,
+      "text": "[Lumenflow B2B software catalog > Data & analytics > SKU-8053 · DataPrism BI]\nSelf-serve business intelligence on top of DataPrism Warehouse. Drag-and-drop dashboards, embedded analytics SDK, alerting on metric thresholds. Caching tier for sub-second dashboard load.\nCategory, Value = Data & analytics. Price per viewer (monthly), Value = $14. Dashboards, Value = Unlimited. Embedded SDK, Value = React, Vue, Angular. Alert delivery, Value = Email, Slack, webhook. Cache, Value = Sub-second",
+      "source_file": "product_catalog.md",
+      "heading_path": [
+        "Lumenflow B2B software catalog",
+        "Data & analytics",
+        "SKU-8053 · DataPrism BI"
+      ],
+      "char_count": 490,
+      "token_count": 71
+    },
+    {
+      "chunk_id": 62,
+      "text": "[Lumenflow weekly product meeting — notes]\nThese are the notes from the weekly product meeting at Lumenflow over a 10-week period. The notes are designed for the late-chunking demo. Each meeting references decisions from earlier meetings in a way that is only resolvable with the prior context — naive chunking by meeting isolates the references and produces wrong answers when queried.\nRecurring attendees:\n**Sasha Chen**\n(VP Product),\n**Marcus Idris**\n(Head of Engineering),\n**Pri Veerasamy**\n(Design Lead),\n**Tomás Reyes**\n(Customer Success),\n**Hana Petersen**\n(Data). Other attendees noted per meeting.",
+      "source_file": "meeting_notes.md",
+      "heading_path": [
+        "Lumenflow weekly product meeting — notes"
+      ],
+      "char_count": 606,
+      "token_count": 88
+    },
+    {
+      "chunk_id": 63,
+      "text": "[Lumenflow weekly product meeting — notes > Meeting 1 — 2025-09-08]\nAttendees: Sasha, Marcus, Pri, Tomás, Hana.\nSasha kicked off the quarter. Three priorities: (a) reduce churn in the 50-200 seat segment, where renewal rates have slipped to 84%, (b) ship the long-promised custom-fields feature so we can compete on Pro pricing, (c) deliver a security-control story that lets us close two stuck Enterprise deals (Acme, Northwind).\nMarcus said the platform team has capacity for two of the three. Custom fields is mostly built; a 4-week push gets it to GA. Security work is harder because it depends on the audit-log-retention rebuild that the Data team owns. Hana said audit-log retention is doable in 4 weeks if we accept a one-time backfill window.\nTomás flagged that the churn driver in the 50-200 segment is\n**not**\nmissing features — it's onboarding. New workspaces that don't reach 5 active users in week 1 churn at 3x the baseline. He proposes an onboarding redesign to be scoped next week.\nDecisions:\n- **D1.1** Custom fields targets GA on 2025-10-13. Marcus drives.\n- **D1.2** Audit-log-retention rebuild starts 2025-09-15 with a 4-week window. Hana drives.\n- **D1.3** Tomás scopes the onboarding redesign for next week's meeting.\nOpen: Acme deal expects 7-year audit log retention; we currently support 90 days. Will the rebuild close that gap? — Hana to confirm.",
+      "source_file": "meeting_notes.md",
+      "heading_path": [
+        "Lumenflow weekly product meeting — notes",
+        "Meeting 1 — 2025-09-08"
+      ],
+      "char_count": 1373,
+      "token_count": 223
+    },
+    {
+      "chunk_id": 64,
+      "text": "[Lumenflow weekly product meeting — notes > Meeting 2 — 2025-09-15]\nAttendees: Sasha, Marcus, Pri, Tomás, Hana, plus\n**Jordan Akehurst**\n(Sales, Acme account).\nTomás presented the onboarding redesign. The core insight: the empty-workspace state is what kills retention. He proposes a \"starter content\" pack — 3 sample projects with realistic tasks — that's auto-populated for new workspaces under 5 users. Pri took the design.\nHana confirmed the audit-log rebuild will support up to 7 years on Enterprise. That closes the gap from D1.3 — Acme's blocker. Jordan said this unlocks $410k ARR pending technical sign-off. Sasha asked for a hard date.\nMarcus pushed back on stacking three workstreams. Custom fields is at risk of slipping if we add the onboarding work this quarter. He proposes deferring the onboarding redesign to next quarter; the audit-log work is already committed and not on the platform team's plate.\nDecisions:\n- **D2.1** Audit-log retention rebuild target completion: 2025-10-13 (same day as custom fields GA). Hana confirms feasibility next week.\n- **D2.2** Onboarding redesign deferred to Q4. Tomás continues to scope; Pri's design lands by 2025-10-06 for Q4 kickoff.\n- **D2.3** Acme commitment: 7-year audit log support is in by 2025-10-20. Jordan can communicate a 2025-11-01 customer go-live with a buffer.\nOpen: D1.3 from last week is now resolved (deferred).",
+      "source_file": "meeting_notes.md",
+      "heading_path": [
+        "Lumenflow weekly product meeting — notes",
+        "Meeting 2 — 2025-09-15"
+      ],
+      "char_count": 1384,
+      "token_count": 215
+    },
+    {
+      "chunk_id": 65,
+      "text": "[Lumenflow weekly product meeting — notes > Meeting 3 — 2025-09-22]\nAttendees: Sasha, Marcus, Pri, Tomás, Hana.\nHana confirmed the 2025-10-13 target for the audit-log retention rebuild is\n**not**\nfeasible — the cross-region replication step takes longer than the team modelled, primarily because eu-west-1 backup target capacity is tight. New target: 2025-10-27, two weeks slip.\nSasha asked what this does to D2.3. Jordan was on holiday but had emailed: a two-week slip is acceptable if Acme has a written commitment dated this week. Sasha will draft.\nMarcus reported custom fields is on track for GA on the original 2025-10-13 date. The team built a \"field templates\" feature that wasn't in the original scope — a small extension that came up during dogfooding. Sasha approved keeping it in scope.\nPri showed the onboarding-redesign design. The starter-content pack will use the same 3 projects regardless of customer; content lives in\n```\n/seed/\n```\n. Pri raised that the seed projects should reflect the customer's industry but that's a follow-on, not v1.\nDecisions:\n- **D3.1** Audit-log retention rebuild now targets 2025-10-27. Hana drives. This supersedes D2.1.\n- **D3.2** Custom fields adds field templates to v1 scope. Marcus drives. GA still 2025-10-13.\n- **D3.3** Onboarding-redesign v1 ships generic seed content; per-industry seed deferred to v2.\nOpen: Northwind deal — same security ask as Acme, but additionally requires customer-managed encryption keys (CMEK). We don't have CMEK and it's not in any roadmap. Sasha to assess.",
+      "source_file": "meeting_notes.md",
+      "heading_path": [
+        "Lumenflow weekly product meeting — notes",
+        "Meeting 3 — 2025-09-22"
+      ],
+      "char_count": 1540,
+      "token_count": 240
+    },
+    {
+      "chunk_id": 66,
+      "text": "[Lumenflow weekly product meeting — notes > Meeting 4 — 2025-09-29]\nAttendees: Sasha, Marcus, Pri, Tomás, Hana, plus\n**Devika Anand**\n(Security).\nDevika joined for the CMEK discussion. CMEK is roughly 6-8 weeks of platform work, dependent on the existing key-management abstraction in KeyVault Identity (SKU-7201). She thinks we can scope it at 8 weeks if we constrain to AWS KMS only (i.e., not multi-cloud) and accept that CMEK applies only to data at rest, not in process.\nMarcus said the platform team is fully booked through 2025-12-15 on custom fields, audit-log work, and a database migration. CMEK does not fit unless we drop something. He proposed dropping the data-tier migration to make room.\nSasha pushed back: Northwind ARR is $620k, the migration unlocks long-term cost savings of similar magnitude, but the ARR is in the next 6 months and the savings are in 2 years. Decision: Northwind first.\nTomás raised a concern: dropping the data-tier migration means the slow-query problem we promised to fix in Q3 stays. He'll need to set expectations with affected customers. Sasha agreed; talking points to be drafted.\nDecisions:\n- **D4.1** CMEK scoping locked to AWS KMS only, data-at-rest only. Devika and Marcus jointly drive.\n- **D4.2** Data-tier migration deferred from Q4 to Q1. Marcus updates the public roadmap.\n- **D4.3** CMEK target completion: 2025-11-24. Northwind sign-off targeted for 2025-12-08.\nOpen: Has anyone told the customers depending on the data-tier migration that it's slipping? — Tomás to handle by EOW.",
+      "source_file": "meeting_notes.md",
+      "heading_path": [
+        "Lumenflow weekly product meeting — notes",
+        "Meeting 4 — 2025-09-29"
+      ],
+      "char_count": 1537,
+      "token_count": 244
+    },
+    {
+      "chunk_id": 67,
+      "text": "[Lumenflow weekly product meeting — notes > Meeting 5 — 2025-10-06]\nAttendees: Sasha, Marcus, Pri, Hana, Devika.\nTomás was out sick. Sasha covered for him on the customer-comms point.\nMarcus reported custom fields is one week from GA (2025-10-13). All the field-templates work from D3.2 is integrated and tested. Two minor regressions found in dogfooding; both fixed.\nHana confirmed the audit-log retention rebuild is on the new 2025-10-27 target from D3.1. Cross-region replication has been validated end-to-end.\nDevika gave the CMEK status: scoping is complete, AWS KMS integration design is signed off, implementation starts 2025-10-13 (same day as custom fields GA, which frees up Marcus's team).\nPri presented the design for the per-industry seed-content (the v2 from D3.3). She wants to start building it in Q4 even though it's deferred, because the design work needs longer than implementation. Sasha approved exploration; no commitment to ship in Q4.\nDecisions:\n- **D5.1** Pri may explore per-industry seed content design in Q4; ship date Q1 at earliest. This is a soft extension of D3.3.\n- **D5.2** Custom fields GA confirmed for 2025-10-13. Final go/no-go in next week's meeting.\nOpen: customer comms about the data-tier migration slip (D4.2) — Tomás had not done it yet last week. Status check next meeting.",
+      "source_file": "meeting_notes.md",
+      "heading_path": [
+        "Lumenflow weekly product meeting — notes",
+        "Meeting 5 — 2025-10-06"
+      ],
+      "char_count": 1318,
+      "token_count": 207
+    },
+    {
+      "chunk_id": 68,
+      "text": "[Lumenflow weekly product meeting — notes > Meeting 6 — 2025-10-13]\nAttendees: Sasha, Marcus, Pri, Tomás, Hana, Devika.\nTomás reported that the customer-comms email about D4.2 went out yesterday. 14 enterprise customers were affected; 11 acknowledged, 3 escalated. The 3 escalations are all in the slow-query slug — they wanted the migration in Q4 specifically because of the slowness. Tomás is working with sales on bridging concessions.\nCustom fields shipped to GA today (D5.2). 22 workspaces enabled it in the first hour. Marcus is monitoring.\nHana said the audit-log retention rebuild is\n**at risk**\n. Cross-region replication validated last week is hitting an unexpected throughput cap when run against full production load. Estimated slip: 1-2 weeks. New target 2025-11-10 best case, 2025-11-17 worst.\nSasha said this affects the Acme commitment from D2.3, which already absorbed one slip in D3.1. She'll re-engage with Jordan.\nDevika reported CMEK on track for 2025-11-24 (D4.3). The first AWS KMS key flow is working end-to-end in dev.\nDecisions:\n- **D6.1** Audit-log retention rebuild now targets 2025-11-17 worst case. Sasha re-communicates with Acme; Jordan involved.\n- **D6.2** Tomás and Jordan jointly handle the data-tier migration escalations from D4.2; weekly check-in until resolved.\nOpen: do we need to expand audit-log retention to also cover SCIM events? — Devika thinks yes, will check with Northwind contacts.",
+      "source_file": "meeting_notes.md",
+      "heading_path": [
+        "Lumenflow weekly product meeting — notes",
+        "Meeting 6 — 2025-10-13"
+      ],
+      "char_count": 1431,
+      "token_count": 218
+    },
+    {
+      "chunk_id": 69,
+      "text": "[Lumenflow weekly product meeting — notes > Meeting 7 — 2025-10-20]\nAttendees: Sasha, Marcus, Pri, Tomás, Hana, Devika.\nHana reported the audit-log throughput problem resolved itself once she enabled batched writes — the constraint was per-write overhead, not per-byte. The new target is back to 2025-10-27, originally promised in D3.1, which means the rebuild does\n**not**\nmiss its second deadline.\nSasha re-confirmed with Jordan: Acme go-live 2025-11-03, slightly later than D2.3's 2025-11-01 because Acme themselves wanted a buffer.\nDevika confirmed Northwind has reviewed the CMEK design and is satisfied. She also confirmed (re: D6 open question) that SCIM events are not in their initial requirement; we can defer SCIM event coverage to Q1.\nCustom fields adoption: 180 workspaces enabled in 7 days. 8% of eligible Pro workspaces. Within our internal target of 5-15% in week 1. Tomás reported customer-survey responses are mixed: positive on the feature, several requests for \"field validation\" (regex, min/max). Pri scoping a v1.1.\nDecisions:\n- **D7.1** SCIM events in audit log deferred to Q1. Devika tracks.\n- **D7.2** Custom fields v1.1 (field validation) scoped for late November. Pri leads.\nOpen: none.",
+      "source_file": "meeting_notes.md",
+      "heading_path": [
+        "Lumenflow weekly product meeting — notes",
+        "Meeting 7 — 2025-10-20"
+      ],
+      "char_count": 1213,
+      "token_count": 185
+    },
+    {
+      "chunk_id": 70,
+      "text": "[Lumenflow weekly product meeting — notes > Meeting 8 — 2025-10-27]\nAttendees: Sasha, Marcus, Pri, Tomás, Hana, Devika.\nThe audit-log retention rebuild shipped today, on the D3.1 target. Acme has been told. Jordan is preparing for the 2025-11-03 go-live.\nDevika reported CMEK implementation progress: 60% feature-complete, integration tests passing, on track for D4.3's 2025-11-24 target.\nPri presented the field-validation v1.1 spec from D7.2. Three validators in v1.1: regex, numeric range, date range. Marcus said this is 2-3 weeks of engineering, fits in the November window before holidays.\nTomás brought up a customer escalation: a Pro workspace owner was confused that custom-field changes apply retroactively to existing tasks. Several tasks ended up with default values they didn't expect. Pri said this is documented behaviour but the docs are clearly not enough; she'll add an in-product warning at field-creation time.\nDecisions:\n- **D8.1** Custom fields v1.1 (regex + numeric range + date range validation) targets ship 2025-11-21. Pri + Marcus drive.\n- **D8.2** In-product warning at custom-field creation: ships immediately as a docs/UI patch, not waiting for v1.1. Pri owns.\nOpen: Q4 onboarding redesign launch from D2.2 — we agreed to ship in Q4 but no date set. Tomás to bring a proposal.",
+      "source_file": "meeting_notes.md",
+      "heading_path": [
+        "Lumenflow weekly product meeting — notes",
+        "Meeting 8 — 2025-10-27"
+      ],
+      "char_count": 1306,
+      "token_count": 201
+    },
+    {
+      "chunk_id": 71,
+      "text": "[Lumenflow weekly product meeting — notes > Meeting 9 — 2025-11-03]\nAttendees: Sasha, Marcus, Pri, Tomás, Hana, Devika.\nAcme went live this morning. Jordan was at the customer's office for the cutover. No issues reported in the first 6 hours; full audit-log retention through 7 years confirmed working. This closes D2.3.\nTomás brought a proposal for the onboarding redesign launch (D2.2 / D8 open question): ship 2025-12-01 to all new workspaces, monitor activation rates for 2 weeks, gradually expand to existing under-5-user workspaces. Sasha approved.\nPri reported the in-product warning from D8.2 shipped on Friday (2025-10-31). Already deflecting the kind of confused-user tickets that triggered D8.2.\nCMEK: Devika says implementation is 80% complete. On track for 2025-11-24. Northwind contract signature targeting 2025-12-08, same week.\nDecisions:\n- **D9.1** Onboarding redesign launches 2025-12-01 to all new workspaces. Tomás drives launch comms; Pri supports.\n- **D9.2** Plan post-launch onboarding-redesign metrics review for 2025-12-15.\nOpen: holiday freeze starts 2025-12-15; need to lock all Q4 ship dates by 2025-12-08.",
+      "source_file": "meeting_notes.md",
+      "heading_path": [
+        "Lumenflow weekly product meeting — notes",
+        "Meeting 9 — 2025-11-03"
+      ],
+      "char_count": 1134,
+      "token_count": 164
+    },
+    {
+      "chunk_id": 72,
+      "text": "[Lumenflow weekly product meeting — notes > Meeting 10 — 2025-11-10]\nAttendees: Sasha, Marcus, Pri, Tomás, Hana, Devika.\nCMEK implementation is feature-complete; in QA today and tomorrow. Tracking 2025-11-24 (D4.3). Devika: confidence high.\nCustom fields v1.1 (D8.1): 60% complete. Marcus expects tracking 2025-11-21 with one day of buffer.\nSasha asked about the data-tier migration deferral (D4.2). Marcus: still on plan for Q1 start. The 3 escalated customers from D6.2 are being handled with bridging concessions Tomás is running; one signed a 6-month extension at standard rates.\nHana asked about the late-Q1 picture: now that custom fields, audit-log retention, CMEK, and onboarding redesign are all landing, what do we de-risk in Q1? Sasha said the data-tier migration is the priority, but the planning meeting is in two weeks — let's not pre-commit.\nDecisions:\n- **D10.1** No new commitments for Q1 until the dedicated planning meeting on 2025-11-24.\n- **D10.2** Holiday freeze locked: no production deploys 2025-12-15 through 2026-01-05 except for SEV-1/2 incidents and the previously-scheduled CMEK go-live for Northwind.\nOpen: post-mortem on the audit-log throughput slip from D6 — has it happened? Hana will write it up by end of next week.",
+      "source_file": "meeting_notes.md",
+      "heading_path": [
+        "Lumenflow weekly product meeting — notes",
+        "Meeting 10 — 2025-11-10"
+      ],
+      "char_count": 1251,
+      "token_count": 191
+    },
+    {
+      "chunk_id": 73,
+      "text": "[Lumenflow architecture specification]\nThis document is the architecture specification for the Lumenflow platform. It names exactly 15 components and describes their typed relationships using explicit verbs (\n```\nCALLS\n```\n,\n```\nREADS_FROM\n```\n,\n```\nWRITES_TO\n```\n,\n```\nDEPENDS_ON\n```\n,\n```\nEMITS_TO\n```\n,\n```\nOWNS\n```\n). The specification is engineered for the Graph RAG demo: answering multi-hop questions about Lumenflow's architecture requires traversing these relationships, which pure vector search cannot do.\nThe 15 components are:\n**EdgeRouter**\n,\n**AuthService**\n,\n**UserDB**\n,\n**WorkspaceService**\n,\n**WorkspaceDB**\n,\n**TaskService**\n,\n**TaskDB**\n,\n**NotificationService**\n,\n**NotificationQueue**\n,\n**WebhookDispatcher**\n,\n**AuditLogService**\n,\n**AuditLogStore**\n,\n**SearchIndex**\n,\n**AnalyticsPipeline**\n,\n**ReportingService**\n.",
+      "source_file": "tech_spec.md",
+      "heading_path": [
+        "Lumenflow architecture specification"
+      ],
+      "char_count": 839,
+      "token_count": 110
+    },
+    {
+      "chunk_id": 74,
+      "text": "[Lumenflow architecture specification > EdgeRouter]\nEdgeRouter is the public entry point for all browser, mobile, and API traffic to Lumenflow. It terminates TLS, applies rate limiting, validates session tokens, and routes requests to the appropriate downstream service. EdgeRouter does not hold business state; all decisions are made from the request itself plus a small in-memory cache of session validation results.\nEdgeRouter\n```\nCALLS\n```\nAuthService for any request that requires session validation beyond the cache. EdgeRouter\n```\nEMITS_TO\n```\nAuditLogService for every authenticated request.\nFailure mode: if EdgeRouter is unavailable, no traffic reaches Lumenflow. There are two redundant fleets in different availability zones; loss of one fleet causes a graceful failover with sub-second client retries.",
+      "source_file": "tech_spec.md",
+      "heading_path": [
+        "Lumenflow architecture specification",
+        "EdgeRouter"
+      ],
+      "char_count": 814,
+      "token_count": 115
+    },
+    {
+      "chunk_id": 75,
+      "text": "[Lumenflow architecture specification > AuthService]\nAuthService is the identity authority for Lumenflow. It issues, validates, and revokes session tokens. It supports password, SAML SSO, and OIDC sign-in flows. It is responsible for MFA challenge orchestration and for the SCIM provisioning surface.\nAuthService\n```\nREADS_FROM\n```\nUserDB for credentials, MFA enrolments, session metadata, and SAML/SCIM configuration. AuthService\n```\nWRITES_TO\n```\nUserDB on session creation, token revocation, and password changes. AuthService\n```\nEMITS_TO\n```\nAuditLogService for every authentication event.\nAuthService is\n```\nDEPENDS_ON\n```\nby EdgeRouter for session validation. Any component that performs identity-aware actions on behalf of a user\n```\nCALLS\n```\nAuthService.",
+      "source_file": "tech_spec.md",
+      "heading_path": [
+        "Lumenflow architecture specification",
+        "AuthService"
+      ],
+      "char_count": 763,
+      "token_count": 102
+    },
+    {
+      "chunk_id": 76,
+      "text": "[Lumenflow architecture specification > UserDB]\nUserDB is the durable store for user accounts, passwords (bcrypt-hashed), MFA enrolments, SAML/SCIM configuration, and active session metadata. UserDB is a regional Postgres cluster with synchronous replication within region and asynchronous backup to a cross-region standby.\nUserDB is\n```\nOWNS\n```\ned by AuthService. No other component reads from or writes to UserDB directly; identity data is exposed only via AuthService's API.\nFailure mode: loss of UserDB disables sign-in but does not affect already-authenticated sessions until their existing tokens expire. The cross-region standby can be promoted within 5 minutes if needed.",
+      "source_file": "tech_spec.md",
+      "heading_path": [
+        "Lumenflow architecture specification",
+        "UserDB"
+      ],
+      "char_count": 680,
+      "token_count": 96
+    },
+    {
+      "chunk_id": 77,
+      "text": "[Lumenflow architecture specification > WorkspaceService]\nWorkspaceService manages workspaces, members, and workspace-level configuration. It is the authority for membership, role assignments, plan tier, and integration settings. It is the entry point for any operation that depends on \"is this user a member of this workspace?\" semantics.\nWorkspaceService\n```\nREADS_FROM\n```\nWorkspaceDB for workspace and member records. WorkspaceService\n```\nWRITES_TO\n```\nWorkspaceDB on member changes, plan changes, and integration configuration. WorkspaceService\n```\nCALLS\n```\nAuthService to verify user identity on every request. WorkspaceService\n```\nEMITS_TO\n```\nAuditLogService for member changes and plan changes.\nTaskService and NotificationService both\n```\nCALLS\n```\nWorkspaceService to resolve workspace membership before performing privileged operations.",
+      "source_file": "tech_spec.md",
+      "heading_path": [
+        "Lumenflow architecture specification",
+        "WorkspaceService"
+      ],
+      "char_count": 849,
+      "token_count": 107
+    },
+    {
+      "chunk_id": 78,
+      "text": "[Lumenflow architecture specification > WorkspaceDB]\nWorkspaceDB is the durable store for workspace records, member records, plan and billing snapshots, and integration configuration. It is a regional Postgres cluster mirrored synchronously within region.\nWorkspaceDB is\n```\nOWNS\n```\ned by WorkspaceService. No other component reads from or writes to WorkspaceDB directly.",
+      "source_file": "tech_spec.md",
+      "heading_path": [
+        "Lumenflow architecture specification",
+        "WorkspaceDB"
+      ],
+      "char_count": 372,
+      "token_count": 50
+    },
+    {
+      "chunk_id": 79,
+      "text": "[Lumenflow architecture specification > TaskService]\nTaskService is the core CRUD surface for Lumenflow's primary domain object: tasks. It also handles the task-level operations: assignment, status changes, comments, attachments metadata, and the relationship graph between tasks (blocks/blocked-by/duplicates). TaskService is responsible for emitting domain events when tasks change.\nTaskService\n```\nREADS_FROM\n```\nTaskDB for task content, comments, and relationships. TaskService\n```\nWRITES_TO\n```\nTaskDB on every mutation. TaskService\n```\nCALLS\n```\nWorkspaceService to verify membership. TaskService\n```\nEMITS_TO\n```\nNotificationQueue for changes that should produce notifications. TaskService\n```\nEMITS_TO\n```\nAuditLogService for restricted-data tasks. TaskService\n```\nWRITES_TO\n```\nSearchIndex (asynchronously, via change-data capture) on every mutation.\nTaskService\n```\nDEPENDS_ON\n```\nAuthService (via WorkspaceService) for identity. TaskService\n```\nDEPENDS_ON\n```\nSearchIndex for read-side search queries.",
+      "source_file": "tech_spec.md",
+      "heading_path": [
+        "Lumenflow architecture specification",
+        "TaskService"
+      ],
+      "char_count": 1012,
+      "token_count": 122
+    },
+    {
+      "chunk_id": 80,
+      "text": "[Lumenflow architecture specification > TaskDB]\nTaskDB is the durable store for tasks, comments, assignment history, and the task relationship graph. TaskDB is a sharded Postgres cluster; tasks are sharded by workspace ID so workspace-scoped queries hit a single shard.\nTaskDB is\n```\nOWNS\n```\ned by TaskService. Change-data capture from TaskDB is consumed by SearchIndex and AnalyticsPipeline.",
+      "source_file": "tech_spec.md",
+      "heading_path": [
+        "Lumenflow architecture specification",
+        "TaskDB"
+      ],
+      "char_count": 393,
+      "token_count": 57
+    },
+    {
+      "chunk_id": 81,
+      "text": "[Lumenflow architecture specification > NotificationService]\nNotificationService delivers notifications across channels: email, push (mobile), in-product, and Slack. It does not own delivery preferences directly; preferences are stored on the user record in UserDB and read via AuthService.\nNotificationService\n```\nREADS_FROM\n```\nNotificationQueue for inbound delivery requests. NotificationService\n```\nCALLS\n```\nAuthService to look up delivery preferences. NotificationService\n```\nCALLS\n```\nWorkspaceService to verify the recipient is still a member at delivery time. NotificationService\n```\nEMITS_TO\n```\nWebhookDispatcher for workspace-configured webhook deliveries. NotificationService\n```\nEMITS_TO\n```\nAuditLogService for delivery attempts to Restricted-data tasks.",
+      "source_file": "tech_spec.md",
+      "heading_path": [
+        "Lumenflow architecture specification",
+        "NotificationService"
+      ],
+      "char_count": 769,
+      "token_count": 91
+    },
+    {
+      "chunk_id": 82,
+      "text": "[Lumenflow architecture specification > NotificationQueue]\nNotificationQueue is a durable message queue that decouples task mutation events from notification delivery. Producers (TaskService, WorkspaceService) emit events; NotificationService consumes them.\nNotificationQueue is\n```\nOWNS\n```\ned by NotificationService. The queue is partitioned by workspace ID; ordering is guaranteed within a partition.",
+      "source_file": "tech_spec.md",
+      "heading_path": [
+        "Lumenflow architecture specification",
+        "NotificationQueue"
+      ],
+      "char_count": 403,
+      "token_count": 48
+    },
+    {
+      "chunk_id": 83,
+      "text": "[Lumenflow architecture specification > WebhookDispatcher]\nWebhookDispatcher delivers signed HTTP POSTs to customer-configured webhook URLs. It implements retry-with-backoff, dead-letter queueing for repeated failures, and customer-visible delivery logs.\nWebhookDispatcher\n```\nREADS_FROM\n```\nWorkspaceService (via API) for the configured webhook URLs and shared secrets. WebhookDispatcher\n```\nEMITS_TO\n```\nAuditLogService for every delivery attempt and outcome.",
+      "source_file": "tech_spec.md",
+      "heading_path": [
+        "Lumenflow architecture specification",
+        "WebhookDispatcher"
+      ],
+      "char_count": 461,
+      "token_count": 52
+    },
+    {
+      "chunk_id": 84,
+      "text": "[Lumenflow architecture specification > AuditLogService]\nAuditLogService is the write-side authority for Lumenflow's audit log. It receives events from every component that takes identity-aware actions and writes them to AuditLogStore. AuditLogService applies retention policies based on workspace plan tier (30 days on Standard, 90 days on Pro, up to 7 years on Enterprise).\nAuditLogService\n```\nWRITES_TO\n```\nAuditLogStore for every event. AuditLogService\n```\nREADS_FROM\n```\nWorkspaceService (cached) to determine retention policy.\nAuditLogService is\n```\nCALLS\n```\ned by virtually every other service: EdgeRouter, AuthService, WorkspaceService, TaskService, NotificationService, WebhookDispatcher.",
+      "source_file": "tech_spec.md",
+      "heading_path": [
+        "Lumenflow architecture specification",
+        "AuditLogService"
+      ],
+      "char_count": 698,
+      "token_count": 87
+    },
+    {
+      "chunk_id": 85,
+      "text": "[Lumenflow architecture specification > AuditLogStore]\nAuditLogStore is the durable, append-only store for audit log events. It is sharded by workspace ID and tiered: hot data (last 30 days) lives in a column store optimised for time-range queries, cold data lives in object storage with a metadata index.\nAuditLogStore is\n```\nOWNS\n```\ned by AuditLogService. ReportingService is the only read consumer of historical audit data, and it does so via AuditLogService's read API, not directly.",
+      "source_file": "tech_spec.md",
+      "heading_path": [
+        "Lumenflow architecture specification",
+        "AuditLogStore"
+      ],
+      "char_count": 488,
+      "token_count": 75
+    },
+    {
+      "chunk_id": 86,
+      "text": "[Lumenflow architecture specification > SearchIndex]\nSearchIndex is the read-optimised search store for tasks, comments, and workspace metadata. It is fed by change-data capture from TaskDB and WorkspaceDB. The index supports full-text search, faceted filters, and the BM25 component of hybrid search.\nSearchIndex is\n```\nREADS_FROM\n```\nby TaskService for search queries, by WorkspaceService for member search, and by ReportingService for cross-workspace administrator views. SearchIndex\n```\nREADS_FROM\n```\nTaskDB (via CDC) and\n```\nREADS_FROM\n```\nWorkspaceDB (via CDC).\nFailure mode: if SearchIndex is unavailable, search returns 503; CRUD operations on tasks continue uninterrupted.",
+      "source_file": "tech_spec.md",
+      "heading_path": [
+        "Lumenflow architecture specification",
+        "SearchIndex"
+      ],
+      "char_count": 682,
+      "token_count": 92
+    },
+    {
+      "chunk_id": 87,
+      "text": "[Lumenflow architecture specification > AnalyticsPipeline]\nAnalyticsPipeline is the offline batch and streaming pipeline that produces denormalised, query-optimised tables for reporting. It consumes change-data capture from TaskDB, WorkspaceDB, and AuditLogStore, transforms it, and writes derived tables.\nAnalyticsPipeline\n```\nREADS_FROM\n```\nTaskDB (via CDC),\n```\nREADS_FROM\n```\nWorkspaceDB (via CDC), and\n```\nREADS_FROM\n```\nAuditLogStore (via batch export). AnalyticsPipeline\n```\nWRITES_TO\n```\na separate analytics warehouse (not listed as a Lumenflow-owned component because it's the underlying DataPrism Warehouse product, SKU-8050). AnalyticsPipeline\n```\nEMITS_TO\n```\nAuditLogService for governance events on its own pipeline runs.\nReportingService\n```\nREADS_FROM\n```\nthe AnalyticsPipeline output tables.",
+      "source_file": "tech_spec.md",
+      "heading_path": [
+        "Lumenflow architecture specification",
+        "AnalyticsPipeline"
+      ],
+      "char_count": 809,
+      "token_count": 99
+    },
+    {
+      "chunk_id": 88,
+      "text": "[Lumenflow architecture specification > ReportingService]\nReportingService is the read-side service for in-product reports, dashboards, and exports. It is the only component that surfaces cross-workspace aggregate data to administrators (with appropriate authorisation).\nReportingService\n```\nREADS_FROM\n```\nSearchIndex for current-state queries (e.g., \"tasks open right now\"). ReportingService\n```\nREADS_FROM\n```\nAnalyticsPipeline output (via the analytics warehouse) for historical trend queries. ReportingService\n```\nCALLS\n```\nAuthService to verify caller identity and\n```\nCALLS\n```\nWorkspaceService to verify administrator role.\nReportingService\n```\nDEPENDS_ON\n```\nSearchIndex and\n```\nDEPENDS_ON\n```\nAnalyticsPipeline. Loss of either degrades specific report categories without affecting the others.",
+      "source_file": "tech_spec.md",
+      "heading_path": [
+        "Lumenflow architecture specification",
+        "ReportingService"
+      ],
+      "char_count": 802,
+      "token_count": 97
+    },
+    {
+      "chunk_id": 89,
+      "text": "[Lumenflow architecture specification > Multi-hop dependency examples]\nSome dependencies span multiple components:\n- A user's notification for a task assignment depends on a chain of: EdgeRouter → TaskService → NotificationQueue → NotificationService → WorkspaceService (for active membership check) → AuthService (for delivery preferences) → UserDB. If any one of these is unavailable, the notification fails.\n- An administrator viewing a 2-year audit log report depends on: EdgeRouter → ReportingService → AnalyticsPipeline (via warehouse) → AuditLogStore (cold tier) → AuditLogService (read API). Audit log queries against the hot tier follow a shorter path: EdgeRouter → ReportingService → AuditLogService → AuditLogStore (hot tier).\n- A SCIM provisioning request from an external IdP traverses: EdgeRouter → AuthService → UserDB (write) and then asynchronously AuthService → WorkspaceService for default workspace assignment, with both steps emitting to AuditLogService.\nThese chains are precisely what graph-aware retrieval solves. A flat vector index over this document cannot answer \"which databases does a customer-facing webhook delivery touch?\" without traversing WebhookDispatcher → WorkspaceService → WorkspaceDB\n*and*\nWebhookDispatcher → AuditLogService → AuditLogStore.",
+      "source_file": "tech_spec.md",
+      "heading_path": [
+        "Lumenflow architecture specification",
+        "Multi-hop dependency examples"
+      ],
+      "char_count": 1284,
+      "token_count": 171
+    },
+    {
+      "chunk_id": 90,
+      "text": "[Lumenflow FAQ]\nLumenflow is a (fictional) project management SaaS used as the demo corpus for the RAG Explained playlist. This FAQ contains 50 question/answer pairs covering accounts, billing, projects, tasks, integrations, and security. Eight pairs are designed to be\n**surface-similar but materially different**\n— these are the entries used to demonstrate why bi-encoder cosine similarity alone is not enough and reranking matters.\nThe eight surface-similar pairs are flagged with\n```\n[similar-pair]\n```\ntags in the source. Bi-encoders will rank them as near-duplicates; cross-encoder rerankers will correctly separate them.",
+      "source_file": "faq.md",
+      "heading_path": [
+        "Lumenflow FAQ"
+      ],
+      "char_count": 627,
+      "token_count": 88
+    },
+    {
+      "chunk_id": 91,
+      "text": "[Lumenflow FAQ > Account & Login > Q: How do I sign up for Lumenflow?]\nVisit lumenflow.example/signup and enter your work email. We send a verification link within 60 seconds. Click the link, set a password (12 characters minimum, mixed case, one number), and you'll land in your first workspace.",
+      "source_file": "faq.md",
+      "heading_path": [
+        "Lumenflow FAQ",
+        "Account & Login",
+        "Q: How do I sign up for Lumenflow?"
+      ],
+      "char_count": 296,
+      "token_count": 50
+    },
+    {
+      "chunk_id": 92,
+      "text": "[Lumenflow FAQ > Account & Login > Q: How do I reset my password?]\nGo to lumenflow.example/forgot, enter your email, and we send a reset link valid for 60 minutes. The link expires after one click, even if the reset is never completed. If the link expires, request a new one — there is no limit on retries within a 24-hour window.",
+      "source_file": "faq.md",
+      "heading_path": [
+        "Lumenflow FAQ",
+        "Account & Login",
+        "Q: How do I reset my password?"
+      ],
+      "char_count": 330,
+      "token_count": 62
+    },
+    {
+      "chunk_id": 93,
+      "text": "[Lumenflow FAQ > Account & Login > ]\nQ: How do I change my email address?\n```\n[similar-pair-1a]\n```\nOpen Settings → Account → Email. Enter the new email and click Save. We send a confirmation link to the new address. Until you click that link the change does not take effect — you continue receiving notifications at the old address. The pending change can be cancelled from the same screen.\nQ: How do I change my notification email?\n```\n[similar-pair-1b]\n```\nOpen Settings → Notifications → Delivery channels. Add the new email and click Verify. Once verified, you can route different notification categories (mentions, due dates, weekly digest) to different addresses. Your account email stays unchanged — this is purely about where notifications are sent.",
+      "source_file": "faq.md",
+      "heading_path": [
+        "Lumenflow FAQ",
+        "Account & Login",
+        ""
+      ],
+      "char_count": 758,
+      "token_count": 126
+    },
+    {
+      "chunk_id": 94,
+      "text": "[Lumenflow FAQ > Account & Login > Q: How do I delete my Lumenflow account?]\nGo to Settings → Account → Delete Account. Type your email to confirm. We start a 30-day grace period during which the account can be restored by logging in. After 30 days all personal data is purged and any workspaces you owned are transferred to a designated backup admin or, if none, archived.",
+      "source_file": "faq.md",
+      "heading_path": [
+        "Lumenflow FAQ",
+        "Account & Login",
+        "Q: How do I delete my Lumenflow account?"
+      ],
+      "char_count": 373,
+      "token_count": 68
+    },
+    {
+      "chunk_id": 95,
+      "text": "[Lumenflow FAQ > Account & Login > Q: How do I enable two-factor authentication?]\nSettings → Security → Two-factor → Enable. Scan the QR code with any TOTP app (Google Authenticator, 1Password, Authy). Enter a 6-digit code to confirm. Save the 10 recovery codes — they are shown once and never again.",
+      "source_file": "faq.md",
+      "heading_path": [
+        "Lumenflow FAQ",
+        "Account & Login",
+        "Q: How do I enable two-factor authentication?"
+      ],
+      "char_count": 300,
+      "token_count": 52
+    },
+    {
+      "chunk_id": 96,
+      "text": "[Lumenflow FAQ > Account & Login > Q: I lost my 2FA device. How do I get back in?]\nUse one of the 10 recovery codes saved when you enabled 2FA. Each code works once. If you have no recovery codes, contact support@lumenflow.example from the email on file. Identity verification takes 24-48 hours; we cannot expedite it.",
+      "source_file": "faq.md",
+      "heading_path": [
+        "Lumenflow FAQ",
+        "Account & Login",
+        "Q: I lost my 2FA device. How do I get back in?"
+      ],
+      "char_count": 318,
+      "token_count": 57
+    },
+    {
+      "chunk_id": 97,
+      "text": "[Lumenflow FAQ > Account & Login > Q: How long do login sessions last?]\nSessions last 30 days on devices you mark as trusted, 24 hours otherwise. You can review and revoke active sessions from Settings → Security → Active sessions. Revoking a session forces sign-out within 5 minutes.",
+      "source_file": "faq.md",
+      "heading_path": [
+        "Lumenflow FAQ",
+        "Account & Login",
+        "Q: How long do login sessions last?"
+      ],
+      "char_count": 284,
+      "token_count": 49
+    },
+    {
+      "chunk_id": 98,
+      "text": "[Lumenflow FAQ > Account & Login > Q: Why was I logged out automatically?]\nThree reasons trigger automatic sign-out: (1) your password was reset from another device, (2) an admin revoked your session, or (3) suspicious activity (geographic anomaly, multiple failed re-auth attempts) was detected. You'll see the reason in the email sent at sign-out time.",
+      "source_file": "faq.md",
+      "heading_path": [
+        "Lumenflow FAQ",
+        "Account & Login",
+        "Q: Why was I logged out automatically?"
+      ],
+      "char_count": 354,
+      "token_count": 56
+    },
+    {
+      "chunk_id": 99,
+      "text": "[Lumenflow FAQ > Account & Login > Q: Can I have multiple Lumenflow accounts on one email?]\nNo. Each email maps to exactly one account. If you need to separate work and personal usage, use email aliases (work+personal@... and work+work@...) or different email addresses. We treat aliases as distinct accounts.",
+      "source_file": "faq.md",
+      "heading_path": [
+        "Lumenflow FAQ",
+        "Account & Login",
+        "Q: Can I have multiple Lumenflow accounts on one email?"
+      ],
+      "char_count": 309,
+      "token_count": 50
+    },
+    {
+      "chunk_id": 100,
+      "text": "[Lumenflow FAQ > Subscriptions & Billing > ]\nQ: How do I cancel my subscription?\n```\n[similar-pair-2a]\n```\nSettings → Billing → Cancel subscription. You retain access until the end of the current billing period — for monthly plans that's the next renewal date, for annual plans it's whenever the year ends. No refund is issued for unused months on annual plans.\nQ: How do I cancel a scheduled task?\n```\n[similar-pair-2b]\n```\nOpen the task, click the three-dot menu, choose Delete or Archive. Delete is permanent after 7 days in trash; Archive keeps the task searchable but removes it from active views. Cancelling a recurring task only removes the next instance unless you choose \"Cancel all future instances\".",
+      "source_file": "faq.md",
+      "heading_path": [
+        "Lumenflow FAQ",
+        "Subscriptions & Billing",
+        ""
+      ],
+      "char_count": 710,
+      "token_count": 119
+    },
+    {
+      "chunk_id": 101,
+      "text": "[Lumenflow FAQ > Subscriptions & Billing > Q: What payment methods do you accept?]\nVisa, Mastercard, American Express, and ACH transfers for annual plans over $1,200. We do not currently accept PayPal, Apple Pay, or cryptocurrency. Invoicing for enterprise plans (50+ seats) is available with NET-30 terms.",
+      "source_file": "faq.md",
+      "heading_path": [
+        "Lumenflow FAQ",
+        "Subscriptions & Billing",
+        "Q: What payment methods do you accept?"
+      ],
+      "char_count": 306,
+      "token_count": 47
+    },
+    {
+      "chunk_id": 102,
+      "text": "[Lumenflow FAQ > Subscriptions & Billing > Q: How do I update my credit card?]\nSettings → Billing → Payment method → Update. Enter the new card details. The change applies to the next billing cycle; the current cycle is already paid against the old method. If a renewal failed because of an expired card, updating the card here does not retry — you must click \"Retry payment\" explicitly.",
+      "source_file": "faq.md",
+      "heading_path": [
+        "Lumenflow FAQ",
+        "Subscriptions & Billing",
+        "Q: How do I update my credit card?"
+      ],
+      "char_count": 387,
+      "token_count": 69
+    },
+    {
+      "chunk_id": 103,
+      "text": "[Lumenflow FAQ > Subscriptions & Billing > Q: Why was my card charged twice this month?]\nTwo common causes. First, you may have changed plans mid-cycle — we issue a prorated charge for the new plan. Second, if a previous payment failed and was retried, you'll see one decline and one successful charge. Both appear on the statement. Contact billing@lumenflow.example with the date and amount and we'll explain or refund.",
+      "source_file": "faq.md",
+      "heading_path": [
+        "Lumenflow FAQ",
+        "Subscriptions & Billing",
+        "Q: Why was my card charged twice this month?"
+      ],
+      "char_count": 420,
+      "token_count": 70
+    },
+    {
+      "chunk_id": 104,
+      "text": "[Lumenflow FAQ > Subscriptions & Billing > ]\nQ: Can I get a refund?\n```\n[similar-pair-3a]\n```\nRefunds are issued for: (1) accidental annual upgrades within 14 days, (2) duplicate charges on the same date, and (3) service outages exceeding the SLA on enterprise plans. Refunds are NOT issued for unused time on cancelled subscriptions or for plan downgrades.\nQ: Can I get a discount?\n```\n[similar-pair-3b]\n```\nAnnual plans receive 20% off the monthly price automatically. Educational institutions (.edu domains) get an additional 30%. Non-profits with 501(c)(3) status receive 50%. We do not negotiate discounts beyond these — no exceptions, including for large enterprise deals.",
+      "source_file": "faq.md",
+      "heading_path": [
+        "Lumenflow FAQ",
+        "Subscriptions & Billing",
+        ""
+      ],
+      "char_count": 678,
+      "token_count": 106
+    },
+    {
+      "chunk_id": 105,
+      "text": "[Lumenflow FAQ > Subscriptions & Billing > Q: What happens when my trial ends?]\nYou're moved to the Free tier automatically. The Free tier supports 3 workspaces, 10 members per workspace, and 1 GB of attachments. If you exceeded any of these during the trial, the relevant features lock until you either upgrade or remove items below the limit.",
+      "source_file": "faq.md",
+      "heading_path": [
+        "Lumenflow FAQ",
+        "Subscriptions & Billing",
+        "Q: What happens when my trial ends?"
+      ],
+      "char_count": 344,
+      "token_count": 59
+    },
+    {
+      "chunk_id": 106,
+      "text": "[Lumenflow FAQ > Subscriptions & Billing > Q: How do I switch from monthly to annual billing?]\nSettings → Billing → Change plan → Annual. We charge the difference today (12 × monthly minus already-paid). Annual plans renew on the upgrade date each subsequent year, not on your account creation date.",
+      "source_file": "faq.md",
+      "heading_path": [
+        "Lumenflow FAQ",
+        "Subscriptions & Billing",
+        "Q: How do I switch from monthly to annual billing?"
+      ],
+      "char_count": 299,
+      "token_count": 51
+    },
+    {
+      "chunk_id": 107,
+      "text": "[Lumenflow FAQ > Subscriptions & Billing > Q: Where do I download invoices?]\nSettings → Billing → Invoices. PDF invoices for the last 24 months are available. Older invoices can be requested from billing@lumenflow.example with 48-hour turnaround. EU customers receive VAT-compliant invoices automatically; for other tax jurisdictions, contact us if a specific format is required.",
+      "source_file": "faq.md",
+      "heading_path": [
+        "Lumenflow FAQ",
+        "Subscriptions & Billing",
+        "Q: Where do I download invoices?"
+      ],
+      "char_count": 379,
+      "token_count": 55
+    },
+    {
+      "chunk_id": 108,
+      "text": "[Lumenflow FAQ > Workspaces & Projects > Q: What is a workspace?]\nA workspace is the top-level container in Lumenflow. It holds projects, members, integrations, and billing. Most companies use one workspace; large organisations sometimes use one per business unit. Members are scoped to a workspace — guest access across workspaces requires Enterprise.",
+      "source_file": "faq.md",
+      "heading_path": [
+        "Lumenflow FAQ",
+        "Workspaces & Projects",
+        "Q: What is a workspace?"
+      ],
+      "char_count": 352,
+      "token_count": 53
+    },
+    {
+      "chunk_id": 109,
+      "text": "[Lumenflow FAQ > Workspaces & Projects > Q: How do I create a project?]\nClick + New project from the workspace sidebar. Choose a template (Kanban, Sprint, Roadmap, Custom) or start blank. Name the project, choose a workspace if you have multiple, and optionally invite members at creation time.",
+      "source_file": "faq.md",
+      "heading_path": [
+        "Lumenflow FAQ",
+        "Workspaces & Projects",
+        "Q: How do I create a project?"
+      ],
+      "char_count": 294,
+      "token_count": 49
+    },
+    {
+      "chunk_id": 110,
+      "text": "[Lumenflow FAQ > Workspaces & Projects > Q: How many projects can I have?]\nFree: 3 projects per workspace. Standard: 50. Pro: unlimited. Enterprise: unlimited with audit logging on project creation.",
+      "source_file": "faq.md",
+      "heading_path": [
+        "Lumenflow FAQ",
+        "Workspaces & Projects",
+        "Q: How many projects can I have?"
+      ],
+      "char_count": 198,
+      "token_count": 31
+    },
+    {
+      "chunk_id": 111,
+      "text": "[Lumenflow FAQ > Workspaces & Projects > Q: Can I duplicate a project?]\nYes. Open the project, click ⋯ → Duplicate. You can choose to copy: tasks, members, integrations, automation rules. Attachments are copied by reference (not duplicated) to save storage.",
+      "source_file": "faq.md",
+      "heading_path": [
+        "Lumenflow FAQ",
+        "Workspaces & Projects",
+        "Q: Can I duplicate a project?"
+      ],
+      "char_count": 257,
+      "token_count": 41
+    },
+    {
+      "chunk_id": 112,
+      "text": "[Lumenflow FAQ > Workspaces & Projects > Q: How do I archive a project?]\nOpen the project, click ⋯ → Archive. Archived projects are read-only, hidden from the sidebar, but searchable. They count toward your project limit unless you delete them. Restore via Settings → Projects → Archived.",
+      "source_file": "faq.md",
+      "heading_path": [
+        "Lumenflow FAQ",
+        "Workspaces & Projects",
+        "Q: How do I archive a project?"
+      ],
+      "char_count": 288,
+      "token_count": 48
+    },
+    {
+      "chunk_id": 113,
+      "text": "[Lumenflow FAQ > Workspaces & Projects > Q: What's the difference between archive and delete?]\nArchive: read-only, searchable, recoverable, counts toward limit. Delete: permanent after 30 days in trash, purged after 30 days, irrecoverable. Most teams archive completed projects rather than delete them, in case they need to reference past work.",
+      "source_file": "faq.md",
+      "heading_path": [
+        "Lumenflow FAQ",
+        "Workspaces & Projects",
+        "Q: What's the difference between archive and delete?"
+      ],
+      "char_count": 344,
+      "token_count": 51
+    },
+    {
+      "chunk_id": 114,
+      "text": "[Lumenflow FAQ > Workspaces & Projects > Q: How do I transfer a project to another workspace?]\nPro and Enterprise only. Open the project, ⋯ → Move. Select the target workspace (you must be admin in both). All tasks, attachments, comments, and assignment history move with the project. Members not in the target workspace become guests.",
+      "source_file": "faq.md",
+      "heading_path": [
+        "Lumenflow FAQ",
+        "Workspaces & Projects",
+        "Q: How do I transfer a project to another workspace?"
+      ],
+      "char_count": 335,
+      "token_count": 56
+    },
+    {
+      "chunk_id": 115,
+      "text": "[Lumenflow FAQ > Workspaces & Projects > Q: Can I have private projects within a workspace?]\nYes — Pro and above. Set the project visibility to Private at creation. Only invited members see it. Workspace admins can override and view private projects but the override is logged.",
+      "source_file": "faq.md",
+      "heading_path": [
+        "Lumenflow FAQ",
+        "Workspaces & Projects",
+        "Q: Can I have private projects within a workspace?"
+      ],
+      "char_count": 277,
+      "token_count": 47
+    },
+    {
+      "chunk_id": 116,
+      "text": "[Lumenflow FAQ > Tasks > ]\nQ: How do I create a task?\n```\n[similar-pair-4a]\n```\nInside any project, click + Add task or press T. Fill in the title (required), optional description, due date, assignee, and labels. Tasks save when you click out of the input or press Enter.\nQ: How do I create a recurring task?\n```\n[similar-pair-4b]\n```\nOpen or create a task, click the recurrence icon, choose a pattern (daily, weekly, monthly, custom). The task instance you create is the template — completing it creates the next instance based on the recurrence rule. Editing the template affects only future instances unless you choose \"Apply to current\".",
+      "source_file": "faq.md",
+      "heading_path": [
+        "Lumenflow FAQ",
+        "Tasks",
+        ""
+      ],
+      "char_count": 641,
+      "token_count": 110
+    },
+    {
+      "chunk_id": 117,
+      "text": "[Lumenflow FAQ > Tasks > Q: How do I assign a task to multiple people?]\nPro and above. In the task panel, click the assignee field, search, and add multiple people. The task appears in each assignee's My Tasks. Notifications fire to all assignees on changes.",
+      "source_file": "faq.md",
+      "heading_path": [
+        "Lumenflow FAQ",
+        "Tasks",
+        "Q: How do I assign a task to multiple people?"
+      ],
+      "char_count": 258,
+      "token_count": 46
+    },
+    {
+      "chunk_id": 118,
+      "text": "[Lumenflow FAQ > Tasks > Q: How do I add a subtask?]\nOpen the parent task, scroll to Subtasks, click + Add subtask. Subtasks have their own assignee, due date, and status. Completing all subtasks does not auto-complete the parent unless you turn that on in project settings.",
+      "source_file": "faq.md",
+      "heading_path": [
+        "Lumenflow FAQ",
+        "Tasks",
+        "Q: How do I add a subtask?"
+      ],
+      "char_count": 274,
+      "token_count": 48
+    },
+    {
+      "chunk_id": 119,
+      "text": "[Lumenflow FAQ > Tasks > Q: Can subtasks have their own subtasks?]\nYes, up to 5 levels deep. Beyond 5 levels we recommend a separate project linked from the task — at deeper nesting the UI becomes unreadable.",
+      "source_file": "faq.md",
+      "heading_path": [
+        "Lumenflow FAQ",
+        "Tasks",
+        "Q: Can subtasks have their own subtasks?"
+      ],
+      "char_count": 208,
+      "token_count": 38
+    },
+    {
+      "chunk_id": 120,
+      "text": "[Lumenflow FAQ > Tasks > Q: How do I link tasks?]\nOpen a task, click Link → Add related task. Choose the relationship type: blocks, is blocked by, duplicates, is duplicated by, relates to. Blocks/blocked-by relationships are enforced — you cannot complete a task with open blockers unless you override and acknowledge.",
+      "source_file": "faq.md",
+      "heading_path": [
+        "Lumenflow FAQ",
+        "Tasks",
+        "Q: How do I link tasks?"
+      ],
+      "char_count": 318,
+      "token_count": 52
+    },
+    {
+      "chunk_id": 121,
+      "text": "[Lumenflow FAQ > Tasks > Q: What's the keyboard shortcut for completing a task?]\nCmd-Enter (Mac) or Ctrl-Enter (Windows/Linux) when the task is selected. Press the same combo again to undo within 5 seconds.",
+      "source_file": "faq.md",
+      "heading_path": [
+        "Lumenflow FAQ",
+        "Tasks",
+        "Q: What's the keyboard shortcut for completing a task?"
+      ],
+      "char_count": 206,
+      "token_count": 34
+    },
+    {
+      "chunk_id": 122,
+      "text": "[Lumenflow FAQ > Tasks > Q: How do I bulk-edit tasks?]\nSelect multiple tasks (Shift-click or Cmd-click), then choose an action from the bulk-edit toolbar that appears at the bottom. Available actions: assign, change status, change due date, add label, delete. Bulk-edit is limited to 200 tasks per operation.",
+      "source_file": "faq.md",
+      "heading_path": [
+        "Lumenflow FAQ",
+        "Tasks",
+        "Q: How do I bulk-edit tasks?"
+      ],
+      "char_count": 308,
+      "token_count": 49
+    },
+    {
+      "chunk_id": 123,
+      "text": "[Lumenflow FAQ > Tasks > Q: How do I sort or filter the task list?]\nClick the filter icon at the top of the list. Filter by assignee, label, status, due date, project, or custom field. Save filter combinations as views; views are sharable within a project.",
+      "source_file": "faq.md",
+      "heading_path": [
+        "Lumenflow FAQ",
+        "Tasks",
+        "Q: How do I sort or filter the task list?"
+      ],
+      "char_count": 256,
+      "token_count": 47
+    },
+    {
+      "chunk_id": 124,
+      "text": "[Lumenflow FAQ > Tasks > Q: How does Lumenflow handle task time zones?]\nDue dates are stored in UTC and displayed in the viewer's local time zone. A task due \"Friday at 5pm\" set by a New York user appears as \"Friday at 10pm\" to a London user. Recurring tasks recur in the\n*creator's*\ntime zone, not the viewer's.",
+      "source_file": "faq.md",
+      "heading_path": [
+        "Lumenflow FAQ",
+        "Tasks",
+        "Q: How does Lumenflow handle task time zones?"
+      ],
+      "char_count": 312,
+      "token_count": 59
+    },
+    {
+      "chunk_id": 125,
+      "text": "[Lumenflow FAQ > Integrations > Q: Does Lumenflow integrate with Slack?]\nYes. Settings → Integrations → Slack → Connect. After OAuth, you can: (1) post task creation/completion to a channel, (2) create tasks from Slack messages with /lumenflow, (3) get DM notifications for assignments. Slack integration is available on Standard and above.",
+      "source_file": "faq.md",
+      "heading_path": [
+        "Lumenflow FAQ",
+        "Integrations",
+        "Q: Does Lumenflow integrate with Slack?"
+      ],
+      "char_count": 340,
+      "token_count": 52
+    },
+    {
+      "chunk_id": 126,
+      "text": "[Lumenflow FAQ > Integrations > ]\nQ: How does the GitHub integration work?\n```\n[similar-pair-5a]\n```\nConnect a GitHub organisation in Settings → Integrations → GitHub. Lumenflow then watches commits and PRs for\n```\nLUMEN-1234\n```\nstyle references; mentioning a task ID in a commit message links the commit to that task. You can also auto-update task status when a linked PR merges.\nQ: How does the GitLab integration work?\n```\n[similar-pair-5b]\n```\nConnect a GitLab group via OAuth in Settings → Integrations → GitLab. We watch merge requests and issues for\n```\n#LUMEN-1234\n```\nreferences (note the leading #, distinct from GitHub). Self-hosted GitLab is supported on Enterprise via a webhook URL.",
+      "source_file": "faq.md",
+      "heading_path": [
+        "Lumenflow FAQ",
+        "Integrations",
+        ""
+      ],
+      "char_count": 697,
+      "token_count": 113
+    },
+    {
+      "chunk_id": 127,
+      "text": "[Lumenflow FAQ > Integrations > Q: Can I export tasks to a CSV?]\nYes — any task list can be exported via the menu → Export → CSV. The export includes: ID, title, status, assignee, due date, labels, project, and any custom fields. Comments and attachments are not included in CSV exports; use Export → JSON for that.",
+      "source_file": "faq.md",
+      "heading_path": [
+        "Lumenflow FAQ",
+        "Integrations",
+        "Q: Can I export tasks to a CSV?"
+      ],
+      "char_count": 315,
+      "token_count": 58
+    },
+    {
+      "chunk_id": 128,
+      "text": "[Lumenflow FAQ > Integrations > Q: Does Lumenflow have a public API?]\nYes. REST and GraphQL endpoints are documented at lumenflow.example/docs/api. Authenticate with a personal API token (Settings → Developer → API tokens) or OAuth for third-party apps. Rate limit is 1000 requests/hour on Standard, 10,000/hour on Pro, custom on Enterprise.",
+      "source_file": "faq.md",
+      "heading_path": [
+        "Lumenflow FAQ",
+        "Integrations",
+        "Q: Does Lumenflow have a public API?"
+      ],
+      "char_count": 341,
+      "token_count": 51
+    },
+    {
+      "chunk_id": 129,
+      "text": "[Lumenflow FAQ > Integrations > Q: Is there a webhook for task changes?]\nYes. Settings → Integrations → Webhooks. Configure a URL to receive POST events when tasks are created, updated, completed, or deleted. Each event is signed with HMAC-SHA256 using a secret you set when configuring the webhook.",
+      "source_file": "faq.md",
+      "heading_path": [
+        "Lumenflow FAQ",
+        "Integrations",
+        "Q: Is there a webhook for task changes?"
+      ],
+      "char_count": 299,
+      "token_count": 49
+    },
+    {
+      "chunk_id": 130,
+      "text": "[Lumenflow FAQ > Integrations > Q: Can I import data from Asana / Jira / Trello?]\nYes for Asana and Trello (Settings → Import). Choose a workspace and run the import — projects, tasks, comments, and attachments transfer. Jira import is paid migration only; contact sales@lumenflow.example for a quote.",
+      "source_file": "faq.md",
+      "heading_path": [
+        "Lumenflow FAQ",
+        "Integrations",
+        "Q: Can I import data from Asana / Jira / Trello?"
+      ],
+      "char_count": 301,
+      "token_count": 49
+    },
+    {
+      "chunk_id": 131,
+      "text": "[Lumenflow FAQ > Integrations > Q: Does Lumenflow have a desktop app?]\nYes, for Mac and Windows. Download from lumenflow.example/desktop. The desktop app is an Electron wrapper around the web app with two extras: native notifications and a global hotkey to capture a task from anywhere.",
+      "source_file": "faq.md",
+      "heading_path": [
+        "Lumenflow FAQ",
+        "Integrations",
+        "Q: Does Lumenflow have a desktop app?"
+      ],
+      "char_count": 286,
+      "token_count": 46
+    },
+    {
+      "chunk_id": 132,
+      "text": "[Lumenflow FAQ > Integrations > Q: Does Lumenflow have a mobile app?]\nYes, iOS and Android. Both apps support read, create, update, and complete; advanced views (Gantt, custom fields editing) are web-only. Offline mode caches the last 7 days of activity for read-only access.",
+      "source_file": "faq.md",
+      "heading_path": [
+        "Lumenflow FAQ",
+        "Integrations",
+        "Q: Does Lumenflow have a mobile app?"
+      ],
+      "char_count": 275,
+      "token_count": 44
+    },
+    {
+      "chunk_id": 133,
+      "text": "[Lumenflow FAQ > Security & Compliance > Q: Where is Lumenflow data hosted?]\nPrimary US tenants: AWS us-east-1. EU tenants: AWS eu-west-1. Tenant region is set at workspace creation and cannot be changed without a paid migration. Data does not cross regions for normal operation; backups are replicated to a secondary region within the same legal jurisdiction.",
+      "source_file": "faq.md",
+      "heading_path": [
+        "Lumenflow FAQ",
+        "Security & Compliance",
+        "Q: Where is Lumenflow data hosted?"
+      ],
+      "char_count": 360,
+      "token_count": 57
+    },
+    {
+      "chunk_id": 134,
+      "text": "[Lumenflow FAQ > Security & Compliance > Q: Is Lumenflow SOC 2 compliant?]\nYes — SOC 2 Type II. The current report is dated within the last 12 months and is available under NDA from security@lumenflow.example. Penetration tests are conducted annually by a third-party firm; high-level summaries are shared with Enterprise customers.",
+      "source_file": "faq.md",
+      "heading_path": [
+        "Lumenflow FAQ",
+        "Security & Compliance",
+        "Q: Is Lumenflow SOC 2 compliant?"
+      ],
+      "char_count": 332,
+      "token_count": 52
+    },
+    {
+      "chunk_id": 135,
+      "text": "[Lumenflow FAQ > Security & Compliance > Q: Does Lumenflow support SSO?]\nYes, on Pro and Enterprise. Supported protocols: SAML 2.0, OpenID Connect. Pre-built integrations for Okta, Azure AD, Google Workspace, OneLogin. Enforce SSO from Settings → Security → SSO; once enforced, password login is disabled for all members.",
+      "source_file": "faq.md",
+      "heading_path": [
+        "Lumenflow FAQ",
+        "Security & Compliance",
+        "Q: Does Lumenflow support SSO?"
+      ],
+      "char_count": 321,
+      "token_count": 49
+    },
+    {
+      "chunk_id": 136,
+      "text": "[Lumenflow FAQ > Security & Compliance > ]\nQ: Does Lumenflow support SCIM provisioning?\n```\n[similar-pair-6a]\n```\nYes, on Enterprise. SCIM 2.0 endpoint at lumenflow.example/scim/v2. Generate a SCIM token from Settings → Security → SCIM. Auto-provision and deprovision users from your IdP. Group sync to Lumenflow teams is supported.\nQ: Does Lumenflow support SAML SSO?\n```\n[similar-pair-6b]\n```\nYes, on Pro and Enterprise. SAML 2.0 with metadata XML or manual configuration. We send SP metadata at lumenflow.example/saml/metadata. Just-in-time provisioning is supported but limited to user creation — group memberships still require SCIM (Enterprise only) or manual assignment.",
+      "source_file": "faq.md",
+      "heading_path": [
+        "Lumenflow FAQ",
+        "Security & Compliance",
+        ""
+      ],
+      "char_count": 677,
+      "token_count": 97
+    },
+    {
+      "chunk_id": 137,
+      "text": "[Lumenflow FAQ > Security & Compliance > Q: How are passwords stored?]\nbcrypt with cost factor 12. Passwords are never logged, never sent to third parties, and never stored in plaintext at any stage of the request lifecycle.",
+      "source_file": "faq.md",
+      "heading_path": [
+        "Lumenflow FAQ",
+        "Security & Compliance",
+        "Q: How are passwords stored?"
+      ],
+      "char_count": 224,
+      "token_count": 38
+    },
+    {
+      "chunk_id": 138,
+      "text": "[Lumenflow FAQ > Security & Compliance > Q: Can I require 2FA for all members in my workspace?]\nYes — workspace admins can enforce 2FA from Settings → Security → 2FA enforcement. Existing members are given 14 days to enrol; new members must enrol at signup. Members without 2FA after the grace period are locked out until enrolment.",
+      "source_file": "faq.md",
+      "heading_path": [
+        "Lumenflow FAQ",
+        "Security & Compliance",
+        "Q: Can I require 2FA for all members in my workspace?"
+      ],
+      "char_count": 332,
+      "token_count": 58
+    },
+    {
+      "chunk_id": 139,
+      "text": "[Lumenflow FAQ > Security & Compliance > Q: How long is data retained after deletion?]\nTasks, projects, and comments stay in trash for 30 days, then are purged. Audit logs are retained for 12 months on Pro, 7 years on Enterprise. Deleted accounts are purged 30 days after the deletion request.",
+      "source_file": "faq.md",
+      "heading_path": [
+        "Lumenflow FAQ",
+        "Security & Compliance",
+        "Q: How long is data retained after deletion?"
+      ],
+      "char_count": 293,
+      "token_count": 51
+    },
+    {
+      "chunk_id": 140,
+      "text": "[Lumenflow FAQ > Security & Compliance > Q: Does Lumenflow comply with GDPR?]\nYes. We are a Data Processor under GDPR and a DPA is available from security@lumenflow.example. EU customer data is hosted in eu-west-1 (Ireland). Data subject access requests can be filed by any user from Settings → Privacy → Data export.",
+      "source_file": "faq.md",
+      "heading_path": [
+        "Lumenflow FAQ",
+        "Security & Compliance",
+        "Q: Does Lumenflow comply with GDPR?"
+      ],
+      "char_count": 317,
+      "token_count": 53
+    },
+    {
+      "chunk_id": 141,
+      "text": "[Lumenflow FAQ > Security & Compliance > Q: How do I request my personal data export?]\nSettings → Privacy → Export my data. We generate a ZIP within 24 hours containing: all tasks you created or commented on, your profile data, login history, and notification preferences. The download link expires after 7 days.",
+      "source_file": "faq.md",
+      "heading_path": [
+        "Lumenflow FAQ",
+        "Security & Compliance",
+        "Q: How do I request my personal data export?"
+      ],
+      "char_count": 312,
+      "token_count": 53
+    },
+    {
+      "chunk_id": 142,
+      "text": "[Lumenflow FAQ > Plans & Limits > Q: What's included in the Free plan?]\n3 workspaces, 10 members per workspace, 1 GB attachments per workspace, 5 integrations per workspace, basic Kanban and List views. No automation rules, no time tracking, no reporting.",
+      "source_file": "faq.md",
+      "heading_path": [
+        "Lumenflow FAQ",
+        "Plans & Limits",
+        "Q: What's included in the Free plan?"
+      ],
+      "char_count": 255,
+      "token_count": 42
+    },
+    {
+      "chunk_id": 143,
+      "text": "[Lumenflow FAQ > Plans & Limits > Q: What's included in Standard ($8/user/month)?]\nUnlimited workspaces and members, 50 GB attachments per workspace, all integrations, Kanban + List + Calendar + Gantt views, basic automation (10 rules per project), 30-day audit log.",
+      "source_file": "faq.md",
+      "heading_path": [
+        "Lumenflow FAQ",
+        "Plans & Limits",
+        "Q: What's included in Standard ($8/user/month)?"
+      ],
+      "char_count": 266,
+      "token_count": 41
+    },
+    {
+      "chunk_id": 144,
+      "text": "[Lumenflow FAQ > Plans & Limits > ]\nQ: What's the difference between Standard and Pro?\n```\n[similar-pair-7a]\n```\nPro adds: unlimited automation rules, custom fields, time tracking, advanced reporting, private projects, multiple assignees per task, priority support. Pricing is $16/user/month.\nQ: What's the difference between Pro and Enterprise?\n```\n[similar-pair-7b]\n```\nEnterprise adds: SSO/SAML, SCIM provisioning, audit log retention up to 7 years, customer-managed encryption keys, custom DPAs, named technical account manager, 99.9% uptime SLA. Pricing is per-quote, typically $32-50/user/month.\nQ: What attachment file types are supported?\n```\n[similar-pair-8a]\n```\nAny file up to the per-attachment limit (25 MB Free, 100 MB Standard, 250 MB Pro, 1 GB Enterprise). We render previews for: images (PNG, JPG, GIF, SVG, WebP), PDFs, common Office documents, and text/code files. Other types upload but show a generic icon.\nQ: What kinds of files can I preview inline?\n```\n[similar-pair-8b]\n```\nInline preview is supported for images (PNG, JPG, GIF, SVG, WebP), PDFs (pages render in-browser), text and code files (syntax-highlighted with Shiki), and Office documents via a Microsoft viewer integration on Pro and above. Video and audio attachments are streamable inline; archive files (zip, tar) show a file listing.",
+      "source_file": "faq.md",
+      "heading_path": [
+        "Lumenflow FAQ",
+        "Plans & Limits",
+        ""
+      ],
+      "char_count": 1321,
+      "token_count": 196
+    },
+    {
+      "chunk_id": 145,
+      "text": "[Lumenflow FAQ > Plans & Limits > Q: How many guest users can I invite?]\nFree: 0. Standard: 5 per workspace. Pro: unlimited. Enterprise: unlimited with per-guest audit logging. Guests have read-only access by default; you can grant comment or task-create permissions per project.",
+      "source_file": "faq.md",
+      "heading_path": [
+        "Lumenflow FAQ",
+        "Plans & Limits",
+        "Q: How many guest users can I invite?"
+      ],
+      "char_count": 279,
+      "token_count": 44
+    },
+    {
+      "chunk_id": 146,
+      "text": "[Lumenflow FAQ > Plans & Limits > Q: What's the API rate limit?]\nStandard: 1000 requests/hour per token, 100 burst. Pro: 10,000/hour, 1000 burst. Enterprise: custom, typically 50,000/hour. Exceeding the limit returns HTTP 429 with a Retry-After header.",
+      "source_file": "faq.md",
+      "heading_path": [
+        "Lumenflow FAQ",
+        "Plans & Limits",
+        "Q: What's the API rate limit?"
+      ],
+      "char_count": 252,
+      "token_count": 38
+    },
+    {
+      "chunk_id": 147,
+      "text": "[Lumenflow FAQ > Performance & Reliability > Q: What's Lumenflow's uptime SLA?]\n99.5% on Pro (~3.6 hours downtime per month allowed). 99.9% on Enterprise (~43 minutes per month). Free and Standard have no formal SLA; status.lumenflow.example shows live status. SLA breaches result in service credits proportional to the downtime.",
+      "source_file": "faq.md",
+      "heading_path": [
+        "Lumenflow FAQ",
+        "Performance & Reliability",
+        "Q: What's Lumenflow's uptime SLA?"
+      ],
+      "char_count": 329,
+      "token_count": 49
+    },
+    {
+      "chunk_id": 148,
+      "text": "[Lumenflow FAQ > Performance & Reliability > Q: My tasks are slow to load. What can I help?]\nThree common causes: (1) a project with 5000+ open tasks — split or archive completed work; (2) a saved view with many filters and sorts on custom fields; (3) browser extensions injecting heavy DOM (ad blockers, password managers). The Performance panel in Settings → Help shows your account's measured load times.",
+      "source_file": "faq.md",
+      "heading_path": [
+        "Lumenflow FAQ",
+        "Performance & Reliability",
+        "Q: My tasks are slow to load. What can I help?"
+      ],
+      "char_count": 407,
+      "token_count": 69
+    },
+    {
+      "chunk_id": 149,
+      "text": "[Lumenflow FAQ > Performance & Reliability > Q: Why am I getting \"Workspace temporarily unavailable\" errors?]\nThree possibilities: (1) a brief deploy is rolling out; (2) your workspace is migrating to a new database shard (rare, takes ~30 seconds); (3) an admin is restoring a recent snapshot, which makes the workspace read-only. Check status.lumenflow.example for the current status.",
+      "source_file": "faq.md",
+      "heading_path": [
+        "Lumenflow FAQ",
+        "Performance & Reliability",
+        "Q: Why am I getting \"Workspace temporarily unavailable\" errors?"
+      ],
+      "char_count": 385,
+      "token_count": 58
+    }
+  ],
+  "summary": {
+    "per_file": {
+      "policy_manual.md": 33,
+      "product_catalog.md": 29,
+      "meeting_notes.md": 11,
+      "tech_spec.md": 17,
+      "faq.md": 60
+    },
+    "total_chunks": 150,
+    "avg_chunk_chars": 558.8,
+    "tokenizer": "BAAI/bge-small-en-v1.5"
+  }
+}

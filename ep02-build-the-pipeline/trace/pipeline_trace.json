@@ -1,0 +1,239 @@
+{
+  "trace_schema_version": "1",
+  "episode": "ep02",
+  "title": "Build the pipeline from scratch",
+  "query": "What is the cancellation policy for SKU-1042?",
+  "expected_sources": [
+    "product_catalog.md",
+    "faq.md"
+  ],
+  "provider": {
+    "provider": "gemini",
+    "chat_model": "gemini-2.5-flash",
+    "embedding_model": "gemini-embedding-001",
+    "embedding_dim": 768
+  },
+  "corpus": {
+    "total_chunks": 111,
+    "sources": [
+      "faq.md",
+      "meeting_notes.md",
+      "policy_manual.md",
+      "product_catalog.md",
+      "tech_spec.md"
+    ],
+    "chunk_size": 500,
+    "chunk_overlap": 50
+  },
+  "states": {
+    "chunks": [
+      {
+        "chunk_id": 0,
+        "text": "# Lumenflow B2B software catalog\n\nThis document is the product catalog for Lumenflow's enterprise marketplace. It lists 30 fictional B2B SaaS products with stable SKU codes (`SKU-NNNN`), pricing per seat, descriptions, and technical specs in markdown tables.\n\nThe catalog is engin",
+        "source": "product_catalog.md"
+      },
+      {
+        "chunk_id": 1,
+        "text": "---\n\n## Project & task management\n\n### SKU-1042 · Lumenflow Standard\n\nA team collaboration platform for managing projects, tasks, and deadlines across distributed teams. Includes Kanban, List, Calendar, and Gantt views with real-time multi-user editing and offline support on mobi",
+        "source": "product_catalog.md"
+      },
+      {
+        "chunk_id": 2,
+        "text": "| Attribute | Value |\n|---|---|\n| Category | Project management |\n| Price per seat (monthly) | $8 |\n| Storage per workspace | 50 GB |\n| Members per workspace | Unlimited |\n| Audit log retention | 30 days |\n| SSO support | No |\n| Cancellation notice | None — cancel any time |\n| Re",
+        "source": "product_catalog.md"
+      },
+      {
+        "chunk_id": 3,
+        "text": "### SKU-1044 · Lumenflow Enterprise\n\nA team collaboration platform for managing projects, tasks, and deadlines across distributed teams. Adds SCIM, customer-managed encryption keys, audit log retention up to 7 years, and a named technical account manager. Suited for organisations",
+        "source": "product_catalog.md"
+      },
+      {
+        "chunk_id": 4,
+        "text": "| Attribute | Value |\n|---|---|\n| Category | Project management |\n| Price per seat (monthly) | $0 (under 500 seats) |\n| Storage per workspace | 100 GB |\n| Roster sync | Canvas, Moodle, Blackboard |\n| Audit log retention | 90 days |\n| SSO support | SAML 2.0 |\n\n### SKU-1046 · Lumen",
+        "source": "product_catalog.md"
+      },
+      {
+        "chunk_id": 5,
+        "text": "---\n\n## Video conferencing\n\n### SKU-2001 · MeetCadence Core\n\nBrowser-based video conferencing for distributed teams. Supports up to 25 participants per meeting, end-to-end encryption optional, recording to local file or cloud. Integrates with Lumenflow tasks for in-meeting note c",
+        "source": "product_catalog.md"
+      },
+      {
+        "chunk_id": 6,
+        "text": "| Attribute | Value |\n|---|---|\n| Category | Video conferencing |\n| Price per seat (monthly) | $12 |\n| Max participants | 100 |\n| Recording storage | 25 GB per user |\n| E2E encryption | Optional |\n| Live transcription | 12 languages |\n\n### SKU-2003 · MeetCadence Webinar\n\nBrowser-",
+        "source": "product_catalog.md"
+      },
+      {
+        "chunk_id": 7,
+        "text": "---\n\n## Document collaboration\n\n### SKU-3010 · ScribeFlow Editor\n\nReal-time collaborative document editor with version history, inline comments, and granular block-level permissions. Markdown, rich-text, and structured content blocks (tables, code, embeds). Strong focus on engine",
+        "source": "product_catalog.md"
+      },
+      {
+        "chunk_id": 8,
+        "text": "| Attribute | Value |\n|---|---|\n| Category | Document collaboration |\n| Price per seat (monthly) | $9 |\n| Document size limit | 50 MB |\n| Real-time collaborators | Up to 50 simultaneous |\n| Version history | Indefinite |\n| Read receipts | Yes |\n\n### SKU-3012 · ScribeFlow Drafts\n\n",
+        "source": "product_catalog.md"
+      },
+      {
+        "chunk_id": 9,
+        "text": "---\n\n## Customer support\n\n### SKU-4001 · HelpForge Inbox\n\nMulti-channel support inbox aggregating email, chat widget, social DMs, and webform submissions into one shared queue. Round-robin or load-balanced ticket assignment, canned replies, SLA timers per priority.\n\n| Attribute |",
+        "source": "product_catalog.md"
+      }
+    ],
+    "embeddings_preview": [
+      [
+        -0.0089,
+        0.005,
+        0.0001,
+        -0.0899,
+        -0.0145
+      ],
+      [
+        -0.0006,
+        0.0009,
+        0.007,
+        -0.0689,
+        -0.025
+      ],
+      [
+        0.0036,
+        0.0121,
+        0.0064,
+        -0.0801,
+        -0.0177
+      ],
+      [
+        0.013,
+        0.0171,
+        0.0133,
+        -0.0776,
+        -0.0153
+      ],
+      [
+        0.0179,
+        0.0114,
+        0.0068,
+        -0.0875,
+        -0.0197
+      ]
+    ],
+    "stored_count": 111,
+    "query_vector": [
+      -0.0034,
+      0.0154,
+      -0.0073,
+      -0.0441,
+      -0.0172
+    ],
+    "similarity_scores": [
+      0.8081,
+      0.7774,
+      0.7764,
+      0.7694,
+      0.7693,
+      0.7671,
+      0.7669,
+      0.7641,
+      0.7624,
+      0.7594
+    ],
+    "top_k_final": [
+      {
+        "chunk_id": 0,
+        "text": "---\n\n## Project & task management\n\n### SKU-1042 · Lumenflow Standard\n\nA team collaboration platform for managing projects, tasks, and deadlines across distributed teams. Includes Kanban, List, Calendar, and Gantt views with real-time multi-user editing and offline support on mobi",
+        "score": 0.8081,
+        "source": "product_catalog.md"
+      },
+      {
+        "chunk_id": 1,
+        "text": "# Lumenflow B2B software catalog\n\nThis document is the product catalog for Lumenflow's enterprise marketplace. It lists 30 fictional B2B SaaS products with stable SKU codes (`SKU-NNNN`), pricing per seat, descriptions, and technical specs in markdown tables.\n\nThe catalog is engin",
+        "score": 0.7774,
+        "source": "product_catalog.md"
+      },
+      {
+        "chunk_id": 2,
+        "text": "Sasha asked about the data-tier migration deferral (D4.2). Marcus: still on plan for Q1 start. The 3 escalated customers from D6.2 are being handled with bridging concessions Tomás is running; one signed a 6-month extension at standard rates.\n\nHana asked about the late-Q1 picture",
+        "score": 0.7764,
+        "source": "meeting_notes.md"
+      }
+    ],
+    "llm_answer": "Monthly plans for SKU-1042 can be cancelled at any time from Settings → Billing → Cancel; access continues to the end of the current billing period and no refund is issued for unused days. Annual plans can be cancelled within the first 14 days for a full refund; after that, access continues to the end of the paid year and the remainder is non-refundable. There is no restocking fee. Workspaces enter a 30-day grace period after cancellation, during which all data is recoverable; after 30 days, data is purged and cannot be restored. (Source: product_catalog.md)",
+    "prompt_template": "You are a precise assistant. Use ONLY the context to answer.\n\nContext:\n{context}\n\nQuestion: {question}\n\nAnswer concisely. Cite the source filename. If the context does not\ncontain the answer, say so.\n",
+    "assembled_prompt": "You are a precise assistant. Use ONLY the context to answer.\n\nContext:\n[product_catalog.md] ---\n\n## Project & task management\n\n### SKU-1042 · Lumenflow Standard\n\nA team collaboration platform for managing projects, tasks, and deadlines across distributed teams. Includes Kanban, List, Calendar, and Gantt views with real-time multi-user editing and offline support on mobile. Suited for teams between 10 and 200 people.\n\n**Cancellation terms.** Monthly plans can be cancelled at any time from Settings → Billing → Cancel; access continues to the end of the current billing period and no refund is issued for unused days. Annual plans can be cancelled within the first 14 days for a full refund; after that, access continues to the end of the paid year and the remainder is non-refundable. There is no restocking fee. Workspaces enter a 30-day grace period after cancellation, during which all data is recoverable; after 30 days, data is purged and cannot be restored.\n\n[product_catalog.md] # Lumenflow B2B software catalog\n\nThis document is the product catalog for Lumenflow's enterprise marketplace. It lists 30 fictional B2B SaaS products with stable SKU codes (`SKU-NNNN`), pricing per seat, descriptions, and technical specs in markdown tables.\n\nThe catalog is engineered to demonstrate the limits of pure-vector search. Five products in the same category have nearly identical descriptions but different SKUs — vector search returns the most semantically similar entry, but if the query specifies a SKU, it ignores that constraint. Hybrid search (BM25 + dense) recovers the correct match.\n\n---\n\n## Project & task management\n\n### SKU-1042 · Lumenflow Standard\n\n[meeting_notes.md] Sasha asked about the data-tier migration deferral (D4.2). Marcus: still on plan for Q1 start. The 3 escalated customers from D6.2 are being handled with bridging concessions Tomás is running; one signed a 6-month extension at standard rates.\n\nHana asked about the late-Q1 picture: now that custom fields, audit-log retention, CMEK, and onboarding redesign are all landing, what do we de-risk in Q1? Sasha said the data-tier migration is the priority, but the planning meeting is in two weeks — let's not pre-commit.\n\nDecisions:\n\n- **D10.1** No new commitments for Q1 until the dedicated planning meeting on 2025-11-24.\n- **D10.2** Holiday freeze locked: no production deploys 2025-12-15 through 2026-01-05 except for SEV-1/2 incidents and the previously-scheduled CMEK go-live for Northwind.\n\nQuestion: What is the cancellation policy for SKU-1042?\n\nAnswer concisely. Cite the source filename. If the context does not\ncontain the answer, say so.\n",
+    "chroma_sql_preview": {
+      "available": true,
+      "db_path": "/Users/stigpedersenkorsholm/SoMe/rag-explained/ep02-build-the-pipeline/impl/chroma_db/chroma.sqlite3",
+      "tables": [
+        "acquire_write",
+        "collection_metadata",
+        "collections",
+        "databases",
+        "embedding_fulltext_search",
+        "embedding_fulltext_search_config",
+        "embedding_fulltext_search_content",
+        "embedding_fulltext_search_data",
+        "embedding_fulltext_search_docsize",
+        "embedding_fulltext_search_idx",
+        "embedding_metadata",
+        "embedding_metadata_array",
+        "embeddings",
+        "embeddings_queue",
+        "embeddings_queue_config",
+        "maintenance_log",
+        "max_seq_id",
+        "migrations",
+        "segment_metadata",
+        "segments",
+        "tenants"
+      ],
+      "sql": "-- chunks_payload sitting on disk\nSELECT em.id AS chunk_id,\n       substr(em.string_value, 1, 80) AS text_preview\nFROM embedding_metadata em\nWHERE em.key = 'chroma:document'\nORDER BY em.id\nLIMIT 3;",
+      "rows": [
+        {
+          "chunk_id": 1,
+          "text_preview": "# Lumenflow B2B software catalog\n\nThis document is the product catalog for Lumen",
+          "embedding_bytes": 3072
+        },
+        {
+          "chunk_id": 2,
+          "text_preview": "---\n\n## Project & task management\n\n### SKU-1042 · Lumenflow Standard\n\nA team col",
+          "embedding_bytes": 3072
+        },
+        {
+          "chunk_id": 3,
+          "text_preview": "| Attribute | Value |\n|---|---|\n| Category | Project management |\n| Price per se",
+          "embedding_bytes": 3072
+        }
+      ],
+      "row_count": 111,
+      "columns": [
+        "chunk_id",
+        "text_preview",
+        "embedding_bytes"
+      ]
+    },
+    "code_files": [
+      {
+        "name": "pipeline.py",
+        "text": "\"\"\"The whole RAG pipeline. Three functions. About 60 lines.\n\n    python pipeline.py \"What are the cancellation terms for SKU-1042?\"\n\"\"\"\nfrom __future__ import annotations\n\nimport sys\nfrom pathlib import Path\n\nimport chromadb\n\nfrom corpus_loader import load_and_chunk\nfrom provider import embed, chat\n\nPROMPT_TEMPLATE = \"\"\"\\\nYou are a precise assistant. Use ONLY the context to answer.\n\nContext:\n{context}\n\nQuestion: {question}\n\nAnswer concisely. Cite the source filename. If the context does not\ncontain the answer, say so.\n\"\"\"\n\nPERSIST_DIR = str(Path(__file__).parent / \"chroma_db\")\nCOLLECTION = \"ep02-baseline\"\n\n\ndef ingest() -> int:\n    \"\"\"Embed every chunk and store it in Chroma. Idempotent.\"\"\"\n    client = chromadb.PersistentClient(path=PERSIST_DIR)\n    coll = client.get_or_create_collection(name=COLLECTION)\n    if coll.count():\n        return coll.count()\n    chunks = load_and_chunk(chunk_size=900, chunk_overlap=100)\n    vecs = embed([c[\"text\"] for c in chunks])\n    coll.add(\n        ids=[str(c[\"chunk_id\"]) for c in chunks],\n        documents=[c[\"text\"] for c in chunks],\n        embeddings=vecs,\n        metadatas=[{\"source\": c[\"source\"]} for c in chunks],\n    )\n    return coll.count()\n\n\ndef search(query: str, k: int = 5) -> list[dict]:\n    \"\"\"Embed the query and return the top-k chunks ranked by similarity.\"\"\"\n    client = chromadb.PersistentClient(path=PERSIST_DIR)\n    coll = client.get_collection(name=COLLECTION)\n    q_vec = embed([query])[0]\n    res = coll.query(query_embeddings=[q_vec], n_results=k)\n    out = []\n    for text, meta, dist in zip(res[\"documents\"][0], res[\"metadatas\"][0], res[\"distances\"][0]):\n        out.append({\n            \"text\": text,\n            \"source\": meta[\"source\"],\n            \"score\": 1.0 / (1.0 + float(dist)),\n        })\n    return out\n\n\ndef answer(query: str, k: int = 3) -> str:\n    \"\"\"Search top-k chunks, build the prompt, and call the chat model.\"\"\"\n    top = search(query, k=k)\n    context = \"\\n\\n\".join(f\"[{c['source']}] {c['text']}\" for c in top)\n    prompt = PROMPT_TEMPLATE.format(context=context, question=query)\n    return chat(prompt)\n\n\nif __name__ == \"__main__\":\n    q = \" \".join(sys.argv[1:]) or \"What are the cancellation terms for SKU-1042?\"\n    n = ingest()\n    print(f\"indexed {n} chunks\")\n    print(f\"\\nQ: {q}\\n\\nA: {answer(q)}\")\n",
+        "line_count": 77
+      },
+      {
+        "name": "provider.py",
+        "text": "\"\"\"Thin wrapper around the embedding + chat models.\n\nSwap Gemini for OpenAI or Ollama by changing this file. The pipeline\nnever imports a vendor SDK directly.\n\"\"\"\nfrom __future__ import annotations\n\nimport os\nimport sys\nfrom pathlib import Path\n\n# Reuse the shared provider abstraction so EP02 stays in lockstep with EP01.\nSHARED = Path(__file__).resolve().parent.parent.parent / \"shared\"\nsys.path.insert(0, str(SHARED))\n\nfrom llm_provider import get_provider  # noqa: E402\n\nPROVIDER = get_provider()  # Gemini Flash by default — see ../.env\n\n\ndef embed(texts: list[str]) -> list[list[float]]:\n    \"\"\"Return one 768-dim vector per input text.\"\"\"\n    return PROVIDER.embed(texts)\n\n\ndef chat(prompt: str, max_tokens: int = 400) -> str:\n    \"\"\"Send a prompt to the chat model and return the answer text.\"\"\"\n    result = PROVIDER.chat(\n        [{\"role\": \"user\", \"content\": prompt}],\n        temperature=0.0,\n        max_tokens=max_tokens,\n    )\n    return result.text\n",
+        "line_count": 34
+      },
+      {
+        "name": "corpus_loader.py",
+        "text": "\"\"\"Read markdown files and split them into chunks. Used by pipeline.py.\"\"\"\nfrom __future__ import annotations\n\nfrom pathlib import Path\nfrom langchain_text_splitters import RecursiveCharacterTextSplitter\n\nCORPUS_DIR = Path(__file__).resolve().parent.parent.parent / \"shared\" / \"corpus\"\n# Only the 5 engineered demo documents — skip CORPUS.md (the README) and JSON.\nCORPUS_FILES = [\n    \"product_catalog.md\",\n    \"faq.md\",\n    \"policy_manual.md\",\n    \"meeting_notes.md\",\n    \"tech_spec.md\",\n]\n\n\ndef load_and_chunk(chunk_size: int = 500, chunk_overlap: int = 50) -> list[dict]:\n    \"\"\"Load every demo doc in the corpus and split it into chunks.\n\n    Each chunk is a dict with chunk_id + text + source filename.\n    \"\"\"\n    splitter = RecursiveCharacterTextSplitter(\n        chunk_size=chunk_size,\n        chunk_overlap=chunk_overlap,\n    )\n    chunks: list[dict] = []\n    chunk_id = 0\n    for filename in CORPUS_FILES:\n        md_file = CORPUS_DIR / filename\n        text = md_file.read_text(encoding=\"utf-8\")\n        for piece in splitter.split_text(text):\n            chunks.append({\n                \"chunk_id\": chunk_id,\n                \"text\": piece,\n                \"source\": md_file.name,\n            })\n            chunk_id += 1\n    return chunks\n",
+        "line_count": 40
+      }
+    ]
+  },
+  "metrics": {
+    "precision_at_3": 0.667,
+    "ingest_ms": 110768.8,
+    "embed_query_ms": 290.5,
+    "search_ms": 267.5,
+    "llm_ms": 1883.5,
+    "e2e_ms": 2441.5
+  },
+  "generated_at": "2026-05-07T07:36:05.488394+00:00"
+}

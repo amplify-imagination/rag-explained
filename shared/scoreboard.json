@@ -1,0 +1,22 @@
+{
+  "version": "1",
+  "description": "Series scoreboard. Each episode runs the same canonical query set (shared/corpus/queries.json) against the same corpus, and reports the same metrics. The improvements are real and reproducible — clone the repo, regenerate the traces, and the numbers should match.",
+  "metrics": {
+    "precision_at_3": "Of the top-3 retrieved chunks, how many are in the expected_sources for the query.",
+    "faithfulness": "RAGAS faithfulness score on the LLM answer (introduced in EP8, backfilled to earlier episodes).",
+    "answer_relevancy": "RAGAS answer_relevancy on the same answer.",
+    "p95_latency_ms": "End-to-end latency p95 across the query set.",
+    "cost_per_query_usd": "Sum of embedding + retrieval + reranking + LLM cost per query."
+  },
+  "episodes": {
+    "ep01": { "title": "What is RAG?", "technique": "baseline RAG (recursive 500-char chunks, dense vectors, top-k=3)", "results": null },
+    "ep02": { "title": "Your first RAG pipeline", "technique": "same as ep01, end-to-end implementation walkthrough", "results": null },
+    "ep03": { "title": "Reranking", "technique": "ep01 baseline + bge-reranker-v2-m3 on top-20 → top-3", "results": null },
+    "ep04": { "title": "Chunking benchmarks", "technique": "ep01 baseline with chunker varied: fixed/recursive/semantic/parent-child", "results": null },
+    "ep05": { "title": "Late chunking", "technique": "ep04 winner + late chunking on top", "results": null },
+    "ep06": { "title": "Hybrid search", "technique": "ep05 + BM25 fused via Reciprocal Rank Fusion", "results": null },
+    "ep07": { "title": "Graph RAG with Neo4j", "technique": "ep06 + Neo4j graph traversal for multi-hop queries", "results": null },
+    "ep08": { "title": "RAG evaluation", "technique": "RAGAS evaluation harness; introduces faithfulness + relevancy metrics", "results": null },
+    "ep09": { "title": "Productionizing RAG", "technique": "ep07 + semantic cache + async retrieval + monitoring", "results": null }
+  }
+}
