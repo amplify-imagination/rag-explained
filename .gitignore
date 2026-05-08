@@ -47,6 +47,7 @@ _test_chunks.py
 MORNING_STATUS.md
 NOTES.local.md
 *.local.md
+CLAUDE.md
 
 # ── QA output ───────────────────────────────────────────────────────
 qa/
