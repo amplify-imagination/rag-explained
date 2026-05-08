@@ -9,10 +9,27 @@ Captures every state the Remotion scenes need:
 """
 from __future__ import annotations
 
+import fcntl
 import json
 import sys
 import time
 from pathlib import Path
+
+# ── Single-instance guard ──────────────────────────────────────────────
+# See ep04-chunking-benchmarks/impl/generate_trace.py for rationale —
+# Gemini free-tier 1000-embed daily quota is per-PROJECT, both ~/.env keys
+# share it, and parallel runs blow it through in seconds.
+_LOCK_PATH = Path(__file__).resolve().parent / ".generate_trace.lock"
+_LOCK_FH = open(_LOCK_PATH, "w")
+try:
+    fcntl.flock(_LOCK_FH, fcntl.LOCK_EX | fcntl.LOCK_NB)
+except BlockingIOError:
+    print(
+        f"[ep03:trace] ABORT — another generate_trace.py is already running "
+        f"(lock {_LOCK_PATH}). Kill it first: `pkill -f generate_trace.py`.",
+        file=sys.stderr,
+    )
+    sys.exit(2)
 
 HERE = Path(__file__).resolve().parent
 EPISODE_DIR = HERE.parent

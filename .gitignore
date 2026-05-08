@@ -10,6 +10,10 @@ _venvs/
 # ── ChromaDB (regenerable from generate_trace.py) ───────────────────
 **/chroma_db/
 
+# ── Runtime state (single-instance locks, daily quota tracker) ──────
+**/.generate_trace.lock
+.runtime/
+
 # ── Node / Remotion ─────────────────────────────────────────────────
 **/node_modules/
 **/out/

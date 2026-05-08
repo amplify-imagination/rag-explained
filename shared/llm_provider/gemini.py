@@ -19,13 +19,89 @@ Env:
 """
 from __future__ import annotations
 
+import json
 import os
 import re
 import sys
 import time
+from datetime import datetime, timedelta, timezone
+from pathlib import Path
 from typing import Sequence
 
 from .base import ChatResult, LLMProvider, ProviderError
+
+# ── Daily budget tracker ─────────────────────────────────────────────
+# Free tier: 1000 embed_content requests/day per project (UTC midnight reset).
+# We persist a counter and warn/abort when approaching the cap. Set
+# GEMINI_DAILY_EMBED_BUDGET=<int> to override the soft cap (defaults 900 — 10%
+# safety margin). Set GEMINI_BUDGET_DISABLE=1 to turn the tracker off entirely.
+_BUDGET_DIR = Path.home() / "SoMe" / "rag-explained" / ".runtime"
+_BUDGET_FILE = _BUDGET_DIR / "gemini_quota.json"
+_BUDGET_SOFT_CAP = int(os.getenv("GEMINI_DAILY_EMBED_BUDGET", "900"))
+_BUDGET_DISABLED = os.getenv("GEMINI_BUDGET_DISABLE") == "1"
+
+
+def _utc_today_key() -> str:
+    """Return the date key Google's free-tier RPD quota uses.
+
+    Google resets free-tier daily quotas at midnight Pacific Time (UTC-7 in PDT,
+    UTC-8 in PST). We approximate the boundary as "8 hours behind UTC" — close
+    enough for the safety margin we operate with. Off by ~1h during DST
+    shoulders is fine; the soft cap (900 vs 1000) absorbs that.
+    """
+    pacific = datetime.now(timezone.utc).astimezone(timezone(timedelta(hours=-8)))
+    return pacific.strftime("%Y-%m-%d")
+
+
+def _read_budget() -> dict:
+    if not _BUDGET_FILE.exists():
+        return {"date": _utc_today_key(), "embed_count": 0}
+    try:
+        d = json.loads(_BUDGET_FILE.read_text())
+    except Exception:
+        return {"date": _utc_today_key(), "embed_count": 0}
+    if d.get("date") != _utc_today_key():
+        return {"date": _utc_today_key(), "embed_count": 0}
+    return d
+
+
+def _write_budget(d: dict) -> None:
+    _BUDGET_DIR.mkdir(parents=True, exist_ok=True)
+    _BUDGET_FILE.write_text(json.dumps(d))
+
+
+def _check_budget(planned_calls: int) -> None:
+    if _BUDGET_DISABLED:
+        return
+    d = _read_budget()
+    used = d["embed_count"]
+    remaining = _BUDGET_SOFT_CAP - used
+    if planned_calls > remaining:
+        print(
+            f"[gemini] DAILY EMBED BUDGET ALMOST GONE: {used}/{_BUDGET_SOFT_CAP} "
+            f"used today (UTC), need {planned_calls} more, {remaining} remaining. "
+            f"Set GEMINI_BUDGET_DISABLE=1 to override, or wait until UTC midnight reset.",
+            file=sys.stderr,
+        )
+        raise ProviderError(
+            f"Gemini daily embed budget exhausted ({used} used, {planned_calls} requested, "
+            f"cap={_BUDGET_SOFT_CAP}). Override with GEMINI_BUDGET_DISABLE=1."
+        )
+    if used > 0 or planned_calls > 50:
+        # Only print on substantial usage — quiet for tiny scripts
+        print(
+            f"[gemini] embed budget: {used}/{_BUDGET_SOFT_CAP} used today, "
+            f"requesting {planned_calls} more.",
+            file=sys.stderr,
+        )
+
+
+def _record_budget(actual_calls: int) -> None:
+    if _BUDGET_DISABLED:
+        return
+    d = _read_budget()
+    d["embed_count"] = d.get("embed_count", 0) + actual_calls
+    _write_budget(d)
 
 
 def _retry_after_seconds(exc: Exception) -> float:
@@ -91,13 +167,19 @@ class GeminiProvider(LLMProvider):
     def embed(self, texts: Sequence[str]) -> list[list[float]]:
         if not texts:
             return []
+        # Pre-flight: bail out if today's budget is exhausted, so we don't waste
+        # 60+ seconds on retry-backoff just to crash with 429.
+        _check_budget(len(texts))
         cfg = self._types.EmbedContentConfig(output_dimensionality=self.embedding_dim)
 
         # Free-tier embed limit is 100 RPM and "list of N" counts as N requests.
         # We process in small chunks and sleep between to stay safely under the cap.
         # Each chunk-call also wraps with backoff so a 429 self-heals.
-        CHUNK = 20            # 20 texts per request — well under per-request size limits
-        SLEEP_BETWEEN = 0.5   # 0.5s between batches; effective ~40 RPS bursts max
+        # Budget: CHUNK / SLEEP_BETWEEN must stay below 100/60 = 1.67 RPS to fit
+        # the per-minute quota with headroom. 10 / 8s = 75 RPM steady-state, leaves
+        # 25 RPM buffer for the chat() calls in the same script.
+        CHUNK = 10            # 10 texts per request — counts as 10 against the RPM quota
+        SLEEP_BETWEEN = 8.0   # 8s between batches; effective ~75 RPM steady-state
 
         out: list[list[float]] = []
         for i in range(0, len(texts), CHUNK):
@@ -109,6 +191,7 @@ class GeminiProvider(LLMProvider):
                 config=cfg,
             )
             out.extend(list(emb.values) for emb in result.embeddings)
+            _record_budget(len(batch))
             if i + CHUNK < len(texts):
                 time.sleep(SLEEP_BETWEEN)
         return out
