@@ -11,9 +11,13 @@ Usage:
     answer = p.chat([{"role": "user", "content": "Why is the sky blue?"}])
 
 Selection by env var:
-    SHOW_AND_TELL_PROVIDER=gemini   (default — free tier, fastest setup)
-    SHOW_AND_TELL_PROVIDER=openai   (paid, used in EP8 evaluation comparisons)
-    SHOW_AND_TELL_PROVIDER=ollama   (local, zero-network)
+    SHOW_AND_TELL_PROVIDER=gemini      (default — free tier, fastest setup)
+    SHOW_AND_TELL_PROVIDER=openai      (paid, used in EP8 evaluation comparisons)
+    SHOW_AND_TELL_PROVIDER=ollama      (local, zero-network)
+    SHOW_AND_TELL_PROVIDER=jina-local  (Jina v3 — embed-only; deferred due
+                                        to transformers compat issue)
+    SHOW_AND_TELL_PROVIDER=bge-m3      (EP5 late chunking — BAAI/bge-m3,
+                                        embed-only, compose with chat provider)
 
 Each provider is independently importable so missing keys for one provider
 don't break the others.
@@ -81,9 +85,15 @@ def get_provider(name: str | None = None) -> LLMProvider:
     if chosen == "ollama":
         from .ollama import OllamaProvider
         return OllamaProvider()
+    if chosen in ("jina-local", "jina_local"):
+        from .jina_local import JinaLocalProvider
+        return JinaLocalProvider()
+    if chosen in ("bge-m3", "bge_m3", "bgem3"):
+        from .bge_m3 import BGEM3Provider
+        return BGEM3Provider()
     if chosen == "synthetic":
         from .synthetic import SyntheticProvider
         return SyntheticProvider()
     raise ProviderError(
-        f"Unknown provider: {chosen!r}. Valid: gemini, openai, ollama, synthetic."
+        f"Unknown provider: {chosen!r}. Valid: gemini, openai, ollama, jina-local, bge-m3, synthetic."
     )

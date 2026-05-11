@@ -1,0 +1,444 @@
+{
+  "trace_schema_version": "1",
+  "episode": "ep05",
+  "title": "Late chunking — same chunks, better vectors",
+  "query": "What is the cancellation policy for SKU-1042?",
+  "expected_sources": [
+    "faq.md",
+    "product_catalog.md"
+  ],
+  "provider": {
+    "provider": "composed",
+    "embedding_provider": {
+      "provider": "bge-m3",
+      "chat_model": "(bge-m3: embed-only; pair with a chat provider)",
+      "embedding_model": "BAAI/bge-m3",
+      "embedding_dim": 1024
+    },
+    "chat_provider": {
+      "provider": "gemini",
+      "chat_model": "gemini-2.5-flash",
+      "embedding_model": "gemini-embedding-001",
+      "embedding_dim": 768
+    }
+  },
+  "corpus": {
+    "total_chunks_per_pipeline": {
+      "naive_baseline": 167,
+      "ep04_winner": 187,
+      "late_chunking": 187
+    }
+  },
+  "states": {
+    "pipelines": [
+      {
+        "id": "naive_baseline",
+        "label": "Naive baseline",
+        "subtitle": "fixed-size chunks · embedded alone",
+        "embed_timing": "early"
+      },
+      {
+        "id": "ep04_winner",
+        "label": "EP04 winner",
+        "subtitle": "markdown-header chunks · embedded alone",
+        "embed_timing": "early"
+      },
+      {
+        "id": "late_chunking",
+        "label": "Late chunking",
+        "subtitle": "same markdown-header chunks · embedded with document context",
+        "embed_timing": "late"
+      }
+    ],
+    "isolated_chunk": "Annual refunds are not available.",
+    "surrounding_heading": "## SKU-1042 · Lumenflow Standard",
+    "query1": {
+      "query": "What is the cancellation policy for SKU-1042?",
+      "expected": [
+        "faq.md",
+        "product_catalog.md"
+      ],
+      "results": {
+        "naive_baseline": {
+          "chunks_total": 167,
+          "p_at_3": 1.0,
+          "pre_rerank_top_3": [
+            {
+              "rank": 1,
+              "source": "product_catalog.md",
+              "text": "y specifies a SKU, it ignores that constraint. Hybrid search (BM25 + dense) recovers the correct match.\n\n---\n\n## Project & task management\n\n### SKU-1042 · Lumenflow Standard\n\nA team collaboration platform for managing projects, tasks, and d",
+              "score": 0.5697
+            },
+            {
+              "rank": 2,
+              "source": "faq.md",
+              "text": "refund is issued for unused months on annual plans.\n\n### Q: How do I cancel a scheduled task? `[similar-pair-2b]`\n\nOpen the task, click the three-dot menu, choose Delete or Archive. Delete is permanent after 7 days in trash; Archive keeps t",
+              "score": 0.4854
+            },
+            {
+              "rank": 3,
+              "source": "product_catalog.md",
+              "text": "from Settings → Billing → Cancel; access continues to the end of the current billing period and no refund is issued for unused days. Annual plans can be cancelled within the first 14 days for a full refund; after that, access continues to t",
+              "score": 0.4811
+            }
+          ],
+          "top_3": [
+            {
+              "rank": 1,
+              "source": "product_catalog.md",
+              "text": "y specifies a SKU, it ignores that constraint. Hybrid search (BM25 + dense) recovers the correct match.\n\n---\n\n## Project & task management\n\n### SKU-1042 · Lumenflow Standard\n\nA team collaboration platform for managing projects, tasks, and d",
+              "rerank_score": 4.2199
+            },
+            {
+              "rank": 2,
+              "source": "product_catalog.md",
+              "text": "e |\n|---|---|\n| Category | Project management |\n| Price per seat (monthly) | $8 |\n| Storage per workspace | 50 GB |\n| Members per workspace | Unlimited |\n| Audit log retention | 30 days |\n| SSO support | No |\n| Cancellation notice | None — ",
+              "rerank_score": 2.3414
+            },
+            {
+              "rank": 3,
+              "source": "product_catalog.md",
+              "text": "|\n\n### SKU-1046 · Lumenflow for Non-profit\n\nA team collaboration platform for managing projects, tasks, and deadlines across distributed teams, priced for registered non-profits. Identical features to Pro at half the per-seat cost. Requires",
+              "rerank_score": -1.8393
+            }
+          ]
+        },
+        "ep04_winner": {
+          "chunks_total": 187,
+          "p_at_3": 1.0,
+          "pre_rerank_top_3": [
+            {
+              "rank": 1,
+              "source": "product_catalog.md",
+              "text": "### SKU-1042 · Lumenflow Standard\n\nA team collaboration platform for managing projects, tasks, and deadlines across distributed teams. Includes Kanban, List, Calendar, and Gantt views with real-time multi-user editing and offline support on",
+              "score": 0.5393
+            },
+            {
+              "rank": 2,
+              "source": "product_catalog.md",
+              "text": "### SKU-4002 · HelpForge Knowledge\n\nPublic-facing knowledge base with article authoring, multi-language support, version history, and feedback widgets. Designed to deflect inbound tickets via search before they reach the inbox.\n\n| Attribute",
+              "score": 0.4812
+            },
+            {
+              "rank": 3,
+              "source": "product_catalog.md",
+              "text": "# Lumenflow B2B software catalog\n\nThis document is the product catalog for Lumenflow's enterprise marketplace. It lists 30 fictional B2B SaaS products with stable SKU codes (`SKU-NNNN`), pricing per seat, descriptions, and technical specs i",
+              "score": 0.4798
+            }
+          ],
+          "top_3": [
+            {
+              "rank": 1,
+              "source": "product_catalog.md",
+              "text": "### SKU-1042 · Lumenflow Standard\n\nA team collaboration platform for managing projects, tasks, and deadlines across distributed teams. Includes Kanban, List, Calendar, and Gantt views with real-time multi-user editing and offline support on",
+              "rerank_score": 5.1243
+            },
+            {
+              "rank": 2,
+              "source": "product_catalog.md",
+              "text": "### SKU-1046 · Lumenflow for Non-profit\n\nA team collaboration platform for managing projects, tasks, and deadlines across distributed teams, priced for registered non-profits. Identical features to Pro at half the per-seat cost. Requires 50",
+              "rerank_score": -1.6379
+            },
+            {
+              "rank": 3,
+              "source": "product_catalog.md",
+              "text": "### SKU-1044 · Lumenflow Enterprise\n\nA team collaboration platform for managing projects, tasks, and deadlines across distributed teams. Adds SCIM, customer-managed encryption keys, audit log retention up to 7 years, and a named technical a",
+              "rerank_score": -2.2057
+            }
+          ]
+        },
+        "late_chunking": {
+          "chunks_total": 187,
+          "p_at_3": 0.667,
+          "pre_rerank_top_3": [
+            {
+              "rank": 1,
+              "source": "product_catalog.md",
+              "text": "# Lumenflow B2B software catalog\n\nThis document is the product catalog for Lumenflow's enterprise marketplace. It lists 30 fictional B2B SaaS products with stable SKU codes (`SKU-NNNN`), pricing per seat, descriptions, and technical specs i",
+              "score": 0.4295
+            },
+            {
+              "rank": 2,
+              "source": "product_catalog.md",
+              "text": "## Project & task management",
+              "score": 0.4281
+            },
+            {
+              "rank": 3,
+              "source": "product_catalog.md",
+              "text": "## DevOps & monitoring",
+              "score": 0.4267
+            }
+          ],
+          "top_3": [
+            {
+              "rank": 1,
+              "source": "product_catalog.md",
+              "text": "### SKU-8050 · DataPrism Warehouse\n\nCloud data warehouse with separation of compute and storage, sub-second metadata queries, and federated query across S3, GCS, and Azure Blob. Columnar storage with automatic partitioning and clustering.\n\n",
+              "rerank_score": -7.1507
+            },
+            {
+              "rank": 2,
+              "source": "product_catalog.md",
+              "text": "# Lumenflow B2B software catalog\n\nThis document is the product catalog for Lumenflow's enterprise marketplace. It lists 30 fictional B2B SaaS products with stable SKU codes (`SKU-NNNN`), pricing per seat, descriptions, and technical specs i",
+              "rerank_score": -8.3377
+            },
+            {
+              "rank": 3,
+              "source": "policy_manual.md",
+              "text": "## 8. Policy maintenance\n\nThis policy is reviewed annually by the security council. Material changes are communicated to all employees via email and in-product banner. Minor changes (clarifications, formatting, contact updates) are made sil",
+              "rerank_score": -9.7458
+            }
+          ]
+        }
+      }
+    },
+    "query2": {
+      "query": "What's the latency tax on the audit-log retention rebuild?",
+      "expected": [
+        "meeting_notes.md"
+      ],
+      "results": {
+        "naive_baseline": {
+          "chunks_total": 167,
+          "p_at_3": 1.0,
+          "pre_rerank_top_3": [
+            {
+              "rank": 1,
+              "source": "meeting_notes.md",
+              "text": "$410k ARR pending technical sign-off. Sasha asked for a hard date.\n\nMarcus pushed back on stacking three workstreams. Custom fields is at risk of slipping if we add the onboarding work this quarter. He proposes deferring the onboarding rede",
+              "score": 0.5351
+            },
+            {
+              "rank": 2,
+              "source": "meeting_notes.md",
+              "text": "sha, Marcus, Pri, Tomás, Hana, plus **Jordan Akehurst** (Sales, Acme account).\n\nTomás presented the onboarding redesign. The core insight: the empty-workspace state is what kills retention. He proposes a \"starter content\" pack — 3 sample pr",
+              "score": 0.5223
+            },
+            {
+              "rank": 3,
+              "source": "meeting_notes.md",
+              "text": "* Onboarding redesign deferred to Q4. Tomás continues to scope; Pri's design lands by 2025-10-06 for Q4 kickoff.\n- **D2.3** Acme commitment: 7-year audit log support is in by 2025-10-20. Jordan can communicate a 2025-11-01 customer go-live ",
+              "score": 0.5196
+            }
+          ],
+          "top_3": [
+            {
+              "rank": 1,
+              "source": "meeting_notes.md",
+              "text": "in/max). Pri scoping a v1.1.\n\nDecisions:\n\n- **D7.1** SCIM events in audit log deferred to Q1. Devika tracks.\n- **D7.2** Custom fields v1.1 (field validation) scoped for late November. Pri leads.\n\nOpen: none.\n\n---\n\n## Meeting 8 — 2025-10-27\n",
+              "rerank_score": 0.6908
+            },
+            {
+              "rank": 2,
+              "source": "meeting_notes.md",
+              "text": "bridging concessions.\n\nCustom fields shipped to GA today (D5.2). 22 workspaces enabled it in the first hour. Marcus is monitoring.\n\nHana said the audit-log retention rebuild is **at risk**. Cross-region replication validated last week is hi",
+              "rerank_score": 0.5275
+            },
+            {
+              "rank": 3,
+              "source": "meeting_notes.md",
+              "text": "engage with Jordan.\n\nDevika reported CMEK on track for 2025-11-24 (D4.3). The first AWS KMS key flow is working end-to-end in dev.\n\nDecisions:\n\n- **D6.1** Audit-log retention rebuild now targets 2025-11-17 worst case. Sasha re-communicates ",
+              "rerank_score": -0.3915
+            }
+          ]
+        },
+        "ep04_winner": {
+          "chunks_total": 187,
+          "p_at_3": 1.0,
+          "pre_rerank_top_3": [
+            {
+              "rank": 1,
+              "source": "meeting_notes.md",
+              "text": "## Meeting 2 — 2025-09-15\n\nAttendees: Sasha, Marcus, Pri, Tomás, Hana, plus **Jordan Akehurst** (Sales, Acme account).\n\nTomás presented the onboarding redesign. The core insight: the empty-workspace state is what kills retention. He propose",
+              "score": 0.5624
+            },
+            {
+              "rank": 2,
+              "source": "meeting_notes.md",
+              "text": "## Meeting 3 — 2025-09-22\n\nAttendees: Sasha, Marcus, Pri, Tomás, Hana.\n\nHana confirmed the 2025-10-13 target for the audit-log retention rebuild is **not** feasible — the cross-region replication step takes longer than the team modelled, pr",
+              "score": 0.5383
+            },
+            {
+              "rank": 3,
+              "source": "meeting_notes.md",
+              "text": "## Meeting 1 — 2025-09-08\n\nAttendees: Sasha, Marcus, Pri, Tomás, Hana.\n\nSasha kicked off the quarter. Three priorities: (a) reduce churn in the 50-200 seat segment, where renewal rates have slipped to 84%, (b) ship the long-promised custom-",
+              "score": 0.5269
+            }
+          ],
+          "top_3": [
+            {
+              "rank": 1,
+              "source": "meeting_notes.md",
+              "text": "## Meeting 3 — 2025-09-22\n\nAttendees: Sasha, Marcus, Pri, Tomás, Hana.\n\nHana confirmed the 2025-10-13 target for the audit-log retention rebuild is **not** feasible — the cross-region replication step takes longer than the team modelled, pr",
+              "rerank_score": 0.4572
+            },
+            {
+              "rank": 2,
+              "source": "meeting_notes.md",
+              "text": "## Meeting 8 — 2025-10-27\n\nAttendees: Sasha, Marcus, Pri, Tomás, Hana, Devika.\n\nThe audit-log retention rebuild shipped today, on the D3.1 target. Acme has been told. Jordan is preparing for the 2025-11-03 go-live.\n\nDevika reported CMEK imp",
+              "rerank_score": -0.807
+            },
+            {
+              "rank": 3,
+              "source": "meeting_notes.md",
+              "text": "## Meeting 2 — 2025-09-15\n\nAttendees: Sasha, Marcus, Pri, Tomás, Hana, plus **Jordan Akehurst** (Sales, Acme account).\n\nTomás presented the onboarding redesign. The core insight: the empty-workspace state is what kills retention. He propose",
+              "rerank_score": -1.3235
+            }
+          ]
+        },
+        "late_chunking": {
+          "chunks_total": 187,
+          "p_at_3": 1.0,
+          "pre_rerank_top_3": [
+            {
+              "rank": 1,
+              "source": "faq.md",
+              "text": "## Account & Login",
+              "score": 0.4429
+            },
+            {
+              "rank": 2,
+              "source": "product_catalog.md",
+              "text": "## DevOps & monitoring",
+              "score": 0.4424
+            },
+            {
+              "rank": 3,
+              "source": "meeting_notes.md",
+              "text": "# Lumenflow weekly product meeting — notes\n\nThese are the notes from the weekly product meeting at Lumenflow over a 10-week period. The notes are designed for the late-chunking demo. Each meeting references decisions from earlier meetings i",
+              "score": 0.4405
+            }
+          ],
+          "top_3": [
+            {
+              "rank": 1,
+              "source": "meeting_notes.md",
+              "text": "## Meeting 6 — 2025-10-13\n\nAttendees: Sasha, Marcus, Pri, Tomás, Hana, Devika.\n\nTomás reported that the customer-comms email about D4.2 went out yesterday. 14 enterprise customers were affected; 11 acknowledged, 3 escalated. The 3 escalatio",
+              "rerank_score": -2.2192
+            },
+            {
+              "rank": 2,
+              "source": "meeting_notes.md",
+              "text": "## Meeting 1 — 2025-09-08\n\nAttendees: Sasha, Marcus, Pri, Tomás, Hana.\n\nSasha kicked off the quarter. Three priorities: (a) reduce churn in the 50-200 seat segment, where renewal rates have slipped to 84%, (b) ship the long-promised custom-",
+              "rerank_score": -2.3137
+            },
+            {
+              "rank": 3,
+              "source": "meeting_notes.md",
+              "text": "## Meeting 9 — 2025-11-03\n\nAttendees: Sasha, Marcus, Pri, Tomás, Hana, Devika.\n\nAcme went live this morning. Jordan was at the customer's office for the cutover. No issues reported in the first 6 hours; full audit-log retention through 7 ye",
+              "rerank_score": -6.6371
+            }
+          ]
+        }
+      }
+    },
+    "scoreboard": [
+      {
+        "id": "naive_baseline",
+        "label": "Naive baseline",
+        "subtitle": "fixed-size chunks · embedded alone",
+        "embed_timing": "early",
+        "p_at_3": 1.0,
+        "chunks_total": 167,
+        "is_baseline": true
+      },
+      {
+        "id": "ep04_winner",
+        "label": "EP04 winner",
+        "subtitle": "markdown-header chunks · embedded alone",
+        "embed_timing": "early",
+        "p_at_3": 1.0,
+        "chunks_total": 187,
+        "is_baseline": false
+      },
+      {
+        "id": "late_chunking",
+        "label": "Late chunking",
+        "subtitle": "same markdown-header chunks · embedded with document context",
+        "embed_timing": "late",
+        "p_at_3": 0.667,
+        "chunks_total": 187,
+        "is_baseline": false
+      }
+    ],
+    "pre_rerank": {
+      "naive_baseline": [
+        {
+          "rank": 1,
+          "source": "product_catalog.md",
+          "text": "y specifies a SKU, it ignores that constraint. Hybrid search (BM25 + dense) recovers the correct match.\n\n---\n\n## Project & task management\n\n### SKU-1042 · Lumenflow Standard\n\nA team collaboration platform for managing projects, tasks, and d",
+          "score": 0.5697
+        },
+        {
+          "rank": 2,
+          "source": "faq.md",
+          "text": "refund is issued for unused months on annual plans.\n\n### Q: How do I cancel a scheduled task? `[similar-pair-2b]`\n\nOpen the task, click the three-dot menu, choose Delete or Archive. Delete is permanent after 7 days in trash; Archive keeps t",
+          "score": 0.4854
+        },
+        {
+          "rank": 3,
+          "source": "product_catalog.md",
+          "text": "from Settings → Billing → Cancel; access continues to the end of the current billing period and no refund is issued for unused days. Annual plans can be cancelled within the first 14 days for a full refund; after that, access continues to t",
+          "score": 0.4811
+        }
+      ],
+      "ep04_winner": [
+        {
+          "rank": 1,
+          "source": "product_catalog.md",
+          "text": "### SKU-1042 · Lumenflow Standard\n\nA team collaboration platform for managing projects, tasks, and deadlines across distributed teams. Includes Kanban, List, Calendar, and Gantt views with real-time multi-user editing and offline support on",
+          "score": 0.5393
+        },
+        {
+          "rank": 2,
+          "source": "product_catalog.md",
+          "text": "### SKU-4002 · HelpForge Knowledge\n\nPublic-facing knowledge base with article authoring, multi-language support, version history, and feedback widgets. Designed to deflect inbound tickets via search before they reach the inbox.\n\n| Attribute",
+          "score": 0.4812
+        },
+        {
+          "rank": 3,
+          "source": "product_catalog.md",
+          "text": "# Lumenflow B2B software catalog\n\nThis document is the product catalog for Lumenflow's enterprise marketplace. It lists 30 fictional B2B SaaS products with stable SKU codes (`SKU-NNNN`), pricing per seat, descriptions, and technical specs i",
+          "score": 0.4798
+        }
+      ],
+      "late_chunking": [
+        {
+          "rank": 1,
+          "source": "product_catalog.md",
+          "text": "# Lumenflow B2B software catalog\n\nThis document is the product catalog for Lumenflow's enterprise marketplace. It lists 30 fictional B2B SaaS products with stable SKU codes (`SKU-NNNN`), pricing per seat, descriptions, and technical specs i",
+          "score": 0.4295
+        },
+        {
+          "rank": 2,
+          "source": "product_catalog.md",
+          "text": "## Project & task management",
+          "score": 0.4281
+        },
+        {
+          "rank": 3,
+          "source": "product_catalog.md",
+          "text": "## DevOps & monitoring",
+          "score": 0.4267
+        }
+      ]
+    },
+    "code_files": [
+      {
+        "name": "pipeline.py",
+        "text": "\"\"\"EP05 — Late chunking. Three pipelines, one query, one variable: WHEN we embed.\n\nThe point of EP05 is *not* to compare chunkers (that was EP04). The variable is\nthe embedding timing:\n    - naive_baseline:  fixed-size chunks, embedded individually        (early)\n    - ep04_winner:     markdown-header chunks, embedded individually   (early)\n    - late_chunking:   markdown-header chunks, embedded as a document  (late)\n\nPer Stig's v0.2 script note: all three pipelines use BGE-M3 for embeddings, so\nthe only difference between ep04_winner and late_chunking is when the embedding\nhappens. Naive baseline shares the embedder too — it's there as a \"where we\nstarted\" reference, not as a stack-comparison.\n\nProvider composition (intentional, pedagogical):\n    embedding_provider = get_provider(\"bge-m3\")     # local, free, 8K context\n    chat_provider      = get_provider(\"gemini\")     # final answer step only\n\n    python pipeline.py \"What is the cancellation policy for SKU-1042?\"\n\"\"\"\nfrom __future__ import annotations\n\nimport sys\nfrom pathlib import Path\nfrom typing import Callable\n\nimport chromadb\nfrom sentence_transformers import CrossEncoder\n\n# Reuse EP02's corpus_loader and EP04's chunkers — corpus is shared by design.\nEP02 = Path(__file__).resolve().parent.parent.parent / \"ep02-build-the-pipeline\" / \"impl\"\nEP04 = Path(__file__).resolve().parent.parent.parent / \"ep04-chunking-benchmarks\" / \"impl\"\nSHARED = Path(__file__).resolve().parent.parent.parent / \"shared\"\nsys.path.insert(0, str(EP02))\nsys.path.insert(0, str(EP04))\nsys.path.insert(0, str(SHARED))\n\nfrom corpus_loader import CORPUS_DIR  # noqa: E402\nfrom llm_provider import get_provider  # noqa: E402\n\n# Import EP04's chunkers verbatim — same algorithms, same outputs.\nimport pipeline as ep04  # noqa: E402\n\nPROMPT_TEMPLATE = \"\"\"\\\nYou are a precise assistant. Use ONLY the context to answer.\n\nContext:\n{context}\n\nQuestion: {question}\n\nAnswer concisely. Cite the source filename. If the context does not\ncontain the answer, say so.\n\"\"\"\n\n# 90 MB cross-encoder. Loaded once, shared across pipelines.\nRERANKER_MODEL = \"cross-encoder/ms-marco-MiniLM-L-6-v2\"\n_RERANKER: CrossEncoder | None = None\n\n# Per-pipeline collection — keep them isolated so we don't mix early and late vectors.\nPERSIST_DIR = str(Path(__file__).resolve().parent / \"chroma_db\")\n\n\ndef _reranker() -> CrossEncoder:\n    global _RERANKER\n    if _RERANKER is None:\n        _RERANKER = CrossEncoder(RERANKER_MODEL)\n    return _RERANKER\n\n\n# Lazy provider singletons so we only pay the BGE-M3 load cost once per run.\n_EMBED_PROVIDER = None\n_CHAT_PROVIDER = None\n\n\ndef embed_provider():\n    global _EMBED_PROVIDER\n    if _EMBED_PROVIDER is None:\n        _EMBED_PROVIDER = get_provider(\"bge-m3\")\n    return _EMBED_PROVIDER\n\n\ndef chat_provider():\n    global _CHAT_PROVIDER\n    if _CHAT_PROVIDER is None:\n        _CHAT_PROVIDER = get_provider(\"gemini\")\n    return _CHAT_PROVIDER\n\n\n# ── Pipelines ──────────────────────────────────────────────────────\n# Each ingest function: chunks → embeddings → ChromaDB collection.\n# The only thing that varies between them is HOW the embeddings are computed.\n\nPIPELINES = [\"naive_baseline\", \"ep04_winner\", \"late_chunking\"]\n\n\ndef _read_docs() -> list[dict]:\n    \"\"\"Yield {source, text} per document. Same as EP04's _read_docs.\"\"\"\n    out = []\n    for p in sorted(CORPUS_DIR.glob(\"*.md\")):\n        out.append({\"source\": p.name, \"text\": p.read_text(encoding=\"utf-8\")})\n    return out\n\n\ndef _chunks_for(pipeline_name: str) -> list[dict]:\n    \"\"\"Return the chunks for a given pipeline. Each item: {text, source, char_start, char_end}.\n\n    char_start / char_end are *within the source document* — late chunking needs\n    them so we can pool the right token embeddings back into the chunk vector.\n    \"\"\"\n    if pipeline_name == \"naive_baseline\":\n        # Re-derive fixed_500 chunks but track char ranges in the source.\n        out = []\n        for d in _read_docs():\n            text = d[\"text\"]\n            i = 0\n            while i < len(text):\n                j = min(i + 500, len(text))\n                piece = text[i:j].strip()\n                if piece:\n                    out.append({\"text\": piece, \"source\": d[\"source\"], \"char_start\": i, \"char_end\": j})\n                i = j\n        return out\n    if pipeline_name in (\"ep04_winner\", \"late_chunking\"):\n        # Markdown-header chunker — split at headings. Track char ranges per source.\n        import re\n        head_re = re.compile(r\"^(#+\\s.+)$\", re.MULTILINE)\n        out = []\n        for d in _read_docs():\n            text = d[\"text\"]\n            starts = [m.start() for m in head_re.finditer(text)]\n            if not starts:\n                out.append({\"text\": text, \"source\": d[\"source\"], \"char_start\": 0, \"char_end\": len(text)})\n                continue\n            starts.append(len(text))\n            for i in range(len(starts) - 1):\n                a, b = starts[i], starts[i + 1]\n                piece = text[a:b].strip()\n                if piece:\n                    out.append({\"text\": piece, \"source\": d[\"source\"], \"char_start\": a, \"char_end\": b})\n        return out\n    raise ValueError(f\"Unknown pipeline: {pipeline_name}\")\n\n\ndef ingest(pipeline_name: str) -> int:\n    \"\"\"Embed and persist chunks for one pipeline. Idempotent per pipeline.\"\"\"\n    chunks = _chunks_for(pipeline_name)\n    if not chunks:\n        return 0\n    coll_name = f\"ep05-{pipeline_name}\"\n    client = chromadb.PersistentClient(path=PERSIST_DIR)\n    coll = client.get_or_create_collection(name=coll_name)\n    if coll.count():\n        return coll.count()\n\n    p = embed_provider()\n    if pipeline_name in (\"naive_baseline\", \"ep04_winner\"):\n        # Early chunking: embed each chunk in isolation (the EP02-EP04 pattern).\n        vecs = p.embed([c[\"text\"] for c in chunks])\n    elif pipeline_name == \"late_chunking\":\n        # Late chunking: per source document, one forward pass through the\n        # encoder + pool token representations into chunk vectors using char ranges.\n        # Group chunks by source so we batch by document.\n        by_source: dict[str, list[dict]] = {}\n        for c in chunks:\n            by_source.setdefault(c[\"source\"], []).append(c)\n        # Materialize each document text once.\n        docs = {d[\"source\"]: d[\"text\"] for d in _read_docs()}\n        vecs: list[list[float]] = []\n        out_chunks_in_order: list[dict] = []\n        for src in sorted(by_source.keys()):\n            doc_text = docs[src]\n            chunks_in_doc = by_source[src]\n            boundaries = [(c[\"char_start\"], c[\"char_end\"]) for c in chunks_in_doc]\n            doc_vecs = p.embed_late(doc_text, boundaries)\n            vecs.extend(doc_vecs)\n            out_chunks_in_order.extend(chunks_in_doc)\n        # Re-order chunks list to match vec order\n        chunks = out_chunks_in_order\n    else:\n        raise ValueError(f\"Unknown pipeline: {pipeline_name}\")\n\n    coll.add(\n        ids=[f\"{pipeline_name}-{i}\" for i in range(len(chunks))],\n        documents=[c[\"text\"] for c in chunks],\n        embeddings=vecs,\n        metadatas=[\n            {\"source\": c[\"source\"], \"pipeline\": pipeline_name, \"char_start\": c[\"char_start\"], \"char_end\": c[\"char_end\"]}\n            for c in chunks\n        ],\n    )\n    return coll.count()\n\n\ndef vector_search(query: str, pipeline_name: str, k: int = 20) -> list[dict]:\n    coll_name = f\"ep05-{pipeline_name}\"\n    client = chromadb.PersistentClient(path=PERSIST_DIR)\n    coll = client.get_collection(name=coll_name)\n    p = embed_provider()\n    q_vec = p.embed_query(query)\n    res = coll.query(query_embeddings=[q_vec], n_results=k)\n    out = []\n    for text, meta, dist in zip(res[\"documents\"][0], res[\"metadatas\"][0], res[\"distances\"][0]):\n        out.append({\n            \"text\": text,\n            \"source\": meta[\"source\"],\n            \"score\": 1.0 / (1.0 + float(dist)),\n        })\n    return out\n\n\ndef rerank(query: str, candidates: list[dict], top_n: int = 3) -> list[dict]:\n    pairs = [(query, c[\"text\"]) for c in candidates]\n    relevance_scores = _reranker().predict(pairs).tolist()\n    for c, r in zip(candidates, relevance_scores):\n        c[\"rerank_score\"] = float(r)\n    candidates.sort(key=lambda c: c[\"rerank_score\"], reverse=True)\n    return candidates[:top_n]\n\n\ndef answer(query: str, pipeline_name: str, top_k_retrieve: int = 20, top_n_rerank: int = 3) -> dict:\n    \"\"\"Run the full pipeline. Embedding via BGE-M3, chat via Gemini.\"\"\"\n    retrieved = vector_search(query, pipeline_name, k=top_k_retrieve)\n    top = rerank(query, retrieved, top_n=top_n_rerank)\n    context = \"\\n\\n\".join(f\"[{c['source']}] {c['text']}\" for c in top)\n    prompt = PROMPT_TEMPLATE.format(context=context, question=query)\n    chat_result = chat_provider().chat([{\"role\": \"user\", \"content\": prompt}], temperature=0.0, max_tokens=400)\n    return {\n        \"pipeline\": pipeline_name,\n        \"top_n\": top,\n        \"answer\": chat_result.text,\n    }\n\n\ndef benchmark(query: str, expected_sources: set[str], top_k_retrieve: int = 20) -> dict:\n    \"\"\"Run all 3 pipelines against the same query. Returns precision-at-3 per pipeline.\"\"\"\n    results = {}\n    for pipeline_name in PIPELINES:\n        n = ingest(pipeline_name)\n        retrieved = vector_search(query, pipeline_name, k=top_k_retrieve)\n        # Capture pre-reranker top-3 for Scene 7's split-screen visual.\n        pre_rerank_top3 = retrieved[:3]\n        reranked = rerank(query, [dict(c) for c in retrieved], top_n=top_k_retrieve)\n        top3 = reranked[:3]\n        p_at_3 = sum(1 for c in top3 if c[\"source\"] in expected_sources) / 3.0\n        results[pipeline_name] = {\n            \"chunks_total\": n,\n            \"p_at_3\": round(p_at_3, 3),\n            \"pre_rerank_top_3\": [\n                {\"rank\": i + 1, \"source\": c[\"source\"], \"text\": c[\"text\"][:240], \"score\": round(c[\"score\"], 4)}\n                for i, c in enumerate(pre_rerank_top3)\n            ],\n            \"top_3\": [\n                {\"rank\": i + 1, \"source\": c[\"source\"], \"text\": c[\"text\"][:240], \"rerank_score\": round(c[\"rerank_score\"], 4)}\n                for i, c in enumerate(top3)\n            ],\n        }\n    return results\n\n\nif __name__ == \"__main__\":\n    q = \" \".join(sys.argv[1:]) or \"What is the cancellation policy for SKU-1042?\"\n    print(f\"\\nQ: {q}\\n\")\n    expected = {\"product_catalog.md\", \"faq.md\"}\n    bench = benchmark(q, expected)\n    for name, r in bench.items():\n        print(f\"  {name:18s}  p@3={r['p_at_3']}  chunks={r['chunks_total']}  top1={r['top_3'][0]['source']}\")\n",
+        "line_count": 267
+      }
+    ],
+    "reranker_model": "cross-encoder/ms-marco-MiniLM-L-6-v2"
+  },
+  "metrics": {
+    "primary_query_total_ms": 50323.6,
+    "secondary_query_total_ms": 517.6,
+    "p_at_3_winner": 1.0,
+    "p_at_3_baseline": 1.0,
+    "p_at_3_late_vs_baseline": -0.333
+  },
+  "generated_at": "2026-05-08T10:40:08.329284+00:00"
+}
